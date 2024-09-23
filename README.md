@@ -3,7 +3,8 @@ A project integrating a Java Spring web application with a Robotic Process Autom
 
 # Flowchart
 
-![The San Juan Mountains are beautiful!](/Diagrams and flowcharts\ssb_flowchart_high.png "San Juan Mountains")
+![Projects FLowchart](Diagrams and flowcharts/ssb_flowchart_high.png)
+
 
 # Features
 
