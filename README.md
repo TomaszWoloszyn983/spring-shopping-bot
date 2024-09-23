@@ -3,7 +3,7 @@ A project integrating a Java Spring web application with a Robotic Process Autom
 
 # Flowchart
 
-![Projects FLowchart](Diagrams and flowcharts/ssb_flowchart_high.png)
+![Projects FLowchart](/docs/images/ssb_flowchart_high.png)
 
 
 # Features
