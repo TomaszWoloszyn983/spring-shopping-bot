@@ -37,16 +37,20 @@ Contains the following fields:
 
 
 # Used technologies
- - Java
- - Spring
- - H2 database
- - PostgreSQL database
- - Hibernate
- - HTML5
- - CSS
- - JavaScript
- - Bootstrap
- - Thymeleaf
- - UiPath
- - GitHub
- - Heroku
+ * Java - 
+ * Spring - 
+ * H2 database - 
+ * PostgreSQL database - 
+ * Hibernate - 
+ * HTML5 - 
+ * CSS - 
+ * JavaScript - 
+ * Bootstrap - 
+ * Thymeleaf - 
+ * UiPath - 
+ * GitHub - 
+ * Heroku - 
+
+ # Links and references:
+
+* Draw.io - 
