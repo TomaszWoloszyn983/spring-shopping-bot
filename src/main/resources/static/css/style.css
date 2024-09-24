@@ -1,0 +1,59 @@
+html{
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header section */
+#main-header{
+    /*background-image: url("../images/xavSchool_pageHeader.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: contain;
+    width: 100vw;
+    */
+    font-size: 50px;
+    color: black;
+    text-align: center;
+    font-size: 50px;
+    margin: 0;
+    padding: 0;
+}
+
+
+@media screen and (max-width: 576px) {
+    #main-header{
+        font-size: 80%;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    #main-header{
+        font-size: 100%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #main-header{
+        font-size: 120%;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    #main-header{
+        font-size: 150%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    #main-header{
+        font-size: 180%;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    #main-header{
+        font-size: 200%;
+        color: blue;
+    }
+}
