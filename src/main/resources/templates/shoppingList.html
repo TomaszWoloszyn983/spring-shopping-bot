@@ -1,35 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Shopping List</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org">
+<div th:insert="index.html :: head"></div>
+
 <body>
     <header class="col-12 mx-0 px-0">
         <div id="main-header" href="*">
-            Shopping guide
+            Shopping list
         </div>
     </header>
 
     <!--  Navbar  -->
-    <div class="col-12 px-0 mx-0">
-        <div class="row container px-0 mx-auto">
-            <a class="col-sm-6 col-md-2 mx-auto"
-               href="*">
-                Home
-                <!-- <div class="nav-separator"></div> -->
-            </a>
-            <a class="col-sm-12 col-md-3 mx-auto"
-               href="*">
-                Shopping List
-            </a>
-            <!-- <div class="nav-separator "></div> -->
-            <a class="col-sm-6 col-md-2 mx-auto navbar-tiles"
-               href="*">
-                Login
-                <!-- <div class="nav-separator"></div> -->
-            </a>
-        </div>
+    <div th:insert="index.html :: navbar">></div>
+
+    <div>
+        <tr class="studentTableHeader border-2 text-center">
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+        <tr class="px-auto mx-auto border-2"
+            th:each="product : ${products}"
+            th:sort="${product.getId()}">
+            <td class="border-1 text-center">
+                <span th:text="${product.getId()}"></span>
+            </td>
+            <td class="border-1 text-center">
+                <span th:text="${product.getName()}"></span>
+            </td>
+        </tr>
     </div>
 
 </body>
