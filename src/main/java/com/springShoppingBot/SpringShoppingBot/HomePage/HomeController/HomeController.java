@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(path = "/")
 public class HomeController {
 
-    @RequestMapping(("/home"))
-    @GetMapping
+    @GetMapping({"/","home"})
     public String displayHomePage(){
         return "index.html";
     }

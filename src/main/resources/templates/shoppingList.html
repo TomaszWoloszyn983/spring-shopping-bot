@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org">
-<div th:insert="index.html :: head"></div>
+<div th:insert="~{index.html :: head}"></div>
 
 <body>
     <header class="col-12 mx-0 px-0">
@@ -10,24 +10,39 @@
     </header>
 
     <!--  Navbar  -->
-    <div th:insert="index.html :: navbar">></div>
+    <div th:insert="~{index.html :: navbar}"></div>
 
-    <div>
-        <tr class="studentTableHeader border-2 text-center">
-            <th>Id</th>
-            <th>Name</th>
-        </tr>
-        <tr class="px-auto mx-auto border-2"
-            th:each="product : ${products}"
-            th:sort="${product.getId()}">
-            <td class="border-1 text-center">
-                <span th:text="${product.getId()}"></span>
-            </td>
-            <td class="border-1 text-center">
-                <span th:text="${product.getName()}"></span>
-            </td>
-        </tr>
+
+    <!-- Shopping List -->
+    <div class="container my-5 px-auto border-2">
+        <table class="table table-hover mx-auto px-auto">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Size</th>
+                    <th scope="col">No Units</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${products}"
+                    th:sort="${product.getId()}">
+                    
+                    <td class="border-1 text-center">
+                        <span th:text="${product.getName}"></span>
+                    </td>
+                    <td class="border-1 text-center">
+                        <span th:text="${product.getType}"></span>
+                    </td>
+                    <td class="border-1 text-center">
+                        <span th:text="${product.getSizeOfUnit}"></span>
+                    </td>
+                    <td class="border-1 text-center">
+                        <span th:text="${product.getNumOfUnits}"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-
 </body>
 </html>
