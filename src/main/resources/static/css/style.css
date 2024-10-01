@@ -5,6 +5,19 @@ html{
     padding: 0;
 }
 
+
+/* 
+    Id = '#' 
+    Class = '.'
+*/
+
+/* 
+    margin: 25px 50px 75px;
+        top margin is 25px
+        right and left margins are 50px
+        bottom margin is 75px
+*/
+
 /* Header section */
 #main-header{
     /*background-image: url("../images/xavSchool_pageHeader.jpg");
@@ -13,14 +26,18 @@ html{
     background-size: contain;
     width: 100vw;
     */
-    font-size: 10vh;
-    color: #000;
+    font-size: xx-large;
+    font-weight: bolder;
+    color: #2415b3;
     text-align: center;
+    margin: 25px auto 25px; /* Margin top-horizontal-bottom*/
 }
 
-.nav-container{
-    background-color: aliceblue;
-    border: 2px solid #000
+#nav-container{
+    background-color: #fff;
+    margin: 25px 0;
+    border: 2px solid #000;
+    padding: 25px auto;
 }
 
 /* Navigation bar */
@@ -31,6 +48,10 @@ html{
     text-align: center;
     text-decoration: none;
 }
+/* .navbar{
+    background-color: #f5d442;
+    color: #032152;
+} */
 .navbar-tiles :hover{
     background-color: rgba(65, 105, 225, 0.616);
     text-align: left;

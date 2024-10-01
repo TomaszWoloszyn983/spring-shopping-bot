@@ -26,20 +26,20 @@
     <title>Spring Shopping Bot</title>
 </head>
 <body>
-    <div class="container mx-0 px-0" >
-        <div class="row">
-            <h1 class="col" href="*">Shopping guide</h1>
+
+    <header class="" th:fragment="header">
+        <div id="main-header">
+            Shopping Guide
         </div>
-        <header class="col-12 center mx-auto px-auto">
-            <div id="main-header" href="@{/}">
-                Shopping guide
-            </div>
-        </header>
+    </header>
+
+
+    <div class="container mx-auto px-auto" >
 
         <!--  Navbar  -->
-
-        <div class="row container px-0 mx-auto" id="navbar"
-                style="background-color: #e3f2fd;">
+        <div class="row container px-auto mx-auto 
+            {% comment %} --bs-primary-bg-subtle --bs-primary-border-dark" {% endcomment %}
+            id="nav-container" th:fragment="navbar">
             <a class="col-sm-6 col-md-2 mx-auto navbar-tiles nav-link"
                 href="home.html" th:href="@{/home}">
                 Home
@@ -50,46 +50,20 @@
                 Shopping List
             </a>
             <!-- <div class="nav-separator "></div> -->
-            <a class="col-sm-6 col-md-2 mx-auto navbar-tiles"
-                href="#">
-                
+            <div class="col-sm-6 col-md-2 mx-auto navbar-tiles nav-link
+                        --bs-primary-bg-light">
                 <!-- <div class="nav-separator"></div> -->
-            </a>
-            <a class="col-sm-6 col-md-2 mx-auto navbar-tiles"
-                href=*>
-                
+            </div>
+            <div class="col-sm-6 col-md-2 mx-auto navbar-tiles nav-link
+                        --bs-primary-bg-light">
                 <!-- <div class="nav-separator"></div> -->
-            </a>
+            </div>
             <a class="col-sm-6 col-md-3 mx-auto navbar-tiles nav-link"
                 href=*>
                 Login
             </a>
         </div>
 
-        <div class="container row mx-0 px-0"
-                style="background-color: #e3f2fd;" th:fragment="navbar">
-
-            <div class="container row mx-0 px-0" id="">
-                <ul class="">
-                    <li class="col-md-4 nav-item">
-                        <a class="nav-link" href="home.html" th:href="@{/home}">
-                            Home
-                        </a>
-                    </li>
-                    <li class="col-md-4 nav-item">
-                        <a class="nav-link" href="shoppingList.html" th:href="@{/shoppingList}">
-                            Shopping List
-                        </a>
-                    </li>
-
-                    <li class="col-md-4 nav-item">
-                        <a class="nav-link" href="#">
-                            Login
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
 
         <!--  Main Content  -->
         <div class="col-12 mx-auto center px-0">
