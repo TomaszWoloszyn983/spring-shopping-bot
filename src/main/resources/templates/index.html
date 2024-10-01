@@ -37,28 +37,23 @@
     <div class="container mx-auto px-auto" >
 
         <!--  Navbar  -->
-        <div class="row container px-auto mx-auto 
-            {% comment %} --bs-primary-bg-subtle --bs-primary-border-dark" {% endcomment %}
-            id="nav-container" th:fragment="navbar">
-            <a class="col-sm-6 col-md-2 mx-auto navbar-tiles nav-link"
+        <div class="row container px-auto mx-auto"
+             id="nav-container" th:fragment="navbar">
+            <a class="col-sm-12 col-md-2 mx-auto navbar-tiles nav-link"
                 href="home.html" th:href="@{/home}">
                 Home
                 <!-- <div class="nav-separator"></div> -->
             </a>
-            <a class="col-sm-12 col-md-3 mx-auto navbar-tiles nav-link"
+            <a class="col-sm-12 col-md-2 mx-auto navbar-tiles nav-link"
                 href="shoppingList.html" th:href="@{/shoppingList}">
                 Shopping List
             </a>
             <!-- <div class="nav-separator "></div> -->
-            <div class="col-sm-6 col-md-2 mx-auto navbar-tiles nav-link
+            <div class="col-sm-12 col-md-6 mx-auto nav-link
                         --bs-primary-bg-light">
                 <!-- <div class="nav-separator"></div> -->
             </div>
-            <div class="col-sm-6 col-md-2 mx-auto navbar-tiles nav-link
-                        --bs-primary-bg-light">
-                <!-- <div class="nav-separator"></div> -->
-            </div>
-            <a class="col-sm-6 col-md-3 mx-auto navbar-tiles nav-link"
+            <a class="col-sm-12 col-md-2 mx-auto navbar-tiles nav-link"
                 href=*>
                 Login
             </a>

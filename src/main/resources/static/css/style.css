@@ -45,14 +45,15 @@ html{
     background-color: rgba(65, 105, 225, 0.205);
     margin: 5px;
     padding: 5px;
-    text-align: center;
+    text-align: left;
     text-decoration: none;
+    border-bottom: 2px dotted #000;
 }
 /* .navbar{
     background-color: #f5d442;
     color: #032152;
 } */
-.navbar-tiles :hover{
+.navbar-tiles:hover{
     background-color: rgba(65, 105, 225, 0.616);
     text-align: left;
 }
@@ -64,6 +65,7 @@ html{
     }
 }
 
+/* ^^^ Why is this size duplicated? ^^^ */
 @media screen and (min-width: 576px) {
     #main-header{
         font-size: 100%;
@@ -73,6 +75,10 @@ html{
 @media screen and (min-width: 768px) {
     #main-header{
         font-size: 120%;
+    }
+    .navbar-tiles{
+        text-align: center;
+        border-bottom: none;
     }
 }
 
