@@ -28,87 +28,92 @@
 <body>
 
     <header class="" th:fragment="header">
-        <div id="main-header">
-            Shopping Guide
+        <div id="main-header-container">
+            <h1>
+                Shopping Guide
+            </h1>
         </div>
     </header>
 
 
     <div class="container mx-auto px-auto" >
 
-        <!--  Navbar  -->
-        <div class="row container px-auto mx-auto"
-             id="nav-container" th:fragment="navbar">
-            <a class="col-sm-12 col-md-2 mx-auto navbar-tiles nav-link"
-                href="home.html" th:href="@{/home}">
-                Home
-                <!-- <div class="nav-separator"></div> -->
-            </a>
-            <a class="col-sm-12 col-md-2 mx-auto navbar-tiles nav-link"
-                href="shoppingList.html" th:href="@{/shoppingList}">
-                Shopping List
-            </a>
-            <!-- <div class="nav-separator "></div> -->
-            <div class="col-sm-12 col-md-6 mx-auto nav-link
-                        --bs-primary-bg-light">
-                <!-- <div class="nav-separator"></div> -->
-            </div>
-            <a class="col-sm-12 col-md-2 mx-auto navbar-tiles nav-link"
-                href=*>
-                Login
-            </a>
+    <!--  Navbar  -->
+    <div class="row container mx-auto"
+            id="nav-container" th:fragment="navbar">
+        <a class="col-sm-12 col-md-2 navbar-tiles nav-link"
+            href="home.html" th:href="@{/home}">
+            Home
+            <!-- <div class="nav-separator"></div> -->
+        </a>
+        <a class="col-sm-12 col-md-2 navbar-tiles nav-link"
+            href="shoppingList.html" th:href="@{/shoppingList}">
+            Shopping List
+        </a>
+        <!-- <div class="nav-separator "></div> -->
+        <div class="col-sm-12 col-md-6 nav-link
+                    --bs-primary-bg-light">
+            <!-- <div class="nav-separator"></div> -->
         </div>
-
-
-        <!--  Main Content  -->
-        <div class="col-12 mx-auto center px-0">
-            <div class="row container mx-auto px-0">
-
-                <!-- Left panel -->
-                <div class="col-md-3 main-panels">
-                    Left paragraph
-                </div>
-
-                <!-- Central Panel -->
-                <div class="col-md-6 mx-0 px-0">
-                    <div class="mx-0 horizontal-pars">
-                        <h2 col-md-12 mx-0 px-0>
-                            Welcome to the shopping guide application.
-                        </h2>
-                    </div>
-                    <div class="mx-0 horizontal-pars">
-                        <p class="col">
-                            Nullam auctor sem non maximus commodo. Praesent blandit non
-                            tellus sit amet consectetur. In accumsan ut eros quis bibendum.
-                            Sed ultrices auctor nibh, non vehicula dui posuere eu.
-                            Ut lobortis tempus turpis, sed ornare dolor suscipit in.
-                            Mauris aliquam ornare elit eleifend venenatis. In et finibus
-                            metus. Mauris quis lacus a odio ullamcorper volutpat venenatis
-                            ac lectus. Sed et arcu ullamcorper neque dignissim euismod.
-                            Integer sem eros, fringilla in maximus ultricies, lacinia nec
-                            elit. Pellentesque felis risus, venenatis a est sit amet,
-                            faucibus malesuada nulla. Nunc in felis libero. Integer
-                            ultricies nisl quam, ac accumsan odio aliquet eu. Morbi at eros
-                            vel augue volutpat semper. Vestibulum fringilla eleifend
-                            elementum.
-                        </p>
-
-                    </div>
-                    <div class="mx-0 horizontal-pars">
-                        <a href="shoppingList.html" th:href="@{/shoppingList}">
-                            Go to the shopping list.
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Right panel -->
-                <div class="col-md-3">
-                    Right paragraphpanels
-                </div>
-            </div>
-
-        </div>
+        <a class="col-sm-12 col-md-2 navbar-tiles nav-link"
+            href=*>
+            Login
+        </a>
     </div>
+
+
+    <!--  Main Content  -->
+    <div class="row container px-0 mx-0 mx-md-auto">
+
+        <!-- Left panel -->
+        <div class="col-md-3 main-panels">
+            Left paragraph
+        </div>
+
+
+        <!-- Central Panel -->
+        <div class="col-md-6 mx-0 px-0">
+            <div class="mx-0 horizontal-pars">
+                <h2 col-md-12 mx-0 px-0>
+                    Welcome to the shopping guide application.
+                </h2>
+            </div>
+            <div class="mx-0 horizontal-pars">
+                <p class="col">
+                    Nullam auctor sem non maximus commodo. Praesent blandit non
+                    tellus sit amet consectetur. In accumsan ut eros quis bibendum.
+                    Sed ultrices auctor nibh, non vehicula dui posuere eu.
+                    Ut lobortis tempus turpis, sed ornare dolor suscipit in.
+                    Mauris aliquam ornare elit eleifend venenatis. In et finibus
+                    metus. Mauris quis lacus a odio ullamcorper volutpat venenatis
+                    ac lectus. Sed et arcu ullamcorper neque dignissim euismod.
+                    Integer sem eros, fringilla in maximus ultricies, lacinia nec
+                    elit. Pellentesque felis risus, venenatis a est sit amet,
+                    faucibus malesuada nulla. Nunc in felis libero. Integer
+                    ultricies nisl quam, ac accumsan odio aliquet eu. Morbi at eros
+                    vel augue volutpat semper. Vestibulum fringilla eleifend
+                    elementum.
+                </p>
+            </div>
+             
+            <!-- Button -->    
+            <div class="row mx-auto px-auto horizontal-pars">
+                <a type="button" class="col btn btn-primary btn-lg btn-block
+                        px-auto mx-auto mb-3"
+                        href="shoppingList.html" th:href="@{/shoppingList}">
+                    Go to the shopping list
+                </a>
+            </div>
+        </div>
+
+
+        <!-- Right panel -->
+        <div class="col-md-3">
+            Right paragraphpanels
+        </div>
+
+    </div>
+
 
 
 </body>

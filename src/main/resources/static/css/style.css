@@ -1,6 +1,6 @@
 html{
     height: 100%;
-    background-color: blue;
+    background-color: rgba(0, 255, 21, 0.096);
     margin: 0;
     padding: 0;
 }
@@ -9,6 +9,9 @@ html{
 /* 
     Id = '#' 
     Class = '.'
+
+    border-style: dotted dashed solid double; 
+        ^^^ Można dodać dla każdego boku inny styl ramki ^^^
 */
 
 /* 
@@ -19,43 +22,48 @@ html{
 */
 
 /* Header section */
-#main-header{
+#main-header-container{
     /*background-image: url("../images/xavSchool_pageHeader.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: contain;
     width: 100vw;
     */
-    font-size: xx-large;
+    background-color: rgba(255, 251, 0, 0.096);
+    font-size: 25vh;
     font-weight: bolder;
-    color: #2415b3;
+    color: #000;
     text-align: center;
-    margin: 25px auto 25px; /* Margin top-horizontal-bottom*/
+    margin: 50px auto 25px; /* Margin top-horizontal-bottom*/
+    padding: 0 auto;
 }
 
 #nav-container{
     background-color: #fff;
     margin: 25px 0;
-    border: 2px solid #000;
-    padding: 25px auto;
+    border: 2px double #000;
+    padding: 0;
 }
 
 /* Navigation bar */
 .navbar-tiles{
     background-color: rgba(65, 105, 225, 0.205);
-    margin: 5px;
-    padding: 5px;
+    max-width: 25vw;
+    margin: 2px 0 2px 10px;
+    padding: 15px auto;
     text-align: left;
     text-decoration: none;
-    border-bottom: 2px dotted #000;
+    border: 2px inset #000;
 }
 /* .navbar{
     background-color: #f5d442;
     color: #032152;
 } */
 .navbar-tiles:hover{
-    background-color: rgba(65, 105, 225, 0.616);
-    text-align: left;
+    background-color: rgba(65, 105, 225, 0.2);
+    font-weight: bolder;
+    /* text-align: left; */
+
 }
 
 
@@ -78,7 +86,8 @@ html{
     }
     .navbar-tiles{
         text-align: center;
-        border-bottom: none;
+        margin: 0 auto;
+        /* border-bottom: none; */
     }
 }
 
