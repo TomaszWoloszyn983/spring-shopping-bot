@@ -2,8 +2,7 @@ package com.springShoppingBot.SpringShoppingBot.product;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,5 +36,17 @@ public class ProductController {
     public String displayAllProducts(Model model){
         model.addAttribute("products", getAllProducts());
         return "shoppingList.html";
+    }
+
+    @PostMapping(path = "/addNewProduct")
+    public String createNewProduct (@RequestBody Product product){
+        productService.createNewProduct(product);
+        return "redirect:/shoppingList";
+    }
+
+    @GetMapping(path = "/{productId}")
+    public String deleteProduct(@PathVariable("productId") int productId){
+        productService.deleteProduct(productId);
+        return "redirect:/shoppingList";
     }
 }
