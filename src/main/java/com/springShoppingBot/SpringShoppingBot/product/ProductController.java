@@ -44,7 +44,7 @@ public class ProductController {
         return "redirect:/shoppingList";
     }
 
-    @GetMapping(path = "/{productId}")
+    @GetMapping(path = "/deleteProduct/{productId}")
     public String deleteProduct(@PathVariable("productId") int productId){
         productService.deleteProduct(productId);
         return "redirect:/shoppingList";

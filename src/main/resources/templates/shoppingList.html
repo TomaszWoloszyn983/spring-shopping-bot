@@ -20,6 +20,7 @@
                     <th scope="col">Type</th>
                     <th scope="col">Size</th>
                     <th scope="col">No Units</th>
+                    <th scope="col">Del</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,6 +38,13 @@
                     </td>
                     <td class="border-1 text-center">
                         <span th:text="${product.getNumOfUnits}"></span>
+                    </td>
+                    <td class="border-1 text-center">
+                        <a type="button" class="col btn btn-primary btn-sm btn-block
+                            p-auto m-1"
+                            th:href="@{/deleteProduct/{id}(id=${product.getId()})}">
+                            Del
+                        </a>
                     </td>
                 </tr>
             </tbody>
