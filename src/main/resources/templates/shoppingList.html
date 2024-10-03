@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org">
+
 <div th:insert="~{index.html :: head}"></div>
 
 <body>
@@ -49,6 +50,37 @@
                 </tr>
             </tbody>
         </table>
+
+        <!-- Add new product to list -->
+        <div>
+            <!--/*@thymesVar id="product" type="com.springShoppingBot.SpringShoppingBot.product.Product"*/-->
+            <form th:action="@{/product/addNewProduct}" th:object="${product}" th:method="post">
+                <legend class="col-12 text-center">Add product to list</legend>
+                <fieldset class="form-group">
+                    <label for="id">Id</label>
+                    <input id="id" type="text" name="id">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="name">Name</label>
+                    <input id="name" type="text" name="name">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="type">Type</label>
+                    <input id="type" type="text" name="type">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="sizeOfUnit">Size</label>
+                    <input id="sizeOfUnit" type="text" name="sizeOfUnit">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="numOfUnits">Quantity</label>
+                    <input id="numOfUnits" type="text" name="numOfUnits">
+                </fieldset>
+                <button class="btn btn-success center" type="submit">Add</button>
+            </form>
+        </div>
     </div>
+
+
 </body>
 </html>

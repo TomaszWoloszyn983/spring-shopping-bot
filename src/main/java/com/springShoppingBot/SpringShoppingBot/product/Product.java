@@ -1,16 +1,16 @@
 package com.springShoppingBot.SpringShoppingBot.product;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table (name = "dt_products")
 public class Product {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")
+    @SequenceGenerator(name = "product_sequence", sequenceName = "product_sequence", allocationSize = 1)
     private int id;
+
     private String name;
     private String type;
 

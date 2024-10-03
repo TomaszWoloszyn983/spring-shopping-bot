@@ -1,0 +1,3 @@
+CREATE SEQUENCE product_sequence
+START WITH 11
+INCREMENT BY 1;

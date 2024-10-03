@@ -42,7 +42,6 @@ public class ProductService {
                     "Product does not exist in data table!"
             );
         }
-
         productRepository.deleteById(productId);
     }
 }

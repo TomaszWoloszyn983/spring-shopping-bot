@@ -38,14 +38,16 @@ public class ProductController {
         return "shoppingList.html";
     }
 
-    @PostMapping(path = "/addNewProduct")
-    public String createNewProduct (@RequestBody Product product){
+    @PostMapping(path = "/product/addNewProduct")
+    public String createNewProduct (Product product){
+        System.out.println("Creating new product: "+product.getName()+" "+product.getType()+" Id = "+product.getId()+" "+product.getNumOfUnits());
         productService.createNewProduct(product);
         return "redirect:/shoppingList";
     }
 
     @GetMapping(path = "/deleteProduct/{productId}")
     public String deleteProduct(@PathVariable("productId") int productId){
+        System.out.println("Deleting item: "+productId);
         productService.deleteProduct(productId);
         return "redirect:/shoppingList";
     }
