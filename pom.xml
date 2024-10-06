@@ -51,12 +51,14 @@
 <!--	Databases	-->
 		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
 		<dependency>
+			<!--	H2 Database for local developemtn	-->
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>2.2.224</version>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
+			<!--	Postgres Database for Heroku	-->
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
@@ -77,13 +79,66 @@
 			<plugin>
 				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-maven-plugin</artifactId>
-				<configuration>
-					<url>jdbc:h2:file:D:/Kodowanie/H2_database/H2_database</url> <!-- Replace with your actual database path -->
-					<user></user>  <!-- Replace with actual username -->
-					<password></password>  <!-- Replace with actual password -->
-				</configuration>
+<!--				<configuration>-->
+<!--					<url>jdbc:h2:file:D:/Kodowanie/H2_database/H2_database</url> &lt;!&ndash; Replace with your actual database path &ndash;&gt;-->
+<!--					<user></user>  &lt;!&ndash; Replace with actual username &ndash;&gt;-->
+<!--					<password></password>  &lt;!&ndash; Replace with actual password &ndash;&gt;-->
+<!--				</configuration>-->
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<!-- Development Profile -->
+		<profile>
+			<id>dev</id>
+			<properties>
+				<!-- You can also set the active Spring profile here -->
+				<spring.profiles.active>dev</spring.profiles.active>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.flywaydb</groupId>
+						<artifactId>flyway-maven-plugin</artifactId>
+						<configuration>
+							<url>jdbc:h2:file:D:/Kodowanie/H2_database/H2_database</url>
+							<user></user> <!-- No username needed for H2 -->
+							<password></password> <!-- No password needed for H2 -->
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- Production Profile -->
+		<profile>
+			<id>prod</id>
+			<properties>
+				<!-- Set active profile to prod -->
+				<spring.profiles.active>prod</spring.profiles.active>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.flywaydb</groupId>
+						<artifactId>flyway-maven-plugin</artifactId>
+						<configuration>
+							<!-- PostgreSQL config for production -->
+								<!--suppress UnresolvedMavenProperty.
+									This env var should be provided by Heroku -->
+							<url>jdbc:postgresql://${env.DATABASE_HOST}:${env.DATABASE_PORT}/${env.DATABASE_NAME}</url>
+								<!--suppress UnresolvedMavenProperty.
+									This env var should be provided by Heroku -->
+							<user>${env.DATABASE_USER}</user>
+								<!--suppress UnresolvedMavenProperty.
+									This env var should be provided by Heroku -->
+							<password>${env.DATABASE_PASSWORD}</password>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>
