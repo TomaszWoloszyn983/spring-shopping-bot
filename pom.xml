@@ -102,7 +102,8 @@
 						<groupId>org.flywaydb</groupId>
 						<artifactId>flyway-maven-plugin</artifactId>
 						<configuration>
-							<url>jdbc:h2:file:D:/Kodowanie/H2_database/H2_database</url>
+							<!--suppress UnresolvedMavenProperty -->
+							<url>${DATABASE_URL}</url>
 							<user></user> <!-- No username needed for H2 -->
 							<password></password> <!-- No password needed for H2 -->
 						</configuration>
