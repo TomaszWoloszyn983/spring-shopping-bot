@@ -127,13 +127,13 @@
 							<!-- PostgreSQL config for production -->
 								<!--suppress UnresolvedMavenProperty.
 									This env var should be provided by Heroku -->
-							<url>${env.DATABASE_URL}</url>
+							<url>${DATABASE_URL}</url>
 								<!--suppress UnresolvedMavenProperty.
 									This env var should be provided by Heroku -->
-							<user>${env.JDBC_DATABASE_USERNAME}</user>
+							<user>${JDBC_DATABASE_USERNAME}</user>
 								<!--suppress UnresolvedMavenProperty.
 									This env var should be provided by Heroku -->
-							<password>${env.JDBC_DATABASE_PASSWORD}</password>
+							<password>${JDBC_DATABASE_PASSWORD}</password>
 						</configuration>
 					</plugin>
 				</plugins>
