@@ -14,6 +14,7 @@
 
     <!-- Shopping List -->
     <div class="container my-5 px-auto border-2">
+        <!-- 
         <table class="table table-hover mx-auto px-auto">
             <thead>
                 <tr>
@@ -50,29 +51,47 @@
                 </tr>
             </tbody>
         </table>
+        -->
+
+        <div class="container mx-2 px-2">
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-2" th:each="product : ${products}"
+                     th:sort="${product.getId()}">
+                    <button type="button" class="row product-tile" data-container="body"
+                            data-toggle="popover" data-placement="top"
+                            data-content="Test">
+                        <span class="col-11" th:text="${product.getName}"></span>
+                        <div class="col-1 fa-regular fa-trash-can">
+                           
+                        </div>
+                    </button>
+                </div>
+
+            </div>
+        </div>
 
         <!-- Add new product to list -->
         <div class="container row my-2 mx-auto p-2">
-            <div class="col-6 offset-3" >
+            <div class="col-6 offset-3 px-auto" >
                 <!--/*@thymesVar id="product" type="com.springShoppingBot.SpringShoppingBot.product.Product"*/-->
                 <form th:action="@{/product/addNewProduct}" th:object="${product}" th:method="post"
                     class="row">
                     <legend class="col-12 text-center">Add product to list</legend>
-                    <fieldset class=" col-12 form-group">
-                        <label for="name">Name *</label>
-                        <input id="name" type="text" name="name">
+                    <fieldset class="col-12 px-0 form-group">
+                        <label class="form-label" for="name">Name *</label>
+                        <input class="form-field" id="name" type="text" name="name">
                     </fieldset>
-                    <fieldset class="col-12 form-group">
-                        <label for="type">Type</label>
-                        <input id="type" type="text" name="type">
+                    <fieldset class="col-12 px-0 form-group">
+                        <label class="form-label" for="type">Type</label>
+                        <input class="form-field" id="type" type="text" name="type">
                     </fieldset>
-                    <fieldset class="col-12 form-group">
-                        <label for="sizeOfUnit">Size</label>
-                        <input id="sizeOfUnit" type="text" name="sizeOfUnit">
+                    <fieldset class="col-12 px-0 form-group">
+                        <label class="form-label" for="sizeOfUnit">Size</label>
+                        <input class="form-field" id="sizeOfUnit" type="text" name="sizeOfUnit">
                     </fieldset>
-                    <fieldset class="col-12 form-group">
-                        <label for="numOfUnits">Quantity *</label>
-                        <input id="numOfUnits" type="text" name="numOfUnits">
+                    <fieldset class="col-12 px-0 form-group">
+                        <label class="form-label" for="numOfUnits">Quantity *</label>
+                        <input class="form-field" id="numOfUnits" type="text" name="numOfUnits">
                     </fieldset>
                     <span class="col-12 blockquote fst-italic"
                         style="font-size: 12px; text-align: right;">
@@ -82,8 +101,14 @@
                 </form>
             </div>
         </div>
+        <script>
+            $(function () {
+                $('.example-popover').popover({
+                    container: 'body'
+                    })
+            })
+        </script>
     </div>
-
 
 </body>
 </html>
