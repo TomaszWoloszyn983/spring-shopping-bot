@@ -1,0 +1,125 @@
+2024-10-07T09:31:38.089971+00:00 app[web.1]: 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853) ~[spring-beans-6.1.13.jar!/:6.1.13]
+2024-10-07T09:31:38.089971+00:00 app[web.1]: 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1802) ~[spring-beans-6.1.13.jar!/:6.1.13]
+2024-10-07T09:31:38.089972+00:00 app[web.1]: 	... 24 common frames omitted
+2024-10-07T09:31:38.089972+00:00 app[web.1]: 
+2024-10-07T09:31:38.162617+00:00 heroku[web.1]: Process exited with status 1
+2024-10-07T09:31:38.183040+00:00 heroku[web.1]: State changed from starting to crashed
+2024-10-07T09:31:39.835534+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=spring-shopping-bot-8a17cd3a24b1.herokuapp.com request_id=44d39e1a-0712-422b-bc55-b8e629c72f9f fwd="51.171.140.17" dyno= connect= service= status=503 bytes= protocol=https
+2024-10-07T09:31:40.447895+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=spring-shopping-bot-8a17cd3a24b1.herokuapp.com request_id=04a1af04-4ba9-42e7-b770-7f041b646098 fwd="51.171.140.17" dyno= connect= service= status=503 bytes= protocol=https
+2024-10-07T09:31:51.353334+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/home" host=spring-shopping-bot-8a17cd3a24b1.herokuapp.com request_id=1cae3349-3cd4-4a35-9b0f-c50309e8aaaf fwd="51.171.140.17" dyno= connect= service= status=503 bytes= protocol=https
+2024-10-07T09:31:51.752073+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=spring-shopping-bot-8a17cd3a24b1.herokuapp.com request_id=61569b86-ee1a-49f5-a730-f8c5666f926d fwd="51.171.140.17" dyno= connect= service= status=503 bytes= protocol=https
+2024-10-07T09:31:30.264765+00:00 app[api]: Deploy 0873d038 by user tomaszwoloszyn983@gmail.com
+2024-10-07T09:31:30.264765+00:00 app[api]: Release v14 created by user tomaszwoloszyn983@gmail.com
+2024-10-07T09:31:36.000000+00:00 app[api]: Build succeeded
+2024-10-07T09:33:30.058451+00:00 heroku[run.1409]: State changed from starting to up
+2024-10-07T09:33:33.029177+00:00 heroku[run.1409]: Process exited with status 2
+2024-10-07T09:33:33.052515+00:00 heroku[run.1409]: State changed from up to complete
+2024-10-07T09:33:26.362867+00:00 app[api]: Starting process with command `-- tail` by user tomaszwoloszyn983@gmail.com
+2024-10-07T09:33:57.205728+00:00 heroku[run.1200]: State changed from starting to up
+2024-10-07T09:34:00.181223+00:00 heroku[run.1200]: Process exited with status 2
+2024-10-07T09:34:00.204558+00:00 heroku[run.1200]: State changed from up to complete
+2024-10-07T09:33:53.459195+00:00 app[api]: Starting process with command `--tail\` by user tomaszwoloszyn983@gmail.com
+2024-10-07T09:34:13.614115+00:00 heroku[run.2425]: State changed from starting to up
+2024-10-07T09:34:09.825925+00:00 app[api]: Starting process with command `--tail` by user tomaszwoloszyn983@gmail.com
+2024-10-07T09:34:16.587603+00:00 heroku[run.2425]: Process exited with status 2
+2024-10-07T09:34:16.611434+00:00 heroku[run.2425]: State changed from up to complete
+2024-10-07T09:34:44.430376+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=spring-shopping-bot-8a17cd3a24b1.herokuapp.com request_id=2d87bc3a-b909-4c92-a6ea-f1b8013e1a27 fwd="51.171.140.17" dyno= connect= service= status=503 bytes= protocol=https
+2024-10-07T09:34:44.986861+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=spring-shopping-bot-8a17cd3a24b1.herokuapp.com request_id=b0d11a57-c1a7-4d9a-a6ac-f6b188ee2b18 fwd="51.171.140.17" dyno= connect= service= status=503 bytes= protocol=https
+2024-10-07T09:35:10.156018+00:00 app[api]: Starting process with command `tail` by user tomaszwoloszyn983@gmail.com
+2024-10-07T09:35:13.898455+00:00 heroku[run.5703]: State changed from starting to up
+2024-10-07T09:35:25.333986+00:00 heroku[run.5703]: Process exited with status 129
+2024-10-07T09:35:25.352293+00:00 heroku[run.5703]: State changed from up to complete
+2024-10-07T09:35:55.006665+00:00 app[api]: Starting process with command `heroku logs --tail` by user tomaszwoloszyn983@gmail.com
+2024-10-07T09:35:58.755740+00:00 heroku[run.8892]: State changed from starting to up
+2024-10-07T09:36:01.736964+00:00 heroku[run.8892]: Process exited with status 127
+2024-10-07T09:36:01.757879+00:00 heroku[run.8892]: State changed from up to complete
+2024-10-07T09:38:09.380221+00:00 heroku[web.1]: State changed from crashed to starting
+2024-10-07T09:38:12.607764+00:00 heroku[web.1]: Starting process with command `java -jar target/SpringShoppingBot-0.0.1-SNAPSHOT.jar`
+2024-10-07T09:38:13.104092+00:00 app[web.1]: Setting JAVA_TOOL_OPTIONS defaults based on dyno size. Custom settings will override them.
+2024-10-07T09:38:13.106770+00:00 app[web.1]: Picked up JAVA_TOOL_OPTIONS: -XX:+UseContainerSupport -XX:MaxRAM=536870912 -Xmx300m -Xss512k -XX:CICompilerCount=2 -Dfile.encoding=UTF-8 
+2024-10-07T09:38:13.837670+00:00 app[web.1]: 
+2024-10-07T09:38:13.837698+00:00 app[web.1]:   .   ____          _            __ _ _
+2024-10-07T09:38:13.837698+00:00 app[web.1]:  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+2024-10-07T09:38:13.837698+00:00 app[web.1]: ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+2024-10-07T09:38:13.837699+00:00 app[web.1]:  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+2024-10-07T09:38:13.837699+00:00 app[web.1]:   '  |____| .__|_| |_|_| |_\__, | / / / /
+2024-10-07T09:38:13.837699+00:00 app[web.1]:  =========|_|==============|___/=/_/_/_/
+2024-10-07T09:38:13.837699+00:00 app[web.1]: 
+2024-10-07T09:38:13.838263+00:00 app[web.1]:  :: Spring Boot ::                (v3.3.4)
+2024-10-07T09:38:13.838263+00:00 app[web.1]: 
+2024-10-07T09:38:13.907561+00:00 app[web.1]: 2024-10-07T09:38:13.905Z  INFO 2 --- [SpringShoppingBot] [           main] c.s.S.SpringShoppingBotApplication       : Starting SpringShoppingBotApplication v0.0.1-SNAPSHOT using Java 17.0.12 with PID 2 (/app/target/SpringShoppingBot-0.0.1-SNAPSHOT.jar started by u9278 in /app)
+2024-10-07T09:38:13.908278+00:00 app[web.1]: 2024-10-07T09:38:13.908Z  INFO 2 --- [SpringShoppingBot] [           main] c.s.S.SpringShoppingBotApplication       : The following 1 profile is active: "prod"
+2024-10-07T09:38:14.515605+00:00 app[web.1]: 2024-10-07T09:38:14.515Z  INFO 2 --- [SpringShoppingBot] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-07T09:38:14.553954+00:00 app[web.1]: 2024-10-07T09:38:14.553Z  INFO 2 --- [SpringShoppingBot] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 32 ms. Found 1 JPA repository interface.
+2024-10-07T09:38:14.949851+00:00 app[web.1]: 2024-10-07T09:38:14.949Z  INFO 2 --- [SpringShoppingBot] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 5781 (http)
+2024-10-07T09:38:14.960957+00:00 app[web.1]: 2024-10-07T09:38:14.960Z  INFO 2 --- [SpringShoppingBot] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-07T09:38:14.961139+00:00 app[web.1]: 2024-10-07T09:38:14.961Z  INFO 2 --- [SpringShoppingBot] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-10-07T09:38:14.990571+00:00 app[web.1]: 2024-10-07T09:38:14.990Z  INFO 2 --- [SpringShoppingBot] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-07T09:38:14.991475+00:00 app[web.1]: 2024-10-07T09:38:14.991Z  INFO 2 --- [SpringShoppingBot] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1039 ms
+2024-10-07T09:38:15.187556+00:00 app[web.1]: 2024-10-07T09:38:15.186Z  INFO 2 --- [SpringShoppingBot] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-10-07T09:38:15.440455+00:00 app[web.1]: 2024-10-07T09:38:15.440Z  INFO 2 --- [SpringShoppingBot] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6a3fbcb1
+2024-10-07T09:38:15.441493+00:00 app[web.1]: 2024-10-07T09:38:15.441Z  INFO 2 --- [SpringShoppingBot] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-10-07T09:38:15.457601+00:00 app[web.1]: 2024-10-07T09:38:15.457Z  WARN 2 --- [SpringShoppingBot] [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Unsupported Database: PostgreSQL 16.3
+2024-10-07T09:38:15.457748+00:00 app[web.1]: 2024-10-07T09:38:15.457Z  INFO 2 --- [SpringShoppingBot] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-10-07T09:38:15.460332+00:00 app[web.1]: 2024-10-07T09:38:15.460Z  INFO 2 --- [SpringShoppingBot] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-10-07T09:38:15.462276+00:00 app[web.1]: 2024-10-07T09:38:15.462Z  INFO 2 --- [SpringShoppingBot] [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2024-10-07T09:38:15.470683+00:00 app[web.1]: 2024-10-07T09:38:15.470Z  INFO 2 --- [SpringShoppingBot] [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+2024-10-07T09:38:15.470684+00:00 app[web.1]: 
+2024-10-07T09:38:15.470685+00:00 app[web.1]: Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-10-07T09:38:15.488659+00:00 app[web.1]: 2024-10-07T09:38:15.485Z ERROR 2 --- [SpringShoppingBot] [           main] o.s.boot.SpringApplication               : Application run failed
+2024-10-07T09:38:15.488660+00:00 app[web.1]: 
+2024-10-07T09:38:15.488661+00:00 app[web.1]: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Unsupported Database: PostgreSQL 16.3
+2024-10-07T09:38:15.488661+00:00 app[web.1]: 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:326) ~[spring-beans-6.1.13.jar!/:6.1.13]
+2024-10-07T09:38:15.488662+00:00 app[web.1]: 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205) ~[spring-beans-6.1.13.jar!/:6.1.13]
+2024-10-07T09:38:15.488663+00:00 app[web.1]: 	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:954) ~[spring-context-6.1.13.jar!/:6.1.13]
+2024-10-07T09:38:15.488663+00:00 app[web.1]: 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625) ~[spring-context-6.1.13.jar!/:6.1.13]
+2024-10-07T09:38:15.488664+00:00 app[web.1]: 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.3.4.jar!/:3.3.4]
+2024-10-07T09:38:15.488665+00:00 app[web.1]: 	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.3.4.jar!/:3.3.4]
+2024-10-07T09:38:15.488665+00:00 app[web.1]: 	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.3.4.jar!/:3.3.4]
+2024-10-07T09:38:15.488666+00:00 app[web.1]: 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335) ~[spring-boot-3.3.4.jar!/:3.3.4]
+2024-10-07T09:38:15.488666+00:00 app[web.1]: 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363) ~[spring-boot-3.3.4.jar!/:3.3.4]
+2024-10-07T09:38:15.488666+00:00 app[web.1]: 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352) ~[spring-boot-3.3.4.jar!/:3.3.4]
+2024-10-07T09:38:15.488666+00:00 app[web.1]: 	at com.springShoppingBot.SpringShoppingBot.SpringShoppingBotApplication.main(SpringShoppingBotApplication.java:13) ~[!/:0.0.1-SNAPSHOT]
+2024-10-07T09:38:15.488670+00:00 app[web.1]: 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+2024-10-07T09:38:15.488671+00:00 app[web.1]: 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+2024-10-07T09:38:15.488671+00:00 app[web.1]: 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+2024-10-07T09:38:15.488672+00:00 app[web.1]: 	at java.base/java.lang.reflect.Method.invoke(Method.java:569) ~[na:na]
+2024-10-07T09:38:15.488672+00:00 app[web.1]: 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:102) ~[SpringShoppingBot-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+2024-10-07T09:38:15.488673+00:00 app[web.1]: 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:64) ~[SpringShoppingBot-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+2024-10-07T09:38:15.488673+00:00 app[web.1]: 	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:40) ~[SpringShoppingBot-0.0.1-SNAPSHOT.jar:0.0.1-SNAPSHOT]
+2024-10-07T09:38:15.488673+00:00 app[web.1]: Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Unsupported Database: PostgreSQL 16.3
+2024-10-07T09:38:15.488674+00:00 app[web.1]: 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1806) ~[spring-beans-6.1.13.jar!/:6.1.13]
+2024-10-07T09:38:15.488675+00:00 app[web.1]: 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.13.jar!/:6.1.13]
+2024-10-07T09:38:15.488675+00:00 app[web.1]: 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.13.jar!/:6.1.13]
+2024-10-07T09:38:15.488675+00:00 app[web.1]: 	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337) ~[spring-beans-6.1.13.jar!/:6.1.13]
+2024-10-07T09:38:15.488676+00:00 app[web.1]: 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.13.jar!/:6.1.13]
+2024-10-07T09:38:15.488693+00:00 app[web.1]: 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) ~[spring-beans-6.1.13.jar!/:6.1.13]
+2024-10-07T09:38:15.488693+00:00 app[web.1]: 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.1.13.jar!/:6.1.13]
+2024-10-07T09:38:15.488694+00:00 app[web.1]: 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:313) ~[spring-beans-6.1.13.jar!/:6.1.13]
+2024-10-07T09:38:15.488694+00:00 app[web.1]: 	... 17 common frames omitted
+2024-10-07T09:38:15.488695+00:00 app[web.1]: Caused by: org.flywaydb.core.api.FlywayException: Unsupported Database: PostgreSQL 16.3
+2024-10-07T09:38:15.488695+00:00 app[web.1]: 	at org.flywaydb.core.internal.database.DatabaseTypeRegister.getDatabaseTypeForConnection(DatabaseTypeRegister.java:105) ~[flyway-core-10.10.0.jar!/:na]
+2024-10-07T09:38:15.488695+00:00 app[web.1]: 	at org.flywaydb.core.internal.jdbc.JdbcConnectionFactory.<init>(JdbcConnectionFactory.java:73) ~[flyway-core-10.10.0.jar!/:na]
+2024-10-07T09:38:15.488696+00:00 app[web.1]: 	at org.flywaydb.core.FlywayExecutor.execute(FlywayExecutor.java:134) ~[flyway-core-10.10.0.jar!/:na]
+2024-10-07T09:38:15.488696+00:00 app[web.1]: 	at org.flywaydb.core.Flyway.migrate(Flyway.java:147) ~[flyway-core-10.10.0.jar!/:na]
+2024-10-07T09:38:15.488696+00:00 app[web.1]: 	at org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:66) ~[spring-boot-autoconfigure-3.3.4.jar!/:3.3.4]
+2024-10-07T09:38:15.488697+00:00 app[web.1]: 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853) ~[spring-beans-6.1.13.jar!/:6.1.13]
+2024-10-07T09:38:15.488697+00:00 app[web.1]: 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1802) ~[spring-beans-6.1.13.jar!/:6.1.13]
+2024-10-07T09:38:15.488698+00:00 app[web.1]: 	... 24 common frames omitted
+2024-10-07T09:38:15.488698+00:00 app[web.1]: 
+2024-10-07T09:38:15.552902+00:00 heroku[web.1]: Process exited with status 1
+2024-10-07T09:38:15.573527+00:00 heroku[web.1]: State changed from starting to crashed
+2024-10-07T09:38:32.237184+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/home" host=spring-shopping-bot-8a17cd3a24b1.herokuapp.com request_id=e5461826-3e12-4ac2-9501-2baf32792048 fwd="51.171.140.17" dyno= connect= service= status=503 bytes= protocol=https
+2024-10-07T09:38:32.733053+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=spring-shopping-bot-8a17cd3a24b1.herokuapp.com request_id=07afc008-e4a3-438d-837a-804b40a134e6 fwd="51.171.140.17" dyno= connect= service= status=503 bytes= protocol=https
+2024-10-07T09:44:08.885299+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/home" host=spring-shopping-bot-8a17cd3a24b1.herokuapp.com request_id=90829ed3-5d8e-4354-91fa-037c60b71841 fwd="51.171.140.17" dyno= connect= service= status=503 bytes= protocol=https
+2024-10-07T09:44:09.396520+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=spring-shopping-bot-8a17cd3a24b1.herokuapp.com request_id=835a4171-5bc0-451a-bcad-dcd12262c1ed fwd="51.171.140.17" dyno= connect= service= status=503 bytes= protocol=https
+2024-10-07T09:44:48.455665+00:00 app[api]: Starting process with command `heroku logs --tail` by user tomaszwoloszyn983@gmail.com
+2024-10-07T09:44:52.140821+00:00 heroku[run.3486]: State changed from starting to up
+2024-10-07T09:44:55.164634+00:00 heroku[run.3486]: Process exited with status 127
+2024-10-07T09:44:55.188323+00:00 heroku[run.3486]: State changed from up to complete
+2024-10-07T09:45:38.658071+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=spring-shopping-bot-8a17cd3a24b1.herokuapp.com request_id=e5d49f3e-fcfd-461a-93c9-0c02ac820060 fwd="51.171.140.17" dyno= connect= service= status=503 bytes= protocol=https
+2024-10-07T09:45:39.144792+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=spring-shopping-bot-8a17cd3a24b1.herokuapp.com request_id=a05e4190-d023-40fd-8227-27eff3f520f6 fwd="51.171.140.17" dyno= connect= service= status=503 bytes= protocol=https
+2024-10-07T09:45:49.405189+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=spring-shopping-bot-8a17cd3a24b1.herokuapp.com request_id=bb5a903d-01f2-44c3-bfcf-32e43c990726 fwd="51.171.140.17" dyno= connect= service= status=503 bytes= protocol=https
+2024-10-07T09:45:49.897330+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=spring-shopping-bot-8a17cd3a24b1.herokuapp.com request_id=a1bd472c-0075-4b61-a1c1-731c0685f0ff fwd="51.171.140.17" dyno= connect= service= status=503 bytes= protocol=https
+2024-10-07T09:45:55.048421+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/home" host=spring-shopping-bot-8a17cd3a24b1.herokuapp.com request_id=c819a704-91d9-4070-a163-1cbfc2565147 fwd="51.171.140.17" dyno= connect= service= status=503 bytes= protocol=https
+2024-10-07T09:45:55.437830+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=spring-shopping-bot-8a17cd3a24b1.herokuapp.com request_id=430b3e9e-96da-4456-8301-804c8021f869 fwd="51.171.140.17" dyno= connect= service= status=503 bytes= protocol=https
