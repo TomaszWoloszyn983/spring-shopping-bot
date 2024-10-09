@@ -1,7 +1,7 @@
 # spring-shopping-bot
 A project integrating a Java Spring web application with a Robotic Process Automation bot
 
-The live version of the application is available at [this link](https://www.heroku.com) (For more information about the deployment, see the relevant section in the documentation below).
+The live version of the application is available at [this link](https://spring-shopping-bot-8a17cd3a24b1.herokuapp.com/home) (For more information about the deployment, see the relevant section in the documentation below).
 
 # Flowchart
 
@@ -11,7 +11,7 @@ The live version of the application is available at [this link](https://www.hero
 
 1. [Features](#features)
     * [Home Page](#home-page)
-    <!-- * [Navigation Bar](#navigation-bar) -->
+    * [Navigation Bar](#navigation-bar)
     <!-- * [Footer](#footer) -->
     <!-- * [Newsletter](#newsletter) -->
     * [Shoping List Page](#shopping-list-page)
@@ -35,6 +35,8 @@ The bot is going to have the following features. Displaying a web application wh
 ### Home Page
 
 ### Shopping List page. 
+
+### Navigation Bar
 
 
 
@@ -65,6 +67,17 @@ Contains the following fields:
  - Size - this value is probably going to be of String type as it can define the size in liters, grams or number of unts in the package.
  - Quantity - an integer value that describes the number of products we want to add the list.
 
+```java
+    public class Product {
+
+        private int id;
+        private String name;
+        private String type;
+        private String sizeOfUnit;
+        private int numOfUnits;
+```
+
+# Database Structure
 
 # Technologies Used
  * Java - 
