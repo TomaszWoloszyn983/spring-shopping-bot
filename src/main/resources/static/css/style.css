@@ -66,13 +66,17 @@ html{
     background-color: #04aa6d2f;
     color: black;
     border: 2px solid #04aa6d; 
-    border-radius: 6px;
+    border-radius: 2px;
     margin: 5px 0;
     }
 .product-tile:hover {
     background-color: #04AA6D; 
     color: white;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+  .del-product-button{
+
   }
 
   /* Product Form */
