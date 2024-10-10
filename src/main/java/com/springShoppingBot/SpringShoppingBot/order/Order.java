@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public class Order {
 //    private int id;
     private String userEmail;
 
-    private List<Product> listOfProducts;
+    private List<Product> listOfProducts = new ArrayList<Product>();
 
     private LocalDateTime orderDate;
 
@@ -29,7 +30,7 @@ public class Order {
         System.out.println("Product "+product.getName()+" added to Order");
     }
 
-    public void removeToList(Product product){
+    public void removeFromList(Product product){
         listOfProducts.remove(product);
         System.out.println("Product "+product.getName()+" removed from Order");
     }
@@ -48,6 +49,7 @@ public class Order {
     }
 
     public List<Product> getListOfProducts() {
+        System.out.println("The list contains "+listOfProducts.size()+" products");
         return listOfProducts;
     }
 

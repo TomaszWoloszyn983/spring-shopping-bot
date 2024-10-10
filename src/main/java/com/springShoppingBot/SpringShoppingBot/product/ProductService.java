@@ -19,6 +19,13 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public Product findProductById(int id){
+        return productRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException(
+                        "Product with id = "+id+" not found."
+                ));
+    }
+
     /**
      * Creates a new product and adds the product to datatable.
      *
