@@ -16,8 +16,10 @@ import java.util.List;
 public class OrderController {
 
     public final ProductService productService;
+    public Order currentOrder;
 
     public OrderController(ProductService productService) {
+        currentOrder = new Order();
         this.productService = productService;
     }
 
@@ -25,7 +27,7 @@ public class OrderController {
         return productService.getAllProducts();
     }
 
-    public Order order = new Order();
+
 
     @RequestMapping(("shoppingList"))
     @GetMapping
@@ -42,6 +44,8 @@ public class OrderController {
     @GetMapping(path="shoppingList")
     public String displayAllProducts(Model model){
         model.addAttribute("products", getAllProducts());
+        currentOrder.setListOfProducts(productService.getAllProducts());
+        currentOrder.displayProducts();
         return "shoppingList.html";
     }
 
@@ -56,8 +60,6 @@ public class OrderController {
         System.out.println("Creating new product: "+product.getName()+" "
                 +product.getType()+" "+product.getNumOfUnits());
         productService.createNewProduct(product);
-        order.addToList(product);
-        order.getListOfProducts();
         return "redirect:/shoppingList";
     }
 
@@ -71,9 +73,6 @@ public class OrderController {
     public String deleteProduct(@PathVariable("productId") int productId){
         System.out.println("Deleting item: "+productId);
         productService.deleteProduct(productId);
-        Product productToDelete = productService.findProductById(productId);
-        order.removeFromList(productToDelete);
-        order.getListOfProducts();
         return "redirect:/shoppingList";
     }
 

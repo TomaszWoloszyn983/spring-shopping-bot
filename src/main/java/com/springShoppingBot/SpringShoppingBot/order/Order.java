@@ -24,15 +24,31 @@ public class Order {
     private LocalDateTime orderDate;
 
 
-
+    /**
+     * This method isn't in use at the moment
+     * The listOfProducts is assigned with values
+     * taken from the database every time
+     * the shopping list page is displayed/refreshed.
+     *
+     * @param product
+     */
     public void addToList(Product product){
         listOfProducts.add(product);
         System.out.println("Product "+product.getName()+" added to Order");
     }
 
-    public void removeFromList(Product product){
-        listOfProducts.remove(product);
-        System.out.println("Product "+product.getName()+" removed from Order");
+    /**
+     * This method isn't in use at the moment
+     * The listOfProducts is assigned with values
+     * taken from the database every time
+     * the shopping list page is displayed/refreshed.
+     *
+     * @param id
+     */
+    public void removeFromList(int id){
+        listOfProducts.remove(listOfProducts.stream()
+                .filter(product -> product.getId() == id)
+                .findFirst());
     }
 
 
@@ -67,5 +83,19 @@ public class Order {
      */
     public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = LocalDateTime.now();
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "userEmail='" + userEmail + '\'' +
+                ", orderDate=" + orderDate +
+                ", listOfProducts=" + listOfProducts +
+                '}';
+    }
+
+    public void displayProducts() {
+        System.out.println("Product in the list:");
+        this.listOfProducts.forEach(product -> System.out.print(product.getName()+" "));
     }
 }

@@ -19,7 +19,13 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public void deleteProductById(int id){
+        productRepository.deleteById(id);
+        System.out.println("Product by id "+id+" deleted from database.");
+    }
+
     public Product findProductById(int id){
+        System.out.println("Finding product: "+id);
         return productRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException(
                         "Product with id = "+id+" not found."
