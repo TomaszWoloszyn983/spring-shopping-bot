@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org">
+
+<div th:insert="~{index.html :: head}"></div>
+
+<body>
+    
+    <!--  Header  -->
+    <div th:insert="~{index.html :: header}"></div>
+
+    <!--  Navbar  -->
+    <div th:insert="~{index.html :: navbar}"></div>
+
+    <div class="container row">
+        <div class="col-6 offset-3 m-auto p-auto">
+            <p>Summary</p>
+
+        </div>
+
+        <!-- Button -->    
+        <div class="row mx-auto px-auto horizontal-pars">
+            <a type="button" class="col btn btn-primary btn-lg btn-block
+                    px-auto mx-auto mb-3"
+                    href="index.html" th:href="@{/home}">
+                Return to Home Page
+            </a>
+        </div>
+
+    </div>
+    
+</body>
+</html>

@@ -3,7 +3,9 @@ package com.springShoppingBot.SpringShoppingBot.order;
 import com.springShoppingBot.SpringShoppingBot.product.Product;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Controller;
 
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +15,13 @@ import java.util.List;
  * A good solution could be to avoid storing usersEmails.
  */
 
-
+@Controller
 public class Order {
 
 //    private int id;
+
+    @NotBlank(message = "Email is required")
+    @Email(message = "Please provide a valid email address")
     private String userEmail;
 
     private List<Product> listOfProducts = new ArrayList<Product>();

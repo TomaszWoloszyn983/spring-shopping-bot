@@ -4,10 +4,7 @@ import com.springShoppingBot.SpringShoppingBot.product.Product;
 import com.springShoppingBot.SpringShoppingBot.product.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -74,6 +71,12 @@ public class OrderController {
         System.out.println("Deleting item: "+productId);
         productService.deleteProduct(productId);
         return "redirect:/shoppingList";
+    }
+
+    @GetMapping(path = "orderSummary")
+    public String submitOrder(){
+        System.out.println("Display summary page?");
+        return "summary";
     }
 
 }

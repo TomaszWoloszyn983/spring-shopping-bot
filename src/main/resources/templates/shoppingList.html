@@ -53,12 +53,12 @@
         </table>
         -->
 
-        <div class="container mx-4 px-5">
-            <div class="row">
-                <div class="col-sm-6 col-md-3 col-lg-2 px-0 mx-1" th:each="product : ${products}"
+        <div class="container mx-0 px-5">
+            <div class="row mx-0 px-0">
+                <div class="col-sm-6 col-md-3 col-lg-2 px-1 mx-0" th:each="product : ${products}"
                      th:sort="${product.getId()}">
                     <div class="row product-tile px-0">
-                        <div class="col-10 mx-0" data-container="body"
+                        <div class="col-9 mx-0 px-1" data-container="body"
                             data-toggle="popover" data-placement="top"
                             data-content="Test">
                             <span class="mx-auto p-auto d-inline-block text-decoration-none text-truncate"
@@ -68,7 +68,7 @@
                                     + ${product.getSizeOfUnit}">
                             </span>
                         </div>
-                        <a class="col-2 mx-0 del-product-btn
+                        <a class="col-2 mx-auto del-product-btn
                                 d-flex justify-content-center align-items-center"
                                 th:href="@{/deleteProduct/{id}(id=${product.getId()})}">
                             <i class="bi bi-trash3"></i>
@@ -86,7 +86,7 @@
                 <form th:action="@{/product/addNewProduct}" th:object="${product}" th:method="post"
                     class="row">
                     <legend class="col-12 text-center">Add product to list</legend>
-                    <fieldset class="col-12 px-0 form-group">
+                    <fieldset class="col-12 px-0 form-group" required>
                         <label class="form-label" for="name">Name *</label>
                         <input class="form-field" id="name" type="text" name="name">
                     </fieldset>
@@ -98,7 +98,7 @@
                         <label class="form-label" for="sizeOfUnit">Size</label>
                         <input class="form-field" id="sizeOfUnit" type="text" name="sizeOfUnit">
                     </fieldset>
-                    <fieldset class="col-12 px-0 form-group">
+                    <fieldset class="col-12 px-0 form-group" required>
                         <label class="form-label" for="numOfUnits">Quantity *</label>
                         <input class="form-field" id="numOfUnits" type="text" name="numOfUnits">
                     </fieldset>
@@ -122,36 +122,44 @@
                         Submit
                     </button>
 
+                    <!-- Submit the order modal-->
                     <div class="modal fade" id="submitOrderModal" tabindex="-1"
                             aria-labelledby="submitModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Enter your email</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                              <form>
-                                <div class="mb-3">
-                                  <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                  <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                                <div class="mb-3">
-                                  <label for="message-text" class="col-form-label">Message:</label>
-                                  <textarea class="form-control" id="message-text"></textarea>
-                                </div>
-                              </form>
+                                <!--/*@thymesVar id="order" type="com.springShoppingBot.SpringShoppingBot.order.Order"*/-->
+                                <form th:action="@{/orderSummary}"
+                                        th:object="${order}" th:method="post">
+                                    <div class="mb-3">
+                                        <!-- Gdzieś w moich notatkach z poprzedniego projektu
+                                            miałem coś o tym jak łatwo przesyłać wartości z frontu
+                                            do backendu za pomocą @RequestParam-->
+                                        <label for="user-email" class="col-form-label">Email:</label>
+                                        <input type="text" class="form-control" id="user-email"
+                                                required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Message:</label>
+                                        <textarea class="form-control" id="message-text"></textarea>
+                                    </div>
+                                    <button class="btn btn-primary" type="submit">Submit Order</button>
+                                </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                     Close
+                                     Return
                                 </button>
-                                <button type="button" class="btn btn-primary">Send message</button>
+                                <button class="btn btn-primary" type="submit">Submit Order</button>
                             </div>
                           </div>
                         </div>
-                      </div>
+                    </div>
                 </div>
             </div>
         </div>
