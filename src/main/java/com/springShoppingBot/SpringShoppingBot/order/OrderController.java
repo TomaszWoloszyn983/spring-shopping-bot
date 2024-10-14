@@ -73,9 +73,13 @@ public class OrderController {
         return "redirect:/shoppingList";
     }
 
-    @GetMapping(path = "orderSummary")
-    public String submitOrder(){
-        System.out.println("Display summary page?");
+    @PostMapping(path = "orderSummary")
+    public String submitOrder(
+            @RequestParam(required = false) String userEmail
+    ){
+        System.out.println("Display summary page? "+userEmail);
+        currentOrder.setUserEmail(userEmail);
+        System.out.println(currentOrder.toString());
         return "summary";
     }
 
