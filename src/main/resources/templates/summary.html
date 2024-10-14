@@ -13,17 +13,28 @@
 
     <div class="container row">
         <div class="col-6 offset-3 m-auto p-auto">
-            <p>Summary</p>
-
+            <div class="row">
+                <h3 class="header">Summary</h3>
+                <p>
+                    <h4>List of products to process:</h4>
+                    <div th:each="product : ${currentOrder.getListOfProducts}">
+                        <div class="mx-2" th:text="${product.getName}"></div>
+                    </div>
+                    <h4>Send results to: </h4>
+                    <div th:text="${currentOrder.getUserEmail}"></div>
+                </p>
+            </div>
         </div>
 
         <!-- Button -->    
         <div class="row mx-auto px-auto horizontal-pars">
-            <a type="button" class="col btn btn-primary btn-lg btn-block
-                    px-auto mx-auto mb-3"
+            <div class="col-md-4 offset-md-4 my-3 mx-0">
+                <a type="button" class="btn btn-primary btn-lg btn-block
+                    px-auto mx-auto"
                     href="index.html" th:href="@{/home}">
-                Return to Home Page
-            </a>
+                    Return to Home Page
+                </a>
+            </div>
         </div>
 
     </div>

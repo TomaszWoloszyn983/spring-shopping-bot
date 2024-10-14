@@ -75,11 +75,15 @@ public class OrderController {
 
     @PostMapping(path = "orderSummary")
     public String submitOrder(
+            Model model,
             @RequestParam(required = false) String userEmail
     ){
-        System.out.println("Display summary page? "+userEmail);
+        System.out.println("Display summary page? ");
         currentOrder.setUserEmail(userEmail);
+        currentOrder.setOrderDate();
         System.out.println(currentOrder.toString());
+
+        model.addAttribute("currentOrder", currentOrder);
         return "summary";
     }
 

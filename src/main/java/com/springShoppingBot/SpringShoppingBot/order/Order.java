@@ -62,7 +62,7 @@ public class Order {
 //    }
 
     public String getUserEmail() {
-        return userEmail;
+        return this.userEmail;
     }
 
     public void setUserEmail(String userEmail) {
@@ -84,9 +84,9 @@ public class Order {
 
     /**
      * Assign the current date and time as the variables value.
-     * @param orderDate
+     * @param
      */
-    public void setOrderDate(LocalDateTime orderDate) {
+    public void setOrderDate() {
         this.orderDate = LocalDateTime.now();
     }
 
