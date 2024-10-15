@@ -74,6 +74,11 @@ public class Order {
         return listOfProducts;
     }
 
+    public String listOfProductsToString(){
+
+        return "";
+    }
+
     public void setListOfProducts(List<Product> listOfProducts) {
         this.listOfProducts = listOfProducts;
     }

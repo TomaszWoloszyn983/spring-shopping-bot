@@ -11,24 +11,31 @@
     <!--  Navbar  -->
     <div th:insert="~{index.html :: navbar}"></div>
 
-    <div class="container row">
-        <div class="col-6 offset-3 m-auto p-auto">
-            <div class="row">
-                <h3 class="header mx-auto px-auto">Summary</h3>
-                <p>
-                    <h4>List of products to process:</h4>
-                    <div th:each="product : ${currentOrder.getListOfProducts}">
-                        <div class="mx-3" th:text="${product.getName}"></div>
-                    </div>
-                    <h4>Send results to: </h4>
-                    <div class="mx-3" th:text="${currentOrder.getUserEmail}"></div>
-                </p>
+    <div class="container">
+
+        <div class="row mx-0 px-auto">
+            <div class="col-6 offset-3 m-auto p-auto">
+                <div class="row">
+                    <h3 class="header mx-auto px-auto">Summary</h3>
+                    <p>
+                        <h4>List of products to process:</h4>
+                        <div th:each="product : ${currentOrder.getListOfProducts}">
+                            <div class="mx-3"
+                                th:text="${product.getName} + ' ' + ${product.getType} 
+                                       + ', size -  ' + ${product.getSizeOfUnit} 
+                                       + ', quantity - ' + ${product.getNumOfUnits}">
+                            </div>
+                        </div>
+                        <h4>Send results to: </h4>
+                        <div class="mx-3" th:text="${currentOrder.getUserEmail}"></div>
+                    </p>
+                </div>
             </div>
         </div>
-
+    
         <!-- Button -->    
-        <div class="row mx-auto px-auto horizontal-pars">
-            <div class="col-md-4 offset-md-4 my-3 mx-0">
+        <div class="row mx-0 px-auto">
+            <div class="offset-md-4 col-md-4 my-3 mx-auto">
                 <a type="button" class="btn btn-primary btn-lg btn-block
                     px-auto mx-auto"
                     href="index.html" th:href="@{/home}">
@@ -36,7 +43,7 @@
                 </a>
             </div>
         </div>
-
+    
     </div>
     
 </body>

@@ -128,3 +128,4 @@ Heroku needs two additional files in order to deploy properly.
 
 * Draw.io - 
 * YouTube tutorial on how to deploy a Spring Boot application to Heroku - https://www.youtube.com/watch?v=lGtTOLKuvqs&ab_channel=DanVega
+* Robot Icon taken from the the following website: https://iconscout.com/free-icon/robot-130

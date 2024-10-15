@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.stream.Collectors;
 import java.util.List;
 
 @Controller
@@ -86,11 +87,25 @@ public class OrderController {
         currentOrder.setOrderDate();
         System.out.println(currentOrder.toString());
 
+        // Message body
+//        String messageBody = "";
+
+        String listOfProducts = currentOrder.getListOfProducts().stream()
+                .map(product -> "Product Name: " + product.getName() +
+                        ", Product Type: " + product.getType() +
+                        ", Size: " + product.getSizeOfUnit() +
+                        ", Quantity: " + product.getNumOfUnits() + "/n")
+                .collect(Collectors.joining("\n"));
+        String messageBody = "Your order places on: "+currentOrder.getOrderDate()+
+                "/n/nFor the following products: "+"/n"+listOfProducts+
+                "/nhas been sent to one of our Robots."+
+                "/n/n You should receive the results very soon."+
+                "/n/n Thank you and happy automation.";
 
         // Send email.
         orderService.sendConfirmationEmail(userEmail,
-                "Spring Shopping Bot - Order Confirmation",
-                currentOrder.toString());
+                "Order Confirmation",
+                messageBody);
 
         model.addAttribute("currentOrder", currentOrder);
         return "summary";
