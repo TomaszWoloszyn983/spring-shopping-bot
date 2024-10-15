@@ -12,12 +12,15 @@ import java.util.List;
 @RequestMapping("/")
 public class OrderController {
 
+    public final OrderService orderService;
     public final ProductService productService;
     public Order currentOrder;
 
-    public OrderController(ProductService productService) {
+    public OrderController(ProductService productService,
+                           OrderService orderService) {
         currentOrder = new Order();
         this.productService = productService;
+        this.orderService = orderService;
     }
 
     public List<Product> getAllProducts(){
@@ -78,10 +81,16 @@ public class OrderController {
             Model model,
             @RequestParam(required = false) String userEmail
     ){
-        System.out.println("Display summary page? ");
+        System.out.println("Display summary page.");
         currentOrder.setUserEmail(userEmail);
         currentOrder.setOrderDate();
         System.out.println(currentOrder.toString());
+
+
+        // Send email.
+        orderService.sendSimpleEmail(userEmail,
+                "Spring Shopping Bot - Order Confirmation",
+                currentOrder.toString());
 
         model.addAttribute("currentOrder", currentOrder);
         return "summary";

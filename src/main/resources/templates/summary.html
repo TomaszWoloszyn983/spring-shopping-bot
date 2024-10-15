@@ -14,14 +14,14 @@
     <div class="container row">
         <div class="col-6 offset-3 m-auto p-auto">
             <div class="row">
-                <h3 class="header">Summary</h3>
+                <h3 class="header mx-auto px-auto">Summary</h3>
                 <p>
                     <h4>List of products to process:</h4>
                     <div th:each="product : ${currentOrder.getListOfProducts}">
-                        <div class="mx-2" th:text="${product.getName}"></div>
+                        <div class="mx-3" th:text="${product.getName}"></div>
                     </div>
                     <h4>Send results to: </h4>
-                    <div th:text="${currentOrder.getUserEmail}"></div>
+                    <div class="mx-3" th:text="${currentOrder.getUserEmail}"></div>
                 </p>
             </div>
         </div>
