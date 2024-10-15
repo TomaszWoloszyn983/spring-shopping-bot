@@ -88,7 +88,7 @@ public class OrderController {
 
 
         // Send email.
-        orderService.sendSimpleEmail(userEmail,
+        orderService.sendConfirmationEmail(userEmail,
                 "Spring Shopping Bot - Order Confirmation",
                 currentOrder.toString());
 
