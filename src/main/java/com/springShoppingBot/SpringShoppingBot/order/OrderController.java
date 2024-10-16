@@ -4,8 +4,10 @@ import com.springShoppingBot.SpringShoppingBot.product.Product;
 import com.springShoppingBot.SpringShoppingBot.product.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.stream.Collectors;
 import java.util.List;
 
@@ -57,10 +59,15 @@ public class OrderController {
      * @return
      */
     @PostMapping(path = "/product/addNewProduct")
-    public String createNewProduct (Product product){
-        System.out.println("Creating new product: "+product.getName()+" "
-                +product.getType()+" "+product.getNumOfUnits());
-        productService.createNewProduct(product);
+    public String createNewProduct (@Valid Product product, BindingResult result){
+
+        if (result.hasErrors()){
+            System.out.println("Wrong format.");
+        }else{
+            productService.createNewProduct(product);
+            System.out.println("New products created: "+product.getName()+" "
+                    +product.getType()+" "+product.getNumOfUnits());
+        }
         return "redirect:/shoppingList";
     }
 
@@ -91,16 +98,17 @@ public class OrderController {
 //        String messageBody = "";
 
         String listOfProducts = currentOrder.getListOfProducts().stream()
-                .map(product -> "Product Name: " + product.getName() +
-                        ", Product Type: " + product.getType() +
-                        ", Size: " + product.getSizeOfUnit() +
-                        ", Quantity: " + product.getNumOfUnits() + "/n")
-                .collect(Collectors.joining("\n"));
+                .map(product -> "| " + product.getName() +
+                        ", " + product.getType() +
+                        ", " + product.getSizeOfUnit() +
+                        ", " + product.getNumOfUnits()+" |")
+                .collect(Collectors.joining("<br>"));
         String messageBody = "Your order places on: "+currentOrder.getOrderDate()+
-                "/n/nFor the following products: "+"/n"+listOfProducts+
-                "/nhas been sent to one of our Robots."+
-                "/n/n You should receive the results very soon."+
-                "/n/n Thank you and happy automation.";
+                "<br><br>For the following products: "+
+                "<br><br>"+listOfProducts+
+                "<br><br>has been sent to one of our Robots."+
+                "<br> You should receive the results very soon."+
+                "<br><br> Thank you and happy automation.";
 
         // Send email.
         orderService.sendConfirmationEmail(userEmail,

@@ -14,51 +14,14 @@
 
     <!-- Shopping List -->
     <div class="container my-5 px-auto border-2">
-        <!-- 
-        <table class="table table-hover mx-auto px-auto">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Size</th>
-                    <th scope="col">No Units</th>
-                    <th scope="col">Del</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="product : ${products}"
-                    th:sort="${product.getId()}">
-                    
-                    <td class="border-1 text-center">
-                        <span th:text="${product.getName}"></span>
-                    </td>
-                    <td class="border-1 text-center">
-                        <span th:text="${product.getType}"></span>
-                    </td>
-                    <td class="border-1 text-center">
-                        <span th:text="${product.getSizeOfUnit}"></span>
-                    </td>
-                    <td class="border-1 text-center">
-                        <span th:text="${product.getNumOfUnits}"></span>
-                    </td>
-                    <td class="border-1 text-center">
-                        <a type="button" class="col btn btn-primary btn-sm btn-block
-                            p-auto m-1"
-                            th:href="@{/deleteProduct/{id}(id=${product.getId()})}">
-                            Del
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        -->
 
+        <!-- Products tiles -->
         <div class="container mx-0 px-5">
             <div class="row mx-0 px-0">
                 <div class="col-sm-6 col-md-3 col-lg-2 px-1 mx-0" th:each="product : ${products}"
                      th:sort="${product.getId()}">
                     <div class="row product-tile px-0">
-                        <div class="col-9 mx-0 px-1" data-container="body"
+                        <div class="col-9 mx-0 px-2" data-container="body"
                             data-toggle="popover" data-placement="top"
                             data-content="Test">
                             <span class="mx-auto p-auto d-inline-block text-decoration-none text-truncate"
@@ -100,7 +63,10 @@
                     </fieldset>
                     <fieldset class="col-12 px-0 form-group" required>
                         <label class="form-label" for="numOfUnits">Quantity *</label>
-                        <input class="form-field" id="numOfUnits" type="text" name="numOfUnits">
+                        <input class="form-field" id="numOfUnits" type="number" min="1" name="numOfUnits">
+                        <div class="invalid-feedback">
+                            Please enter a valid quantity greater than 0.
+                        </div>
                     </fieldset>
                     <span class="col-12 blockquote fst-italic"
                         style="font-size: 12px; text-align: right;">

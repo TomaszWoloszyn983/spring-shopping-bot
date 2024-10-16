@@ -28,7 +28,7 @@ public class OrderService {
 
 //        SimpleMailMessage message = new SimpleMailMessage();
         try {
-            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false);
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
 
             // Set custom sender name (Spring Shopping Bot) with your actual email address
             helper.setFrom("tomaszwoloszyn983@gmail.com", "Spring Shopping Bot");

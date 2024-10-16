@@ -1,6 +1,7 @@
 package com.springShoppingBot.SpringShoppingBot.product;
 
 import jakarta.persistence.*;
+import javax.validation.constraints.*;
 
 @Entity
 @Table (name = "dt_products")
@@ -12,10 +13,10 @@ public class Product {
     private int id;
 
     private String name;
-    private String type;
+    private String type = "N/a";
 
     @Column(name = "sizeofunit")
-    private String sizeOfUnit;
+    private String sizeOfUnit = "N/a";
 
     @Column(name = "numofunits")
     private int numOfUnits;
@@ -44,6 +45,8 @@ public class Product {
         this.sizeOfUnit = sizeOfUnit;
     }
 
+    @NotNull(message = "Quantity is required")
+    @Min(value = 1, message = "Quantity must be greater than 0")
     public int getNumOfUnits() {
         return numOfUnits;
     }
