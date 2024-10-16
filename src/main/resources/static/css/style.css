@@ -1,6 +1,6 @@
 html{
     height: 100%;
-    background-color: rgba(0, 255, 21, 0.096);
+    background-color: rgb(255, 255, 255);
     margin: 0;
     padding: 0;
 }
@@ -23,13 +23,13 @@ html{
 
 /* Header section */
 #main-header-container{
-    /*background-image: url("../images/xavSchool_pageHeader.jpg");
+    background-image: url("/src/main/resources/images/images/robots_running_shopping.webp");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: contain;
     width: 100vw;
-    */
-    background-color: rgba(255, 251, 0, 0.096);
+   
+    background-color: rgba(255, 255, 255, 0.096);
     font-size: 25vh;
     font-weight: bolder;
     color: #000;

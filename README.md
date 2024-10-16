@@ -58,7 +58,7 @@ Colors used in this project:
 
 This class stores Products to be shopped. It is of type List<Product>
 
-# Product class
+# **. Product class **
 
 Contains the following fields:
 
@@ -76,6 +76,31 @@ Contains the following fields:
         private String sizeOfUnit;
         private int numOfUnits;
 ```
+
+
+# **. Order class **
+
+This class defines the order placed by the user. It contains values ​​such as: 
+ - Id.
+ - Date of placing the order.
+ - List of products added to the order.
+ - User's email address to which order confirmation and results will be sent.
+
+```java
+    public class Order {
+
+    //    private int id;
+        @NotBlank(message = "Email is required")
+        @Email(message = "Please provide a valid email address")
+        private String userEmail;
+        private List<Product> listOfProducts = new ArrayList<Product>();
+        private LocalDateTime orderDate;
+```
+
+# **. Shopper class **
+
+This class will store data of the user who created an account in the application, such as name, email, and order history.
+
 
 # Database Structure
 
@@ -110,10 +135,12 @@ Deployment steps are as follows, after account setup:
     | --- | --- |
     <!-- | `AWS_ACCESS_KEY_ID` | insert your own AWS Access Key ID key here | -->
     <!-- | `AWS_SECRET_ACCESS_KEY` | insert your own AWS Secret Access key here | -->
-    | `DATABASE_URL` | insert your own ElephantSQL database URL here |
+    | `DATABASE_URL` | insert your own database URL here |
+    | `DATABASE_PASSWORD` | insert your own database URL here |
     <!-- | `DISABLE_COLLECTSTATIC` | 1 (*this is temporary, and can be removed for the final deployment*) | -->
-    <!-- | `EMAIL_HOST_PASS` | insert your own Gmail API key here | -->
-    <!-- | `EMAIL_HOST_USER` | insert your own Gmail email address here | -->
+    | `ADMIN_MAIL_PASSWORD` | insert your own Gmail API key here |
+    | `ADMIN_EMAIL` | insert your own Gmail email address here |
+    | `profile` | insert your own Gmail email address here |
     <!-- | `SECRET_KEY` | this can be any random secret key | -->
     <!-- | `STRIPE_PUBLIC_KEY` | insert your own Stripe Public API key here | -->
     <!-- | `STRIPE_SECRET_KEY` | insert your own Stripe Secret API key here | -->

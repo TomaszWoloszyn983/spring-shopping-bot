@@ -30,7 +30,7 @@
 <body>
 
     <header class="" th:fragment="header">
-        <div id="main-header-container">
+        <div id="main-header-container mx-0 px-0">
             <h1>
                 Shopping Guide
             </h1>
@@ -74,10 +74,10 @@
 
 
         <!-- Central Panel -->
-        <div class="col-md-8 mx-0 px-0">
+        <div class="col-md-8 mx-0 mt-3 px-0">
             <div class="row">
                 <div class="mx-0 horizontal-pars">
-                    <h2>Welcome to the Spring Shopping Bot - Your Smart Shopping Assistant</h2>
+                    <h2>Welcome to the <br> Spring Shopping Bot <br> Your Smart Shopping Assistant</h2>
                     <p class="col">
                         The Spring Shopping Bot is an innovative application designed to simplify 
                         your shopping experience by helping you find the best deals in popular 
@@ -86,7 +86,8 @@
                         price-checking across multiple supermarket websites, giving you the 
                         most competitive offers for the products you need.
                     </p>
-                    <h4>How Does It Work?</h4>
+                    
+                    <h5>How Does It Work?</h5>
                     <p class="col">
                         With just a few clicks, you can add products to your shopping list 
                         through a user-friendly interface. Once your list is ready, 
@@ -96,7 +97,8 @@
                         and offers available, allowing you to make informed decisions 
                         on where to shop.
                     </p>
-                    <h4>Key Features:</h4>
+
+                    <h5>Key Features:</h5>
                     <p class="col">
                         <ul>
                             <li>
@@ -121,7 +123,8 @@
                             </li>
                         </ul>
                     </p>
-                    <h4>Why Choose Spring Shopping Bot?</h4>
+
+                    <h5>Why Choose Spring Shopping Bot?</h5>
                     <p class="col">
                         The app not only saves you time by eliminating manual 
                         searches but also ensures you get the best deals available, 
@@ -133,23 +136,23 @@
                         Try Spring Shopping Bot today and experience smarter shopping, 
                         powered by automation!
                     </p>
-                 </div>
-                 
+                </div>
             </div>
-                 <!-- Button -->    
-                 <div class="row mx-auto px-auto horizontal-pars">
-                     <a type="button" class="col btn btn-primary btn-lg btn-block
-                             px-auto mx-auto mb-3"
-                             href="shoppingList.html" th:href="@{/shoppingList}">
-                         Go to the shopping list
-                     </a>
-                 </div>
-         </div>
+            <!-- Button -->    
+            <div class="row mx-auto px-auto mb-5 horizontal-pars">
+                <div class="col-md-6 offset-md-3  px-auto">
+                    <a type="button" class="btn btn-primary"
+                        href="shoppingList.html" th:href="@{/shoppingList}">
+                        Go to the shopping list
+                    </a>
+                </div>
+            </div>
+        </div>
 
 
         <!-- Right panel -->
         <div class="col-md-2">
-            Right paragraphpanels
+            Right paragraph
         </div>
 
     </div>

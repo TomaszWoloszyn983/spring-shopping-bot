@@ -95,8 +95,6 @@ public class OrderController {
         System.out.println(currentOrder.toString());
 
         // Message body
-//        String messageBody = "";
-
         String listOfProducts = currentOrder.getListOfProducts().stream()
                 .map(product -> "| " + product.getName() +
                         ", " + product.getType() +
@@ -108,7 +106,7 @@ public class OrderController {
                 "<br><br>"+listOfProducts+
                 "<br><br>has been sent to one of our Robots."+
                 "<br> You should receive the results very soon."+
-                "<br><br> Thank you and happy automation.";
+                "<br><br> Thank you and happy shopping.";
 
         // Send email.
         orderService.sendConfirmationEmail(userEmail,
