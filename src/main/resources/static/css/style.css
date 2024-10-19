@@ -22,15 +22,20 @@ html{
 */
 
 /* Header section */
-#main-header-container{
-    background-image: url("/src/main/resources/images/images/robots_running_shopping.webp");
+
+/* #background-image{
+    background-image: url('/src/main/resources/images/images/robots_running_shopping.webp');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: contain;
-    width: 100vw;
+    height: 50vh;
+} */
+
+#main-header-container{
+
    
     background-color: rgba(255, 255, 255, 0.096);
-    font-size: 25vh;
+    font-size: 40px;
     font-weight: bolder;
     color: #000;
     text-align: center;
@@ -58,6 +63,23 @@ html{
 .navbar-tiles:hover{
     background-color: rgba(65, 105, 225, 0.2);
     font-weight: bolder;
+}
+
+#home-page-title{
+    margin-top: 25px;
+    text-align: center;
+}
+
+.home-page-headers{
+    margin-top: 20px;
+    margin-left: 10px;
+    border-bottom: 1px solid #000;
+    
+}
+.home-page-paragraphs{
+    margin-top: 10px;
+    font-size: 16px;
+    
 }
 
 /* Shopping List page */

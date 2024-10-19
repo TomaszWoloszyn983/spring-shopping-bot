@@ -1,0 +1,67 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0" version="24.7.16">
+  <diagram name="Page-1" id="wgsOuuTn-T7ZKGQZcGnZ">
+    <mxGraphModel dx="638" dy="733" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="CENw5g8Cr4EYcG7zEA91-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="CENw5g8Cr4EYcG7zEA91-1" target="CENw5g8Cr4EYcG7zEA91-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CENw5g8Cr4EYcG7zEA91-1" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Start&lt;/font&gt;" style="triangle;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="CENw5g8Cr4EYcG7zEA91-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="CENw5g8Cr4EYcG7zEA91-2" target="CENw5g8Cr4EYcG7zEA91-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CENw5g8Cr4EYcG7zEA91-2" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Trigger - GMail Email Sent&lt;/font&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="190" y="90" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="CENw5g8Cr4EYcG7zEA91-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="CENw5g8Cr4EYcG7zEA91-4" target="CENw5g8Cr4EYcG7zEA91-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CENw5g8Cr4EYcG7zEA91-4" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Get Newest Email from the Sent box&lt;/font&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="90" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="CENw5g8Cr4EYcG7zEA91-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="CENw5g8Cr4EYcG7zEA91-6" target="CENw5g8Cr4EYcG7zEA91-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CENw5g8Cr4EYcG7zEA91-6" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Extract list of products from the email body&lt;/font&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="200" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="CENw5g8Cr4EYcG7zEA91-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="CENw5g8Cr4EYcG7zEA91-8" target="CENw5g8Cr4EYcG7zEA91-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CENw5g8Cr4EYcG7zEA91-8" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Iterate each product in the list&lt;/font&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="CENw5g8Cr4EYcG7zEA91-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="CENw5g8Cr4EYcG7zEA91-10" target="CENw5g8Cr4EYcG7zEA91-8">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CENw5g8Cr4EYcG7zEA91-20" value="Next item" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="CENw5g8Cr4EYcG7zEA91-13">
+          <mxGeometry x="-0.12" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CENw5g8Cr4EYcG7zEA91-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="CENw5g8Cr4EYcG7zEA91-10" target="CENw5g8Cr4EYcG7zEA91-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="CENw5g8Cr4EYcG7zEA91-21" value="No more items" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="CENw5g8Cr4EYcG7zEA91-19">
+          <mxGeometry x="-0.3209" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="CENw5g8Cr4EYcG7zEA91-10" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Add product to the Orchestrator Queue&lt;/font&gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="430" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="CENw5g8Cr4EYcG7zEA91-18" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;End&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="420" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="CENw5g8Cr4EYcG7zEA91-22" value="&lt;font style=&quot;font-size: 31px;&quot;&gt;Spring Shopping Bot - dispatcher&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" width="470" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

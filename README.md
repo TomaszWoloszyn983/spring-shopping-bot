@@ -102,6 +102,16 @@ This class defines the order placed by the user. It contains values ​​such a
 This class will store data of the user who created an account in the application, such as name, email, and order history.
 
 
+# UiPath Automations
+
+## Spring Shopping Bot Dispatcher
+
+![Dispatcher FLowchart](/diagrams_and_flowcharts\ssb_flowchart_high.png)
+
+## Spring Shopping Bot Perfoirmer
+
+
+
 # Database Structure
 
 # Technologies Used
@@ -118,6 +128,7 @@ This class will store data of the user who created an account in the application
  * UiPath - 
  * GitHub - 
  * Heroku - 
+
 
 # Deployment
 
@@ -155,4 +166,6 @@ Heroku needs two additional files in order to deploy properly.
 
 * Draw.io - 
 * YouTube tutorial on how to deploy a Spring Boot application to Heroku - https://www.youtube.com/watch?v=lGtTOLKuvqs&ab_channel=DanVega
+* YouTube tutorial by Rakesh on GMail automation with UiPath - https://www.youtube.com/watch?v=O9dVTI1n3qM&ab_channel=AutomatewithRakesh
+YouTube tutorial on how to automate GMail: https://www.youtube.com/watch?v=Y5gNBIZWEDs&list=TLPQMTgxMDIwMjSOM2_2JBnSRQ&index=3&ab_channel=UiPathVideoTutorialsmadebyCristianNegulescu
 * Robot Icon taken from the the following website: https://iconscout.com/free-icon/robot-130
