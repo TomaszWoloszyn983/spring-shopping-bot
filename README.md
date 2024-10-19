@@ -106,7 +106,7 @@ This class will store data of the user who created an account in the application
 
 ## Spring Shopping Bot Dispatcher
 
-![Dispatcher FLowchart](/diagrams_and_flowcharts\ssb_flowchart_high.png)
+![Dispatcher FLowchart](/diagrams_and_flowcharts/Dispatcher/SSB_dispatcher.png)
 
 ## Spring Shopping Bot Perfoirmer
 
