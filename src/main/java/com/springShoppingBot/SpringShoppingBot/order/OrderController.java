@@ -114,7 +114,7 @@ public class OrderController {
                 messageBody);
 
         // Clear List of Products
-        currentOrder.clearList();
+        productService.clearOrder();
 
         model.addAttribute("currentOrder", currentOrder);
         return "summary";

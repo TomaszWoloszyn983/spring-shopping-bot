@@ -57,4 +57,8 @@ public class ProductService {
         }
         productRepository.deleteById(productId);
     }
+
+    public void clearOrder(){
+        productRepository.deleteAll();
+    }
 }
