@@ -54,6 +54,10 @@ public class Order {
                 .findFirst());
     }
 
+    public void clearList(){
+        this.listOfProducts.clear();
+    }
+
 
 //    public int getId() {
 //        return id;

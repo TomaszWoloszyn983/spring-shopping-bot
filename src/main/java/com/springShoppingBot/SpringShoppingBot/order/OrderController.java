@@ -113,6 +113,9 @@ public class OrderController {
                 "Order Confirmation",
                 messageBody);
 
+        // Clear List of Products
+        currentOrder.clearList();
+
         model.addAttribute("currentOrder", currentOrder);
         return "summary";
     }
