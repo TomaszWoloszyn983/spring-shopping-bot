@@ -43,22 +43,34 @@ html{
     padding: 0 auto;
 }
 
+.header-icon{
+    background-image: url('/src/main/resources/images/images/robotIcon.webp');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: contain;
+    height: fit-content;
+}
+
 
 /* Navigation bar */
 #nav-container{
-    background-color: #fff;
+    background-color: #f4f5abd7;
     margin: 25px 0;
     border: 2px double #000;
     padding: 0;
+    height: fit-content;
 }
 .navbar-tiles{
     background-color: rgba(65, 105, 225, 0.205);
     max-width: 51vw !important; 
-    margin: 2px 0 2px 10px;
-    padding: 15px auto;
+    margin: 10px 0 2px 10px;
     text-align: left;
     text-decoration: none;
     border: 2px inset #000;
+    height: 30px;
+    display: flex; /* Enable Flexbox */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
 }
 .navbar-tiles:hover{
     background-color: rgba(65, 105, 225, 0.2);
