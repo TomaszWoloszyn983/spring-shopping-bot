@@ -1,4 +1,7 @@
 # spring-shopping-bot
+
+![Am_I_Responsive](/docs/images/am_i_responsive.png)
+
 A project integrating a Java Spring web application with a Robotic Process Automation bot
 
 The live version of the application is available at [this link](https://spring-shopping-bot-8a17cd3a24b1.herokuapp.com/home) (For more information about the deployment, see the relevant section in the documentation below).
@@ -110,6 +113,13 @@ This class will store data of the user who created an account in the application
 
 ## Spring Shopping Bot Perfoirmer
 
+The Performer retries the Products data stored in the QueueItem format in the Orchestrator Queue.
+
+It checks the price of the Product, first in the Tesco website and then in the Dunnes website. Then it adds retrieved information to the DataRow and it adds the datarow to the Report dataTable. 
+
+Then If there are any more Products stored in the Orchestrator it retvieves the next Product from the Orchestrator Queue and repeats this sequence until all Products stored in the Queue are processes.
+
+![Performer FLowchart](/diagrams_and_flowcharts/Performer/performer_flowchart_diagram.png)
 
 
 # Database Structure
