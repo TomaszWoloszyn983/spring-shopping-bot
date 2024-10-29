@@ -13,29 +13,24 @@
 
 
     <!-- Shopping List -->
-    <div class="container my-5 px-auto border-2">
+    <div class="container my-5 px-0">
 
         <!-- Products tiles -->
-        <div class="container mx-0 px-5">
-            <div class="row mx-0 px-0">
-                <div class="col-sm-6 col-md-3 col-lg-2 px-1 mx-0" th:each="product : ${products}"
-                     th:sort="${product.getId()}">
-                    <div class="row product-tile px-0">
-                        <div class="col-9 mx-0 px-2" data-container="body"
-                            data-toggle="popover" data-placement="top"
-                            data-content="Test">
-                            <span class="mx-auto p-auto d-inline-block text-decoration-none text-truncate"
-                                style="max-width: 100%;"
-                                th:text="${product.getName} + ' ' 
-                                    + ${product.getType} + ' ' 
-                                    + ${product.getSizeOfUnit}">
-                            </span>
-                        </div>
-                        <a class="col-2 mx-auto del-product-btn
+        <div class="container mx-0" id="list-container">
+            <div id="product-container"><!-- row mx-0 px-0 -->
+                <div class="" id="product-wrapper" th:each="product : ${products}"
+                     th:sort="${product.getId()}"><!-- col-sm-6 col-md-3 col-lg-2 px-1 mx-0 -->
+                    <div class="product-tile">
+             
+                        <span class="product-text"                                
+                            th:text="${product.getName} + ' ' 
+                                + ${product.getType} + ' ' 
+                                + ${product.getSizeOfUnit}">
+                        </span>
+                        <a class="del-product-btn
                                 d-flex justify-content-center align-items-center"
                                 th:href="@{/deleteProduct/{id}(id=${product.getId()})}">
                             <i class="bi bi-trash3"></i>
-                            
                         </a>
                     </div>
                 </div>
@@ -103,41 +98,24 @@
                                 <form th:action="@{/orderSummary}"
                                         th:object="${order}" th:method="post">
                                     <div class="mb-3">
-                                        <!-- Gdzieś w moich notatkach z poprzedniego projektu
-                                            miałem coś o tym jak łatwo przesyłać wartości z frontu
-                                            do backendu za pomocą @RequestParam-->
                                         <label for="userEmail" class="col-form-label">Email:</label>
                                         <input type="text" class="form-control" id="userEmail" name="userEmail"
                                                 required>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Message:</label>
-                                        <textarea class="form-control" id="message-text"></textarea>
-                                    </div>
+
                                     <button class="btn btn-primary" type="submit">Submit Order</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                         Return
+                                    </button>
                                 </form>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                     Return
-                                </button>
-                                <button class="btn btn-primary" type="submit">Submit Order</button>
-                            </div>
+                            
                           </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- 
-            <script>
-                $(function () {
-                    $('.example-popover').popover({
-                        container: 'body'
-                    })
-                })
-            </script>
-        -->
     </div>
 
 </body>
