@@ -47,7 +47,7 @@ The bot is going to have the following features. Displaying a web application wh
 
 ## UiPath Robot
 
-## **. Colour Scheme**
+## **Colour Scheme**
 
 Colors used in this project:
 
@@ -57,11 +57,11 @@ Colors used in this project:
 - `#DC4C64` danger elements such as removing or deleting items and error messages.
 - `#14A44D` add item button, success messages.
 
-# **. ShoppingList class **
+## ** ShoppingList class **
 
 This class stores Products to be shopped. It is of type List<Product>
 
-# **. Product class **
+## ** Product class **
 
 Contains the following fields:
 
@@ -81,7 +81,7 @@ Contains the following fields:
 ```
 
 
-# **. Order class **
+## ** Order class **
 
 This class defines the order placed by the user. It contains values ​​such as: 
  - Id.
@@ -100,7 +100,7 @@ This class defines the order placed by the user. It contains values ​​such a
         private LocalDateTime orderDate;
 ```
 
-# **. Shopper class **
+## ** Shopper class **
 
 This class will store data of the user who created an account in the application, such as name, email, and order history.
 
@@ -109,15 +109,31 @@ This class will store data of the user who created an account in the application
 
 ## Spring Shopping Bot Dispatcher
 
+
+The Dispatcher retrieves the product list submitted by the user via the web 
+application and extracts the details required for processing.
+
+Once the product list is obtained, the Dispatcher converts each product entry 
+into the `QueueItem` format. It then sends each item to the designated Orchestrator 
+Queue, where it will be picked up by the Performer process for further processing.
+
+
 ![Dispatcher FLowchart](/diagrams_and_flowcharts/Dispatcher/SSB_dispatcher.png)
 
-## Spring Shopping Bot Perfoirmer
+## Spring Shopping Bot Performer
 
-The Performer retries the Products data stored in the QueueItem format in the Orchestrator Queue.
 
-It checks the price of the Product, first in the Tesco website and then in the Dunnes website. Then it adds retrieved information to the DataRow and it adds the datarow to the Report dataTable. 
+The Performer retrieves product data stored in the `QueueItem` format in the Orchestrator Queue.
 
-Then If there are any more Products stored in the Orchestrator it retvieves the next Product from the Orchestrator Queue and repeats this sequence until all Products stored in the Queue are processes.
+It checks the price of each product, first on the Tesco website and then on the Dunnes website. After retrieving the information, it adds the data to a `DataRow` and then adds the `DataRow` to the `Report` `DataTable`.
+
+If there are more products stored in the Orchestrator, it retrieves the next product from the Orchestrator Queue and repeats this sequence until all products stored in the Queue are processed.
+
+
+To distinguish products belonging to different users, the process checks each item’s associated user email. If the user email in the currently processed product is different from the email in the previous product, it indicates the start of a new user’s order. In this case, the previous user’s order is completed and sent to them via email.
+
+To make the distinction process easier, an auxiliary variable (`tempEmail`) was created. For more details, see the diagram below.
+
 
 ![Performer FLowchart](/diagrams_and_flowcharts/Performer/performer_flowchart_diagram.png)
 
