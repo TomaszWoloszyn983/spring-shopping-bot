@@ -22,37 +22,66 @@ The live version of the application is available at [this link](https://spring-s
     <!-- * [Footer](#footer) -->
     <!-- * [Newsletter](#newsletter) -->
     * [Shoping List Page](#shopping-list-page)
-2. [Color Scheme](#-colour-scheme)
+2. [Future Features](#future-features)
+3. [Color Scheme](#-colour-scheme)
 <!-- 5. [Future Features](#) -->
-3. [UiPath Automations](#uipath-automations)
+4. [UiPath Automations](#uipath-automations)
     * [SSB Dispatcher](#spring-shopping-bot-dispatcher)
     * [SSB Dispatcher](#spring-shopping-bot-performer)
-4. [Technologies Used](#technologies-used)
+5. [Technologies Used](#technologies-used)
 <!-- 7. [Database Design](#7-database-design) -->
-5. [Deployment](#deployment)
+6. [Deployment](#deployment)
     * [Heroku Deployment](#heroku-deployment)
     <!-- * [Local Deployment](#local-deployment) -->
 <!-- 10. [Agile Development Process](#10-agile-development-process) -->
 <!-- 13. [Newsletter Marketing](#13-newsletter-marketing) -->
-6. [References and Credits](#links-and-references)
+7. [References and Credits](#links-and-references)
 
 # Features
 
-The bot is going to have the following features. Displaying a web application when the user is going to create a shopping list. The application is going to send the shopping list to the UiPath Orchestrator to triggers a UiPath process. Then an UiPath bots is going to run. The bot is going to search the lowest prices of products from the users shopping list scanning the websites of the most popular supermarkets such as Tesco or Dunnes.
+The bot will include the following features: it will provide a web application that allows users to create their shopping lists. Once the shopping list is submitted, the application will send it to the UiPath Orchestrator, triggering a UiPath process. Subsequently, the UiPath bots will execute and search for the lowest prices of the products on the user's shopping list by scanning the websites of popular supermarkets, such as Tesco and Dunnes.
 
 ## Java web application:
 
 ### Home Page
 
+The Home Page provides an overview of the Spring Shopping Bot’s functionality, guiding users through how the app automates grocery price comparisons across popular Irish supermarkets.
+
 ### Shopping List page. 
+
+On the Shopping List Page, users can add items to their grocery list by entering product details such as name, type, size, and quantity. This list is then processed by the bot to find the best prices.
+
+### Summary Page
+
+The Summary Page displays a comprehensive report of product prices gathered from various supermarkets, helping users compare offers and make informed purchasing decisions. The report is also sent to the user’s email for convenience.
 
 ### Navigation Bar
 
-
-
-### Results Page
+The Navigation Bar enables easy access across key pages of the application, including the Home, Shopping List, and Summary pages, and offers a user-friendly, consistent interface.
 
 ## UiPath Robot
+
+### Dispatcher Bot
+
+* Email Retrieval: Scans incoming emails for new shopping lists submitted by users.
+
+* Data Extraction: Extracts product information from the submitted shopping list.
+
+* Queue Management: Transforms the extracted data into QueueItems and adds them to the Orchestrator queue, ready for price-checking automation.
+
+* User Identification: Associates each product list with a specific user email, supporting accurate processing and reporting.
+
+### Performer Bot
+
+* Queue Item Processing: Retrieves individual products from the Orchestrator queue, handling them sequentially.
+
+* Price Comparison: Searches for each product on popular supermarket websites (e.g., Tesco, Dunnes) and retrieves the current pricing information.
+
+* Data Aggregation: Adds each product’s pricing details to a DataTable, generating an organized report.
+
+* User-Specific Order Completion: Monitors for user email changes in the queue to segment product orders, completing one user's order before moving to the next.
+
+* Automated Email Reporting: Compiles a pricing report for each user’s order and sends it via email, ensuring that users receive timely and accurate information on the best product deals.
 
 
 
@@ -97,6 +126,7 @@ This class defines the order placed by the user. It contains values ​​such a
         private String userEmail;
         private List<Product> listOfProducts = new ArrayList<Product>();
         private LocalDateTime orderDate;
+    }
 ```
 
 # **Future Features**
@@ -154,7 +184,7 @@ To make the distinction process easier, an auxiliary variable (`tempEmail`) was 
 ![Performer FLowchart](/diagrams_and_flowcharts/Performer/performer_flowchart_diagram.png)
 
 
-# Database Structure
+<!-- # Database Structure -->
 
 # Technologies Used
 
