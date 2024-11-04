@@ -1,8 +1,12 @@
-# spring-shopping-bot
+# The Spring Shopping Bot
 
 ![Am_I_Responsive](/docs/images/am_i_responsive.png)
 
-A project integrating a Java Spring web application with a Robotic Process Automation bot
+The **Spring Shopping Bot** is an automated web application built to simplify online grocery price comparisons across popular Irish supermarkets. Developed with Java and the Spring Framework, it integrates with UiPath's Robotic Process Automation (RPA) technology to deliver accurate and timely results. Users can create a personalized shopping list within the application, and upon submission, the system's RPA component initiates to check each item’s price on major supermarket websites such as Tesco and Dunnes. 
+
+The system consists of two primary modules: a Java Spring web application for user interaction and an RPA layer powered by UiPath for the automation workflow. This automation workflow is divided into the **Dispatcher** and **Performer** processes. The Dispatcher collects shopping list data from the submitted form and populates the Orchestrator Queue. The Performer then retrieves each item from the queue, searches for prices online, compiles the information, and generates a comprehensive report. 
+
+Upon completion, the report is sent via email to the user, detailing the best available offers. Future features include secure user accounts where users can log in to view past reports and access real-time savings insights. The Spring Shopping Bot showcases the potential of combining traditional web applications with RPA to streamline and automate complex, time-consuming tasks for users.
 
 The live version of the application is available at [this link](https://spring-shopping-bot-8a17cd3a24b1.herokuapp.com/home) (For more information about the deployment, see the relevant section in the documentation below).
 
@@ -20,18 +24,21 @@ The live version of the application is available at [this link](https://spring-s
     * [Shoping List Page](#shopping-list-page)
 2. [Color Scheme](#-colour-scheme)
 <!-- 5. [Future Features](#) -->
-3. [Technologies Used](#technologies-used)
+3. [UiPath Automations](#uipath-automations)
+    * [SSB Dispatcher](#spring-shopping-bot-dispatcher)
+    * [SSB Dispatcher](#spring-shopping-bot-performer)
+4. [Technologies Used](#technologies-used)
 <!-- 7. [Database Design](#7-database-design) -->
-4. [Deployment](#deployment)
+5. [Deployment](#deployment)
     * [Heroku Deployment](#heroku-deployment)
     <!-- * [Local Deployment](#local-deployment) -->
 <!-- 10. [Agile Development Process](#10-agile-development-process) -->
 <!-- 13. [Newsletter Marketing](#13-newsletter-marketing) -->
-5. [References and Credits](#links-and-references)
+6. [References and Credits](#links-and-references)
 
 # Features
 
-The bot is going to have the following features. Displaying a web application when the user is going to create a shopping list. The application is going to send the shopping list to the UiPath Orchestrator to triggers a UiPath process. Then an UiPath bots is going to run. The bot is going to search the lowest prices of products from the users shopping list scanning the websites of the most popular supermarkets such as Tesco or Lidl.
+The bot is going to have the following features. Displaying a web application when the user is going to create a shopping list. The application is going to send the shopping list to the UiPath Orchestrator to triggers a UiPath process. Then an UiPath bots is going to run. The bot is going to search the lowest prices of products from the users shopping list scanning the websites of the most popular supermarkets such as Tesco or Dunnes.
 
 ## Java web application:
 
@@ -47,21 +54,13 @@ The bot is going to have the following features. Displaying a web application wh
 
 ## UiPath Robot
 
-## **Colour Scheme**
 
-Colors used in this project:
 
-- `#000000` used for primary text.
-- `#2986ff` user for header text, buttons and navbar hover effect.
-- `#80888a4d` used for navbar active buttons.
-- `#DC4C64` danger elements such as removing or deleting items and error messages.
-- `#14A44D` add item button, success messages.
-
-## ** ShoppingList class **
+## **ShoppingList class**
 
 This class stores Products to be shopped. It is of type List<Product>
 
-## ** Product class **
+## **Product class**
 
 Contains the following fields:
 
@@ -81,7 +80,7 @@ Contains the following fields:
 ```
 
 
-## ** Order class **
+## **Order class**
 
 This class defines the order placed by the user. It contains values ​​such as: 
  - Id.
@@ -100,18 +99,35 @@ This class defines the order placed by the user. It contains values ​​such a
         private LocalDateTime orderDate;
 ```
 
-## ** Shopper class **
+# **Future Features**
+
+## **Shopper class**
 
 This class will store data of the user who created an account in the application, such as name, email, and order history.
 
+## **More Sellers**
+
+There are plans to add more sellers to get more offers to compare. 
+The application may be expanded in the future to include retailers such as SuperValu and Hollands & Barrets.
+
+
+# **Colour Scheme**
+
+Colors used in this project:
+
+- `#000000` used for primary text.
+- `#2986ff` user for header text, buttons and navbar hover effect.
+- `#80888a4d` used for navbar active buttons.
+- `#DC4C64` danger elements such as removing or deleting items and error messages.
+- `#14A44D` add item button, success messages.
 
 # UiPath Automations
 
 ## Spring Shopping Bot Dispatcher
 
 
-The Dispatcher retrieves the product list submitted by the user via the web 
-application and extracts the details required for processing.
+The dispatcher takes the product list emailed by the user via the web application 
+and extracts the details required for processing.
 
 Once the product list is obtained, the Dispatcher converts each product entry 
 into the `QueueItem` format. It then sends each item to the designated Orchestrator 
@@ -141,19 +157,40 @@ To make the distinction process easier, an auxiliary variable (`tempEmail`) was 
 # Database Structure
 
 # Technologies Used
- * Java - 
- * Spring - 
- * H2 database - 
- * PostgreSQL database - 
- * Hibernate - 
- * HTML5 - 
- * CSS - 
- * JavaScript - 
- * Bootstrap - 
- * Thymeleaf - 
- * UiPath - 
- * GitHub - 
- * Heroku - 
+
+
+* **Java** - A powerful, versatile programming language widely used for building enterprise-grade applications, known for its reliability, portability, and strong community support.
+
+* **Spring** - A comprehensive Java framework used for building robust, high-performance applications, offering features like dependency injection, security, and support for web applications.
+
+* **H2 Database** - A lightweight, in-memory relational database often used in Java applications for development, testing, and rapid prototyping.
+
+* **PostgreSQL Database** - A powerful, open-source relational database management system known for its advanced features, data integrity, and extensibility.
+
+* **Hibernate** - An object-relational mapping (ORM) library for Java that simplifies database interactions by mapping Java classes to database tables.
+
+* **Flyway** - A database migration tool that manages and version-controls database changes, supporting continuous integration and delivery workflows.
+
+* **HTML5** - The latest version of the HTML standard, providing improved support for multimedia, graphics, and web APIs, and is a foundation for building modern web applications.
+
+* **CSS** - A style sheet language used for describing the look and formatting of a website, allowing separation of content and design.
+
+* **JavaScript** - A versatile scripting language for web development, used to create dynamic, interactive elements on websites.
+
+* **Bootstrap** - A popular CSS framework that provides pre-designed components and a responsive grid system for fast, mobile-first web development.
+
+* **Thymeleaf** - A Java-based template engine for server-side rendering in web applications, integrating seamlessly with Spring for dynamic HTML generation.
+
+* **UiPath** - A leading Robotic Process Automation (RPA) platform that automates repetitive tasks, enhancing efficiency and reducing errors.
+
+* **ReFramework** - A robust, modular RPA framework within UiPath designed to handle complex processes, including error handling and transaction management.
+
+* **GitHub** - A platform for version control and collaboration, allowing developers to store, manage, and track changes in their code.
+
+* **Heroku** - A cloud platform that supports deploying, managing, and scaling applications, making it easy to host applications without managing server infrastructure.
+Certainly!
+
+* **ChatGPT** - An advanced AI language model developed by OpenAI, designed to understand and generate human-like text based on context. It assists users with information retrieval, task automation, and provides support across various fields, enhancing productivity and engagement through natural language conversations.
 
 
 # Deployment
