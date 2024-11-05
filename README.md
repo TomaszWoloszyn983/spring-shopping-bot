@@ -22,6 +22,7 @@ The live version of the application is available at [this link](https://spring-s
     <!-- * [Footer](#footer) -->
     <!-- * [Newsletter](#newsletter) -->
     * [Shoping List Page](#shopping-list-page)
+    * [Summary Page](#summary-page)
 2. [Future Features](#future-features)
 3. [Color Scheme](#-colour-scheme)
 <!-- 5. [Future Features](#) -->
@@ -85,9 +86,9 @@ The Navigation Bar enables easy access across key pages of the application, incl
 
 
 
-## **ShoppingList class**
+<!-- ## **ShoppingList class**
 
-This class stores Products to be shopped. It is of type List<Product>
+This class stores Products to be shopped. It is of type List<Product> -->
 
 ## **Product class**
 
@@ -191,11 +192,11 @@ To make the distinction process easier, an auxiliary variable (`tempEmail`) was 
 
 * **Java** - A powerful, versatile programming language widely used for building enterprise-grade applications, known for its reliability, portability, and strong community support.
 
-* **Spring** - A comprehensive Java framework used for building robust, high-performance applications, offering features like dependency injection, security, and support for web applications.
+* **Spring Framework** - A comprehensive Java framework used for building robust, high-performance applications, offering features like dependency injection, security, and support for web applications.
 
-* **H2 Database** - A lightweight, in-memory relational database often used in Java applications for development, testing, and rapid prototyping.
+* **H2 Database** - A lightweight, in-memory relational database often used in Java applications for development, testing, and rapid prototyping. Used lacally for developemnt.
 
-* **PostgreSQL Database** - A powerful, open-source relational database management system known for its advanced features, data integrity, and extensibility.
+* **PostgreSQL Database** - A powerful, open-source relational database management system known for its advanced features, data integrity, and extensibility. Used at the Deplyment stage in Heroku.
 
 * **Hibernate** - An object-relational mapping (ORM) library for Java that simplifies database interactions by mapping Java classes to database tables.
 
@@ -218,7 +219,6 @@ To make the distinction process easier, an auxiliary variable (`tempEmail`) was 
 * **GitHub** - A platform for version control and collaboration, allowing developers to store, manage, and track changes in their code.
 
 * **Heroku** - A cloud platform that supports deploying, managing, and scaling applications, making it easy to host applications without managing server infrastructure.
-Certainly!
 
 * **ChatGPT** - An advanced AI language model developed by OpenAI, designed to understand and generate human-like text based on context. It assists users with information retrieval, task automation, and provides support across various fields, enhancing productivity and engagement through natural language conversations.
 
