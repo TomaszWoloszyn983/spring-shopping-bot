@@ -2,13 +2,27 @@
 
 ![Am_I_Responsive](/docs/images/am_i_responsive.png)
 
-The **Spring Shopping Bot** is an automated web application built to simplify online grocery price comparisons across popular Irish supermarkets. Developed with Java and the Spring Framework, it integrates with UiPath's Robotic Process Automation (RPA) technology to deliver accurate and timely results. Users can create a personalized shopping list within the application, and upon submission, the system's RPA component initiates to check each item’s price on major supermarket websites such as Tesco and Dunnes. 
+The **Spring Shopping Bot** is an automated web application built to simplify online grocery price 
+comparisons across popular Irish supermarkets. Developed with Java and the Spring Framework, 
+it integrates with UiPath's Robotic Process Automation (RPA) technology to deliver accurate and 
+timely results. Users can create a personalized shopping list within the application, and upon submission, 
+the system's RPA component initiates to check each item’s price on major supermarket websites such as 
+Tesco and Dunnes. 
 
-The system consists of two primary modules: a Java Spring web application for user interaction and an RPA layer powered by UiPath for the automation workflow. This automation workflow is divided into the **Dispatcher** and **Performer** processes. The Dispatcher collects shopping list data from the submitted form and populates the Orchestrator Queue. The Performer then retrieves each item from the queue, searches for prices online, compiles the information, and generates a comprehensive report. 
+The system consists of two primary modules: a Java Spring web application for user interaction and an 
+RPA layer powered by UiPath for the automation workflow. This automation workflow is divided into the 
+**Dispatcher** and **Performer** processes. The Dispatcher collects shopping list data from the submitted 
+form and populates the Orchestrator Queue. The Performer then retrieves each item from the queue, 
+searches for prices online, compiles the information, and generates a comprehensive report. 
 
-Upon completion, the report is sent via email to the user, detailing the best available offers. Future features include secure user accounts where users can log in to view past reports and access real-time savings insights. The Spring Shopping Bot showcases the potential of combining traditional web applications with RPA to streamline and automate complex, time-consuming tasks for users.
+Upon completion, the report is sent via email to the user, detailing the best available offers. 
+Future features include secure user accounts where users can log in to view past reports and access 
+real-time savings insights. The Spring Shopping Bot showcases the potential of combining traditional 
+web applications with RPA to streamline and automate complex, time-consuming tasks for users.
 
-The live version of the application is available at [this link](https://spring-shopping-bot-8a17cd3a24b1.herokuapp.com/home) (For more information about the deployment, see the relevant section in the documentation below).
+The live version of the application is available at 
+[this link](https://spring-shopping-bot-8a17cd3a24b1.herokuapp.com/home) 
+(For more information about the deployment, see the relevant section in the documentation below).
 
 # Flowchart
 
@@ -40,25 +54,31 @@ The live version of the application is available at [this link](https://spring-s
 
 # Features
 
-The bot will include the following features: it will provide a web application that allows users to create their shopping lists. Once the shopping list is submitted, the application will send it to the UiPath Orchestrator, triggering a UiPath process. Subsequently, the UiPath bots will execute and search for the lowest prices of the products on the user's shopping list by scanning the websites of popular supermarkets, such as Tesco and Dunnes.
+The bot will include the following features: it will provide a web application that allows users 
+to create their shopping lists. Once the shopping list is submitted, the application will send it 
+to the UiPath Orchestrator, triggering a UiPath process. Subsequently, the UiPath bots will execute and search for the lowest prices of the products on the user's shopping list by scanning the websites of popular supermarkets, such as Tesco and Dunnes.
 
 ## Java web application:
 
 ### Home Page
 
-The Home Page provides an overview of the Spring Shopping Bot’s functionality, guiding users through how the app automates grocery price comparisons across popular Irish supermarkets.
+The Home Page provides an overview of the Spring Shopping Bot’s functionality, guiding users through 
+how the app automates grocery price comparisons across popular Irish supermarkets.
 
 ### Shopping List page. 
 
-On the Shopping List Page, users can add items to their grocery list by entering product details such as name, type, size, and quantity. This list is then processed by the bot to find the best prices.
+On the Shopping List Page, users can add items to their grocery list by entering product details such 
+as name, type, size, and quantity. This list is then processed by the bot to find the best prices.
 
 ### Summary Page
 
-The Summary Page displays a comprehensive report of product prices gathered from various supermarkets, helping users compare offers and make informed purchasing decisions. The report is also sent to the user’s email for convenience.
+The Summary Page displays a comprehensive report of product prices gathered from various supermarkets, 
+helping users compare offers and make informed purchasing decisions. The report is also sent to the user’s email for convenience.
 
 ### Navigation Bar
 
-The Navigation Bar enables easy access across key pages of the application, including the Home, Shopping List, and Summary pages, and offers a user-friendly, consistent interface.
+The Navigation Bar enables easy access across key pages of the application, including the Home, 
+Shopping List, and Summary pages, and offers a user-friendly, consistent interface.
 
 ## UiPath Robot
 
@@ -68,21 +88,27 @@ The Navigation Bar enables easy access across key pages of the application, incl
 
 * Data Extraction: Extracts product information from the submitted shopping list.
 
-* Queue Management: Transforms the extracted data into QueueItems and adds them to the Orchestrator queue, ready for price-checking automation.
+* Queue Management: Transforms the extracted data into QueueItems and adds them to the Orchestrator 
+queue, ready for price-checking automation.
 
-* User Identification: Associates each product list with a specific user email, supporting accurate processing and reporting.
+* User Identification: Associates each product list with a specific user email, supporting accurate 
+processing and reporting.
 
 ### Performer Bot
 
-* Queue Item Processing: Retrieves individual products from the Orchestrator queue, handling them sequentially.
+* Queue Item Processing: Retrieves individual products from the Orchestrator queue, handling them 
+sequentially.
 
-* Price Comparison: Searches for each product on popular supermarket websites (e.g., Tesco, Dunnes) and retrieves the current pricing information.
+* Price Comparison: Searches for each product on popular supermarket websites (e.g., Tesco, Dunnes) and 
+retrieves the current pricing information.
 
 * Data Aggregation: Adds each product’s pricing details to a DataTable, generating an organized report.
 
-* User-Specific Order Completion: Monitors for user email changes in the queue to segment product orders, completing one user's order before moving to the next.
+* User-Specific Order Completion: Monitors for user email changes in the queue to segment product orders, 
+completing one user's order before moving to the next.
 
-* Automated Email Reporting: Compiles a pricing report for each user’s order and sends it via email, ensuring that users receive timely and accurate information on the best product deals.
+* Automated Email Reporting: Compiles a pricing report for each user’s order and sends it via email, 
+ensuring that users receive timely and accurate information on the best product deals.
 
 
 
@@ -95,8 +121,10 @@ This class stores Products to be shopped. It is of type List<Product> -->
 Contains the following fields:
 
  - Id (consider if it is needed for a objects such as products) -  a unique integer value
- - Name - the name of the product. Consider if more than one product by the same name can be added to the list.
- - Size - this value is probably going to be of String type as it can define the size in liters, grams or number of unts in the package.
+ - Name - the name of the product. Consider if more than one product by the same name can be 
+ added to the list.
+ - Size - this value is probably going to be of String type as it can define the size in liters, 
+ grams or number of unts in the package.
  - Quantity - an integer value that describes the number of products we want to add the list.
 
 ```java
@@ -134,12 +162,19 @@ This class defines the order placed by the user. It contains values ​​such a
 
 ## **Shopper class**
 
-This class will store data of the user who created an account in the application, such as name, email, and order history.
+This class will store data of the user who created an account in the application, 
+such as name, email, and order history.
 
 ## **More Sellers**
 
 There are plans to add more sellers to get more offers to compare. 
-The application may be expanded in the future to include retailers such as SuperValu and Hollands & Barrets.
+The application may be expanded in the future to include retailers such as SuperValu and 
+Hollands & Barrets.
+
+## **Creating users account**
+
+Added the ability to register a user account, where after logging in the user will be 
+able to see the results of their order and the history of their previous orders.
 
 
 # **Colour Scheme**
@@ -194,9 +229,9 @@ To make the distinction process easier, an auxiliary variable (`tempEmail`) was 
 
 * **Spring Framework** - A comprehensive Java framework used for building robust, high-performance applications, offering features like dependency injection, security, and support for web applications.
 
-* **H2 Database** - A lightweight, in-memory relational database often used in Java applications for development, testing, and rapid prototyping. Used lacally for developemnt.
+* **H2 Database** - A lightweight, in-memory relational database often used in Java applications for development, testing, and rapid prototyping. Used locally for developement.
 
-* **PostgreSQL Database** - A powerful, open-source relational database management system known for its advanced features, data integrity, and extensibility. Used at the Deplyment stage in Heroku.
+* **PostgreSQL Database** - A powerful, open-source relational database management system known for its advanced features, data integrity, and extensibility. Used at the Deployment stage, in Heroku.
 
 * **Hibernate** - An object-relational mapping (ORM) library for Java that simplifies database interactions by mapping Java classes to database tables.
 
@@ -259,6 +294,7 @@ Heroku needs two additional files in order to deploy properly.
 
 * Draw.io - 
 * YouTube tutorial on how to deploy a Spring Boot application to Heroku - https://www.youtube.com/watch?v=lGtTOLKuvqs&ab_channel=DanVega
+* Youtube tutorial in Spring Authentication and Security - https://www.youtube.com/watch?v=GjN5IauaflY&list=PL82C6-O4XrHe3sDCodw31GjXbwRdCyyuY&index=1&ab_channel=TeddySmith
 * YouTube tutorial by Rakesh on GMail automation with UiPath - https://www.youtube.com/watch?v=O9dVTI1n3qM&ab_channel=AutomatewithRakesh
 YouTube tutorial on how to automate GMail: https://www.youtube.com/watch?v=Y5gNBIZWEDs&list=TLPQMTgxMDIwMjSOM2_2JBnSRQ&index=3&ab_channel=UiPathVideoTutorialsmadebyCristianNegulescu
 * Robot Icon taken from the the following website: https://iconscout.com/free-icon/robot-130
