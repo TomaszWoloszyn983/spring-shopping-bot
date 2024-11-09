@@ -44,19 +44,21 @@ The live version of the application is available at
     * [SSB Dispatcher](#spring-shopping-bot-dispatcher)
     * [SSB Dispatcher](#spring-shopping-bot-performer)
 5. [Technologies Used](#technologies-used)
-<!-- 7. [Database Design](#7-database-design) -->
-6. [Deployment](#deployment)
+6. [Database Design](#database-design)
+7. [Deployment](#deployment)
     * [Heroku Deployment](#heroku-deployment)
     <!-- * [Local Deployment](#local-deployment) -->
 <!-- 10. [Agile Development Process](#10-agile-development-process) -->
 <!-- 13. [Newsletter Marketing](#13-newsletter-marketing) -->
-7. [References and Credits](#links-and-references)
+8. [References and Credits](#links-and-references)
 
 # Features
 
 The bot will include the following features: it will provide a web application that allows users 
 to create their shopping lists. Once the shopping list is submitted, the application will send it 
-to the UiPath Orchestrator, triggering a UiPath process. Subsequently, the UiPath bots will execute and search for the lowest prices of the products on the user's shopping list by scanning the websites of popular supermarkets, such as Tesco and Dunnes.
+to the UiPath Orchestrator, triggering a UiPath process. Subsequently, the UiPath bots will execute 
+and search for the lowest prices of the products on the user's shopping list by scanning the websites 
+of popular supermarkets, such as Tesco and Dunnes.
 
 ## Java web application:
 
@@ -220,7 +222,9 @@ To make the distinction process easier, an auxiliary variable (`tempEmail`) was 
 ![Performer FLowchart](/diagrams_and_flowcharts/Performer/performer_flowchart_diagram.png)
 
 
-<!-- # Database Structure -->
+# Database Design
+
+![Database Diagram](/diagrams_and_flowcharts/Database/database_schema.png)
 
 # Technologies Used
 
