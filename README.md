@@ -33,24 +33,22 @@ The live version of the application is available at
 1. [Features](#features)
     * [Home Page](#home-page)
     * [Navigation Bar](#navigation-bar)
-    <!-- * [Footer](#footer) -->
-    <!-- * [Newsletter](#newsletter) -->
     * [Shoping List Page](#shopping-list-page)
     * [Summary Page](#summary-page)
 2. [Future Features](#future-features)
 3. [Color Scheme](#-colour-scheme)
-<!-- 5. [Future Features](#) -->
 4. [UiPath Automations](#uipath-automations)
     * [SSB Dispatcher](#spring-shopping-bot-dispatcher)
     * [SSB Dispatcher](#spring-shopping-bot-performer)
 5. [Technologies Used](#technologies-used)
-6. [Database Design](#database-design)
-7. [Deployment](#deployment)
+6. [Java Classes](#java-classes)
+7. [Database Design](#database-design)
+8. [Deployment](#deployment)
     * [Heroku Deployment](#heroku-deployment)
     <!-- * [Local Deployment](#local-deployment) -->
 <!-- 10. [Agile Development Process](#10-agile-development-process) -->
 <!-- 13. [Newsletter Marketing](#13-newsletter-marketing) -->
-8. [References and Credits](#links-and-references)
+9. [References and Credits](#links-and-references)
 
 # Features
 
@@ -114,52 +112,6 @@ ensuring that users receive timely and accurate information on the best product 
 
 
 
-<!-- ## **ShoppingList class**
-
-This class stores Products to be shopped. It is of type List<Product> -->
-
-## **Product class**
-
-Contains the following fields:
-
- - Id (consider if it is needed for a objects such as products) -  a unique integer value
- - Name - the name of the product. Consider if more than one product by the same name can be 
- added to the list.
- - Size - this value is probably going to be of String type as it can define the size in liters, 
- grams or number of unts in the package.
- - Quantity - an integer value that describes the number of products we want to add the list.
-
-```java
-    public class Product {
-
-        private int id;
-        private String name;
-        private String type;
-        private String sizeOfUnit;
-        private int numOfUnits;
-```
-
-
-## **Order class**
-
-This class defines the order placed by the user. It contains values ​​such as: 
- - Id.
- - Date of placing the order.
- - List of products added to the order.
- - User's email address to which order confirmation and results will be sent.
-
-```java
-    public class Order {
-
-    //    private int id;
-        @NotBlank(message = "Email is required")
-        @Email(message = "Please provide a valid email address")
-        private String userEmail;
-        private List<Product> listOfProducts = new ArrayList<Product>();
-        private LocalDateTime orderDate;
-    }
-```
-
 # **Future Features**
 
 ## **Shopper class**
@@ -222,9 +174,76 @@ To make the distinction process easier, an auxiliary variable (`tempEmail`) was 
 ![Performer FLowchart](/diagrams_and_flowcharts/Performer/performer_flowchart_diagram.png)
 
 
+# Java Classes
+
+<!-- ## **ShoppingList class**
+
+This class stores Products to be shopped. It is of type List<Product> -->
+
+## **Product class**
+
+Contains the following fields:
+
+ - Id (consider if it is needed for a objects such as products) -  a unique integer value
+ - Name - the name of the product. Consider if more than one product by the same name can be 
+ added to the list.
+ - Size - this value is probably going to be of String type as it can define the size in liters, 
+ grams or number of unts in the package.
+ - Quantity - an integer value that describes the number of products we want to add the list.
+
+```java
+    public class Product {
+
+        private int id;
+        private String name;
+        private String type;
+        private String sizeOfUnit;
+        private int numOfUnits;
+```
+
+
+## **Order class**
+
+This class defines the order placed by the user. It contains values ​​such as: 
+ - Id.
+ - Date of placing the order.
+ - List of products added to the order.
+ - User's email address to which order confirmation and results will be sent.
+
+```java
+    public class Order {
+
+    //    private int id;
+        @NotBlank(message = "Email is required")
+        @Email(message = "Please provide a valid email address")
+        private String userEmail;
+        private List<Product> listOfProducts = new ArrayList<Product>();
+        private LocalDateTime orderDate;
+    }
+```
+
+
 # Database Design
 
 ![Database Diagram](/diagrams_and_flowcharts/Database/database_schema.png)
+
+## Product Table
+Stores details of available products, including Id, Name, Type, SizeOfUnit, and NumOfUnits, providing essential attributes for product identification and classification within the application.
+
+## Order Table
+Tracks customer orders with fields Id, CreatedOn, UserEmail, and ProductList, maintaining links to ordered products and users while supporting historical record-keeping.
+
+## User Table
+Holds user information, including Id, Name, Email, Username, Password, and OrderList, managing essential user credentials and associating each user with their orders.
+
+## Role Table
+Defines user roles such as ADMIN and USER with fields Id and Name, supporting role-based access control to enforce permissions across different parts of the application.
+
+## OrderProduct Table: 
+The OrderProduct table holds the OrderId and ProductId to establish the many-to-many relationship between orders and products. Each entry represents a product associated with an order.
+
+## UserOrder Table: 
+The UserOrder table holds the UserId and OrderId to link users with their orders. Each entry represents an order placed by a user.
 
 # Technologies Used
 
