@@ -101,7 +101,7 @@ public class OrderController {
                         ", " + product.getSizeOfUnit() +
                         ", " + product.getNumOfUnits()+" |")
                 .collect(Collectors.joining("<br>"));
-        String messageBody = "Your order places on: "+currentOrder.getOrderDate()+
+        String messageBody = "Your order places on: "+currentOrder.getCreatedAt()+
                 "<br><br>For the following products: "+
                 "<br><br>"+listOfProducts+
                 "<br><br>has been sent to one of our Robots."+

@@ -1,7 +1,8 @@
 package com.springShoppingBot.SpringShoppingBot.order;
 
 import com.springShoppingBot.SpringShoppingBot.product.Product;
-import org.springframework.stereotype.Controller;
+import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
@@ -13,18 +14,26 @@ import java.util.List;
  * A good solution could be to avoid storing usersEmails.
  */
 
-@Controller
+@Table (name = "dt_order")
+@Entity(name = "Order")
 public class Order {
 
-//    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
+    @Column(name = "useremail")
     @NotBlank(message = "Email is required")
     @Email(message = "Please provide a valid email address")
     private String userEmail;
 
+//    @ManyToMany
+    @Transient
     private List<Product> listOfProducts = new ArrayList<Product>();
 
-    private LocalDateTime orderDate;
+    @Column(name = "createdat")
+    @DateTimeFormat(pattern = "HH:mm dd-MM-yyyy")
+    private LocalDateTime createdAt;
 
 
     /**
@@ -85,8 +94,8 @@ public class Order {
         this.listOfProducts = listOfProducts;
     }
 
-    public LocalDateTime getOrderDate() {
-        return this.orderDate;
+    public LocalDateTime getCreatedAt() {
+        return this.createdAt;
     }
 
     /**
@@ -94,14 +103,14 @@ public class Order {
      * @param
      */
     public void setOrderDate() {
-        this.orderDate = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
     }
 
     @Override
     public String toString() {
         return "Order{" +
                 "userEmail='" + userEmail + '\'' +
-                ", orderDate=" + orderDate +
+                ", orderDate=" + createdAt +
                 ", listOfProducts=" + listOfProducts.size() +
                 '}';
     }
