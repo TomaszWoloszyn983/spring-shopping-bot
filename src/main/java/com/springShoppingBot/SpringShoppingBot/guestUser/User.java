@@ -2,6 +2,8 @@ package com.springShoppingBot.SpringShoppingBot.guestUser;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table (name = "dt_user")
 @Entity(name = "User")
@@ -28,6 +30,11 @@ public class User {
 
     @Column(name = "Updatedat")
     private LocalDateTime updatedAt;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "userid", referencedColumnName = "id"),
+                inverseJoinColumns = @JoinColumn(name = "roleid", referencedColumnName = "id"))
+    private List<Role> roles = new ArrayList<>();
 
 
     // Constructor for creating User with essential fields

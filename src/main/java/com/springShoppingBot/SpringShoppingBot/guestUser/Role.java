@@ -2,13 +2,14 @@ package com.springShoppingBot.SpringShoppingBot.guestUser;
 
 import jakarta.persistence.*;
 
-@Entity(name = "role")
-@Table (name = "role")
+@Entity(name = "Role")
+@Table (name = "dt_role")
 public class Role {
 
     @Id
     private int Id;
-    private String Name;
+
+    private String name;
     private String description;
 
     public int getId() {
@@ -16,7 +17,7 @@ public class Role {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public String getDescription() {
