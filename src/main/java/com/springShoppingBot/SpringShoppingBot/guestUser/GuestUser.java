@@ -1,13 +1,14 @@
 package com.springShoppingBot.SpringShoppingBot.guestUser;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Table (name = "dt_user")
 @Entity(name = "User")
-public class User {
+public class GuestUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,21 +32,38 @@ public class User {
     @Column(name = "Updatedat")
     private LocalDateTime updatedAt;
 
+
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "userid", referencedColumnName = "id"),
                 inverseJoinColumns = @JoinColumn(name = "roleid", referencedColumnName = "id"))
     private List<Role> roles = new ArrayList<>();
 
+//    public GuestUser(String username, String password, List<Role> roles) {
+//        this.username = username;
+//        this.password = password;
+//        this.roles = roles;
+//    }
+
+//    public GuestUser(){}
+
+//    public GuestUser(String username, String password, List<GrantedAuthority> roles) {
+//        this.username = username;
+//        this.password = password;
+//        this.roles = roles;
+//    }
+
 
     // Constructor for creating User with essential fields
-    public User(String name, String email, String username, String password) {
-        this.name = name;
-        this.email = email;
-        this.username = username;
-        this.password = password;
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
+//    public GuestUser(String name, String email, String username, String password, List<Role> roles) {
+//        this.name = name;
+//        this.email = email;
+//        this.username = username;
+//        this.password = password;
+//        this.createdAt = LocalDateTime.now();
+//        this.updatedAt = LocalDateTime.now();
+//        this.roles = roles;
+//    }
 
     @PrePersist
     protected void onCreate() {
@@ -109,5 +127,9 @@ public class User {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
     }
 }
