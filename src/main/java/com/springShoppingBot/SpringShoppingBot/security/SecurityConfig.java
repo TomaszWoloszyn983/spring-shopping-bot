@@ -46,20 +46,20 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
-    public UserDetailsService users(){
-        UserDetails admin = User.builder()
-                .username("superUser")
-                .password("password")
-                .roles("ADMIN")
-                .build();
-        UserDetails user = User.builder()
-                .username("duperUser")
-                .password("password")
-                .roles("USER")
-                .build();
-        return new InMemoryUserDetailsManager(admin, user);
-    }
+//    @Bean
+//    public UserDetailsService users(){
+//        UserDetails admin = User.builder()
+//                .username("superUser")
+//                .password("password")
+//                .roles("ADMIN")
+//                .build();
+//        UserDetails user = User.builder()
+//                .username("duperUser")
+//                .password("password")
+//                .roles("USER")
+//                .build();
+//        return new InMemoryUserDetailsManager(admin, user);
+//    }
 
     @Bean
     public AuthenticationManager authenticationManager(
