@@ -11,7 +11,8 @@ import java.util.List;
 public class GuestUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")
+    @SequenceGenerator(name = "product_sequence", sequenceName = "product_sequence", allocationSize = 1)
     private int id;
 
     @Column(name = "Name", length = 255)
@@ -39,7 +40,7 @@ public class GuestUser {
                 inverseJoinColumns = @JoinColumn(name = "roleid", referencedColumnName = "id"))
     private List<Role> roles = new ArrayList<>();
 
-//    public GuestUser(String username, String password, List<Role> roles) {
+    //    public GuestUser(String username, String password, List<Role> roles) {
 //        this.username = username;
 //        this.password = password;
 //        this.roles = roles;
@@ -74,6 +75,10 @@ public class GuestUser {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     // Getters and Setters
@@ -131,5 +136,9 @@ public class GuestUser {
 
     public List<Role> getRoles() {
         return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }
