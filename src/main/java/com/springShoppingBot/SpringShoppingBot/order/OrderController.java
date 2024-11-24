@@ -77,7 +77,7 @@ public class OrderController {
      * @param productId
      * @return
      */
-    @GetMapping(path = "/deleteProduct/{productId}")
+    @GetMapping(path = "/product/deleteProduct/{productId}")
     public String deleteProduct(@PathVariable("productId") int productId){
         System.out.println("Deleting item: "+productId);
         productService.deleteProduct(productId);
