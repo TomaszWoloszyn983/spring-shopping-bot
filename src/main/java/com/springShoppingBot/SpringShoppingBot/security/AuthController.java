@@ -23,15 +23,18 @@ public class AuthController {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
+    private JWTGenerator jwtGenerator;
 
     public AuthController(AuthenticationManager authenticationManager,
                           UserRepository userRepository,
                           RoleRepository roleRepository,
-                          PasswordEncoder passwordEncoder) {
+                          PasswordEncoder passwordEncoder,
+                          JWTGenerator jwtGenerator) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtGenerator  =jwtGenerator;
     }
 
     @PostMapping("/register")
@@ -55,12 +58,19 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginDto loginDto){
+    public ResponseEntity<AuthResponseDTO> login(@RequestBody LoginDto loginDto){
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginDto.getUsername(),
-                        loginDto.getPassword())
-        );
+                new UsernamePasswordAuthenticationToken(
+                        loginDto.getUsername(),
+                        loginDto.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return ResponseEntity.ok("User signed success");
+        String token = jwtGenerator.generateToken(authentication);
+        return ResponseEntity.ok(new AuthResponseDTO(token));
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout() {
+        // Instruct client to discard the token
+        return ResponseEntity.ok("You have been logged out successfully.");
     }
 }

@@ -19,6 +19,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -46,12 +47,14 @@ public class SecurityConfig {
                     .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
                     .requestMatchers("/api/auth/register").permitAll()
                     .requestMatchers("/api/auth/**").permitAll()
-                    .requestMatchers("/", "/home", "/shoppingList/**", "/product/**").permitAll()
+                    .requestMatchers("/", "/home", "/shoppingList/**", "/product/**", "/login").permitAll()
                     .requestMatchers(HttpMethod.GET)
                     .authenticated()
                     .anyRequest()
                     .authenticated()
                 ).httpBasic(Customizer.withDefaults());
+            http.addFilterBefore(jwtAuthenticationFilter(),
+                    UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
@@ -80,5 +83,10 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
 //        return NoOpPasswordEncoder.getInstance(); // Use plain text passwords
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public JWTAuthenticationFilter jwtAuthenticationFilter(){
+        return new JWTAuthenticationFilter();
     }
 }
