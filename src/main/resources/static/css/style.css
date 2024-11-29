@@ -78,7 +78,7 @@ html{
     display: flex; 
 }
 
-#home-page-title{
+.page-title{
     margin-top: 25px;
     text-align: center;
 }
@@ -151,14 +151,16 @@ html{
 
   /* Product Form */
   .form-label{
-    width: 100%;
+    width: 24%;
     margin: 0;
     padding: 0;
+    font-size: 15px;
+    font-weight: 400;
   }
   .form-field{
-    width: 100%;
-    margin: 0;
-    padding: 0;
+    height: 35px;
+    font-size: 15px;
+    font-weight: 400;
   }
   .delete-product-icon{
     text-decoration: none;

@@ -11,11 +11,42 @@
     <!--  Navbar  -->
     <div th:insert="~{index.html :: navbar}"></div>
 
-    <div class="container row">
-        <div class="col-6 offset-3 m-auto p-auto">
-            <p>Nothing here yet.</p>
+    <div class="container my-5 px-0">
+        <div class="container row my-2 mx-auto p-2">
+            <div class="col-6 offset-3 px-auto">
+                <h2 class="page-title">Login to your account<h2>
+                <div class="container row my-2 mx-auto p-2 mb-3">
+                    <div class="col-12 px-auto" >
+                        <!--/*@thymesVar id="loginDto" type="com.springShoppingBot.SpringShoppingBot.security.LoginDto"*/-->
+                        <form th:action="@{/api/auth/login}" th:object="${loginDto}" th:method="post"
+                            class="row">
+                            <fieldset class="col-12 px-0 form-group" required>
+                                <label class="form-label" for="username">Username</label>
+                                <input class="form-field" id="username" type="text" name="username">
+                            </fieldset>
+                            <fieldset class="col-12 px-0 form-group">
+                                <label class="form-label" for="userpassword">Password</label>
+                                <input class="form-field" id="userpassword" type="text" name="userpassword">
+                            
+                            <!-- Submit login-->
+                             <div class="col-12 px-auto">
+                                 <button class="btn btn-lg btn-success 
+                                                mx-auto px-auto mt-2" type="submit">
+                                    Login
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 offset-2 px-auto">        
+                <p class="mx-auto px-auto">
+                    Don't have a user account yet?
+                    Create one.
+                </p>
+            </div>
         </div>
     </div>
-    
+
 </body>
 </html>

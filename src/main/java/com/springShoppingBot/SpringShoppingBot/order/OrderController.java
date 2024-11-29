@@ -32,11 +32,11 @@ public class OrderController {
 
 
 
-    @RequestMapping(("shoppingList"))
-    @GetMapping
-    public String displayShoppingList(){
-        return "shoppingList.html";
-    }
+//    @RequestMapping(("shoppingList"))
+//    @GetMapping
+//    public String displayShoppingList(){
+//        return "shoppingList.html";
+//    }
 
     /**
      * Passes the list of products to the shoppingList.html template
@@ -48,7 +48,7 @@ public class OrderController {
     public String displayAllProducts(Model model){
         model.addAttribute("products", getAllProducts());
         currentOrder.setListOfProducts(productService.getAllProducts());
-        currentOrder.displayProducts();
+//        currentOrder.displayProducts();
         return "shoppingList.html";
     }
 

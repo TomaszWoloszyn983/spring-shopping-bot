@@ -58,19 +58,25 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponseDTO> login(@RequestBody LoginDto loginDto){
+    public String loginUser(@RequestParam("username") String username,
+                            @RequestParam("userpassword") String userpassword){
+        System.out.println("Auth Controller tries to login user: "+username);
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginDto.getUsername(),
-                        loginDto.getPassword()));
+                new UsernamePasswordAuthenticationToken(username, userpassword));
+//                        loginDto.getUsername(),
+//                        loginDto.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtGenerator.generateToken(authentication);
-        return ResponseEntity.ok(new AuthResponseDTO(token));
+//        return ResponseEntity.ok(new AuthResponseDTO(token));
+        System.out.println("Login Success.");
+        return "redirect:/home";
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<String> logout() {
+    public String logout() {
         // Instruct client to discard the token
-        return ResponseEntity.ok("You have been logged out successfully.");
+        System.out.println("You have been logged out successfully.");
+//        return ResponseEntity.ok("You have been logged out successfully.");
+        return "redirect:/home";
     }
 }

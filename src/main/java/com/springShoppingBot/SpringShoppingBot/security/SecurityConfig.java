@@ -36,6 +36,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+        System.out.println("Run Security Config.");
         http.csrf(csrf -> csrf.disable())
                 .exceptionHandling(exceptionHandling ->
                         exceptionHandling.authenticationEntryPoint(authEntryPoint) // Handle unauthorized access
@@ -45,9 +46,9 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                     .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
-                    .requestMatchers("/api/auth/register").permitAll()
+//                    .requestMatchers("/api/auth/register").permitAll()
                     .requestMatchers("/api/auth/**").permitAll()
-                    .requestMatchers("/", "/home", "/shoppingList/**", "/product/**", "/login").permitAll()
+                    .requestMatchers("/", "/home", "/shoppingList/**", "/product/**", "/login", "/orderSummary").permitAll()
                     .requestMatchers(HttpMethod.GET)
                     .authenticated()
                     .anyRequest()
@@ -58,20 +59,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-//    @Bean
-//    public UserDetailsService users(){
-//        UserDetails admin = User.builder()
-//                .username("superUser")
-//                .password("password")
-//                .roles("ADMIN")
-//                .build();
-//        UserDetails user = User.builder()
-//                .username("duperUser")
-//                .password("password")
-//                .roles("USER")
-//                .build();
-//        return new InMemoryUserDetailsManager(admin, user);
-//    }
 
     @Bean
     public AuthenticationManager authenticationManager(
