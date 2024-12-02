@@ -49,10 +49,9 @@ public class SecurityConfig {
 //                    .requestMatchers("/api/auth/register").permitAll()
                     .requestMatchers("/api/auth/**").permitAll()
                     .requestMatchers("/", "/home", "/shoppingList/**", "/product/**", "/login", "/orderSummary").permitAll()
-                    .requestMatchers(HttpMethod.GET)
-                    .authenticated()
-                    .anyRequest()
-                    .authenticated()
+                    .requestMatchers("/userAccountPage").authenticated()
+                    .requestMatchers(HttpMethod.GET).authenticated()
+                    .anyRequest().authenticated()
                 ).httpBasic(Customizer.withDefaults());
             http.addFilterBefore(jwtAuthenticationFilter(),
                     UsernamePasswordAuthenticationFilter.class);

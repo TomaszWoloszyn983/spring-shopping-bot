@@ -12,4 +12,10 @@ public class UserController {
     public String displayLoginPage(){
         return "login.html";
     }
+
+    @GetMapping(path = "userAccountPage")
+    public String displayUserPage(){
+        System.out.println("Displaying User Page");
+        return "userAccountPage.html";
+    }
 }

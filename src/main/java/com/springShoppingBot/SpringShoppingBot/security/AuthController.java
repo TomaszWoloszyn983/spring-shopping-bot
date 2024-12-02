@@ -12,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Collections;
 
@@ -58,7 +59,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String loginUser(@RequestParam("username") String username,
+    public RedirectView loginUser(@RequestParam("username") String username,
                             @RequestParam("userpassword") String userpassword){
         System.out.println("Auth Controller tries to login user: "+username);
         Authentication authentication = authenticationManager.authenticate(
@@ -69,14 +70,14 @@ public class AuthController {
         String token = jwtGenerator.generateToken(authentication);
 //        return ResponseEntity.ok(new AuthResponseDTO(token));
         System.out.println("Login Success.");
-        return "redirect:/home";
+        return new RedirectView("/userAccountPage");
     }
 
     @PostMapping("/logout")
-    public String logout() {
+    public RedirectView logout() {
         // Instruct client to discard the token
         System.out.println("You have been logged out successfully.");
 //        return ResponseEntity.ok("You have been logged out successfully.");
-        return "redirect:/home";
+        return new RedirectView("/home");
     }
 }
