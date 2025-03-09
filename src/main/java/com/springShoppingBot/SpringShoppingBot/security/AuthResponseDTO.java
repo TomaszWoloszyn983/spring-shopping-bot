@@ -9,5 +9,6 @@ public class AuthResponseDTO {
 
     public AuthResponseDTO(String accessToken){
         this.accessToken = accessToken;
+        System.out.println("Auth response Dto is working. Access token: "+accessToken);
     }
 }

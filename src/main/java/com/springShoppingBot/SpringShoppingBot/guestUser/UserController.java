@@ -13,7 +13,13 @@ public class UserController {
         return "login.html";
     }
 
-    @GetMapping(path = "userAccountPage")
+    @GetMapping(path="register")
+    public String displayRegisterPage(){
+        System.out.println("Display register page.");
+        return "register";
+    }
+
+    @GetMapping(path = "/userAccountPage")
     public String displayUserPage(){
         System.out.println("Displaying User Page");
         return "userAccountPage.html";

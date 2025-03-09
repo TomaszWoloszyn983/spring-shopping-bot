@@ -36,7 +36,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        System.out.println("Run Security Config.");
+
         http.csrf(csrf -> csrf.disable())
                 .exceptionHandling(exceptionHandling ->
                         exceptionHandling.authenticationEntryPoint(authEntryPoint) // Handle unauthorized access
@@ -46,12 +46,15 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                     .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
-//                    .requestMatchers("/api/auth/register").permitAll()
-                    .requestMatchers("/api/auth/**").permitAll()
-                    .requestMatchers("/", "/home", "/shoppingList/**", "/product/**", "/login", "/orderSummary").permitAll()
-                    .requestMatchers("/userAccountPage").authenticated()
+                    .requestMatchers("/api/auth/register").permitAll()
+                    .requestMatchers("/api/auth/*").permitAll()
+                    .requestMatchers("/api/auth/checkLogin").permitAll()
+                    .requestMatchers("/", "/home", "/shoppingList/**", "/product/**", "/register", "/login", "/orderSummary").permitAll()
+//                    .requestMatchers("/userAccountPage").authenticated()
+                    .requestMatchers("/userAccountPage").hasRole("USER") // Only users with "USER" role can access
+                    .requestMatchers("/admin/**").hasRole("ADMIN")
                     .requestMatchers(HttpMethod.GET).authenticated()
-                    .anyRequest().authenticated()
+                    .anyRequest().permitAll()
                 ).httpBasic(Customizer.withDefaults());
             http.addFilterBefore(jwtAuthenticationFilter(),
                     UsernamePasswordAuthenticationFilter.class);

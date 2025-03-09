@@ -50,18 +50,32 @@
             <!-- <div class="nav-separator"></div> -->
         </a>
         <a class="col-sm-12 col-md-2 navbar-tiles nav-link"
-            href="shoppingList.html" th:href="@{/shoppingList}">
+                href="shoppingList.html" th:href="@{/shoppingList}">
             <span class="navbar-text">Shopping List</span>
         </a>
         <!-- <div class="nav-separator "></div> -->
-        <div class="col-sm-12 col-md-6 nav-link
+        <div class="col-sm-12 col-md-4 nav-link
                     --bs-primary-bg-light">
             <!-- <div class="nav-separator"></div> -->
         </div>
+        <div th:if="${isLoggedIn}" class="col-sm-12 col-md-2 nav-link
+                    --bs-primary-bg-light">
+            <!-- <div class="nav-separator"></div> -->
+        </div>
+        <a th:unless="${isLoggedIn}" class="col-sm-12 col-md-2 navbar-tiles nav-link"
+           th:href="@{/register}">
+            <span class="navbar-text">Register</span>
+        </a>
         <a class="col-sm-12 col-md-2 navbar-tiles nav-link"
-            th:href="@{/login}">
+                th:href="@{/login}">
             <span class="navbar-text">Login</span>
         </a>
+        <!-- Visible only to logged-in users -->
+        <a class="col-sm-12 col-md-2 navbar-tiles nav-link"
+                th:href="@{/logout}" th:if="${isLoggedIn}">
+            <span class="navbar-text">Logout</span>
+        </a>
+
     </div>
 
 
@@ -154,5 +168,6 @@
             <!-- Right panel placeholder-->
         </div>
     </div>
+</div>
 </body>
 </html>
