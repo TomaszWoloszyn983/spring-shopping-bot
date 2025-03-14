@@ -18,7 +18,6 @@ import static io.jsonwebtoken.Jwts.*;
 @Component
 public class JWTGenerator {
 
-//    private static final Key secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS512);
     private static final byte[] secretKey = SecurityContent.JWT_SECRET.getBytes(StandardCharsets.UTF_8);
     private static final long EXPIRATION_TIME = SecurityContent.JWT_EXPIRATION;
 
@@ -28,16 +27,10 @@ public class JWTGenerator {
         Date currentDate = new Date();
         Date expireDate = new Date(currentDate.getTime() + EXPIRATION_TIME);
 
-        System.out.println("\nGenerate JWT Token for "+username
-                +"\n\tThe token will expire on: "+expireDate
-                +"\n\tSecret Key: "+getSecretKey());
-        ;
-
         return builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(expireDate)
-//                .signWith(getSecretKey(), SignatureAlgorithm.HS512)
                 .signWith(Keys.hmacShaKeyFor(getSecretKey()), SignatureAlgorithm.HS512)
                 .compact();
     }
@@ -54,29 +47,15 @@ public class JWTGenerator {
 
     public boolean validateToken(String token){
 
-        /**
-         * Dodaj fragment poniżej do jakichś notatek.
-         * Ciekawy sposób debugowania zgodności moich danych
-         * z danymi z serwera do których nie mam swobodnego dostępu.
-         * */
         try {
 
-            Claims claims = Jwts.parserBuilder()
+            System.out.println("Validate JWT Token."
+                    +Jwts.parserBuilder()
                     .setSigningKey(Keys.hmacShaKeyFor(getSecretKey()))  // Ensure this is the correct key
                     .build()
                     .parseClaimsJws(token)
-                    .getBody();
-            System.out.println("Validate JWT Token."+claims);
-
-            System.out.println("Validating Token: " + Jwts.parser()
-                    .setSigningKey(Keys.hmacShaKeyFor(getSecretKey()))// Ensure same key is used
-                    .parseClaimsJws(token)
-                    .getBody());
-
-            System.out.println("Extracted Claims: " + claims);
-            System.out.println("\tSubject: " + claims.getSubject());
-            System.out.println("\tIssued At: " + claims.getIssuedAt());
-            System.out.println("\tExpiration: " + claims.getExpiration());
+                    .getBody()
+                );
 
             return true;
         } catch (ExpiredJwtException e) {
@@ -94,9 +73,7 @@ public class JWTGenerator {
             Jwts.parser()
                     .setSigningKey(getSecretKey())
                     .parseClaimsJws(token);
-                    /*               ^^^
 
-                    */
             return true;
         }catch(Exception ex){
             throw new AuthenticationCredentialsNotFoundException("JWT was expired or incorrect");

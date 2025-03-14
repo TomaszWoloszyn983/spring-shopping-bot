@@ -12,10 +12,4 @@ public class SpringShoppingBotApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringShoppingBotApplication.class, args);
 	}
-
-	@GetMapping
-	public String greetings(){
-		return "We wish you successful shopping";
-	}
-
 }

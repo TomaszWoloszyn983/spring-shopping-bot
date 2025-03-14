@@ -32,7 +32,7 @@
     <header class="row container mx-auto" th:fragment="header">
         <div class="col-md-12 text-md-center">
             <span id="main-header-container" class="px-auto">
-                Shopping Bot
+                Spring Shopping Bot
             </span>
         </div>
     </header>
@@ -78,11 +78,11 @@
         <!-- Visible only to logged-in users -->
         <div th:if="${isLoggedIn}" class="col-md-4 mx-0 px-0">
             <div class="row mx-0 px-0">
-                <a class="col-sm-12 col-md-6 navbar-tiles nav-link"
-                    th:href="@{/login}">
+                <a class="col-sm-12 col-md-6 navbar-tiles nav-link mx-0 px-0"
+                    th:href="@{/api/auth/checkLogin}">
                     <span class="navbar-text" th:text="${username}"></span>
-                    </a>   
-                    <a class="col-sm-12 col-md-6 navbar-tiles nav-link"
+                </a>   
+                <a class="col-sm-12 col-md-6 navbar-tiles nav-link mx-0 px-0"
                     th:href="@{/logout}" th:if="${isLoggedIn}">
                     <span class="navbar-text">Logout</span>
                 </a>
@@ -105,50 +105,27 @@
             <div class="row">
                 <div class="mx-0 horizontal-pars">
                     <h2 class="page-title">
-                        Welcome to the <br> Spring Shopping Bot <br> Your Smart Shopping Assistant
+                        Welcome to the <br> Spring Shopping Bot 
                     </h2>
+                    <h5 class="text-center mx-auto mb-5 mt-4 px-auto">Your Smart Shopping Assistant</h5>
                     <p class="col home-page-paragraphs my-4">
-                        The Spring Shopping Bot is an innovative application designed to simplify 
-                        your shopping experience by helping you find the best deals in popular 
-                        Irish supermarkets. Integrating advanced Java Spring technology 
-                        with UiPath Robotic Process Automation (RPA), this app automates 
-                        price-checking across multiple supermarket websites, giving you the 
-                        most competitive offers for the products you need.
+                        Spring Shopping Bot makes grocery shopping easy! It automatically 
+                        compares prices across top Irish supermarkets, so you always get the 
+                        best deals—without the hassle of manual searching.
                     </p>
                     
-                    <h5 class="home-page-headers mt-3">How Does It Work?</h5>
-                    <p class="col home-page-paragraphs">
-                        With just a few clicks, you can add products to your shopping list 
-                        through a user-friendly interface. Once your list is ready, 
-                        the Spring Shopping Bot’s powerful RPA technology scans top 
-                        Irish supermarket websites, checking prices for each item in your 
-                        list. It then generates a detailed report with the best prices 
-                        and offers available, allowing you to make informed decisions 
-                        on where to shop.
-                    </p>
+                    <h5 class="home-page-headers mt-3">How It Works</h5>
 
-                    <h5 class="home-page-headers">Key Features:</h5>
                     <p class="col home-page-paragraphs">
                         <ul>
                             <li>
-                                Automated Price Comparison: The app visits several 
-                                supermarket websites, automating the tedious task of 
-                                searching for product prices manually.
+                                Create Your List – Add items to your shopping list in just a few clicks.
                             </li>
                             <li>
-                                Seamless Integration: Built using the robust 
-                                Java Spring framework and UiPath for RPA, 
-                                this application guarantees fast, efficient, 
-                                and reliable performance.
+                                Automatic Price Check – Our bot scans supermarket websites for the latest prices.
                             </li>
                             <li>
-                                Real-Time Data: The Spring Shopping Bot ensures you’re 
-                                always getting the latest price updates.
-                            </li>
-                            <li>
-                                User-Friendly Interface: Easily add and manage your 
-                                shopping list and receive price comparisons with just 
-                                a few clicks.
+                                Get the Best Deals – View a report with the cheapest options and shop smarter!
                             </li>
                         </ul>
                     </p>

@@ -109,7 +109,7 @@ public class AuthController {
     @GetMapping("/logout")
     public ResponseEntity logout() {
         // Instruct client to discard the token
-        System.out.println("You have been logged out successfully.");
+        System.out.println("Logout success.");
         return ResponseEntity.ok("You have been logged out successfully.");
 //        return new RedirectView("/home");
     }

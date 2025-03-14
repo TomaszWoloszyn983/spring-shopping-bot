@@ -1,7 +1,9 @@
 package com.springShoppingBot.SpringShoppingBot.order;
 
+import com.springShoppingBot.SpringShoppingBot.GlobalController;
 import com.springShoppingBot.SpringShoppingBot.product.Product;
 import com.springShoppingBot.SpringShoppingBot.product.ProductService;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,12 +20,16 @@ public class OrderController {
     public final OrderService orderService;
     public final ProductService productService;
     public Order currentOrder;
+    Boolean isLoggedIn = GlobalController.getIsLoggedIn();
 
     public OrderController(ProductService productService,
                            OrderService orderService) {
         currentOrder = new Order();
         this.productService = productService;
         this.orderService = orderService;
+
+
+
     }
 
     public List<Product> getAllProducts(){
@@ -46,6 +52,20 @@ public class OrderController {
      */
     @GetMapping(path="shoppingList")
     public String displayAllProducts(Model model){
+
+        if (isLoggedIn == null){
+            GlobalController.setIsLoggedIn();
+            this.isLoggedIn = GlobalController.getIsLoggedIn();
+            System.out.println("Checking login status: "+isLoggedIn);
+        } else if (isLoggedIn == false) {
+            model.addAttribute("isLoggedIn", isLoggedIn);
+            System.out.println("\tUser logged-in: "+isLoggedIn);
+        } else{
+            model.addAttribute("isLoggedIn", isLoggedIn);
+            model.addAttribute("username", GlobalController.getUsername());
+            System.out.println("\tUser logged-in: "+isLoggedIn);
+        }
+
         model.addAttribute("products", getAllProducts());
         currentOrder.setListOfProducts(productService.getAllProducts());
 //        currentOrder.displayProducts();

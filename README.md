@@ -303,7 +303,7 @@ Deployment steps are as follows, after account setup:
     | `ADMIN_MAIL_PASSWORD` | insert your own Gmail API key here |
     | `ADMIN_EMAIL` | insert your own Gmail email address here |
     | `profile` | insert your own Gmail email address here |
-    <!-- | `SECRET_KEY` | this can be any random secret key | -->
+    | `JWT_SECRET_KEY` | this key must meet SignatureAlgorithm.HS512 requirements, which is 512 random bits/characters (64 random bytes) |
     <!-- | `STRIPE_PUBLIC_KEY` | insert your own Stripe Public API key here | -->
     <!-- | `STRIPE_SECRET_KEY` | insert your own Stripe Secret API key here | -->
     <!-- | `STRIPE_WH_SECRET` | insert your own Stripe Webhook API key here | -->
