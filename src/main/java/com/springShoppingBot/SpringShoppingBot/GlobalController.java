@@ -1,5 +1,6 @@
 package com.springShoppingBot.SpringShoppingBot;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,8 +10,8 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class GlobalController {
 
-    private static Boolean isLoggedIn;
-    private static String username;
+    private static Boolean isLoggedIn = false;
+    private static String username = "Guest";
 
     public static Boolean getIsLoggedIn(){
         return isLoggedIn;
@@ -20,7 +21,7 @@ public class GlobalController {
         isLoggedIn = value;
     }
 
-    public static void setIsLoggedIn(){
+    public static void updateIsLoggedIn(){
         Authentication authentication = SecurityContextHolder
                 .getContext()
                 .getAuthentication();
@@ -29,7 +30,7 @@ public class GlobalController {
                 && authentication.isAuthenticated()
                 && !(authentication instanceof AnonymousAuthenticationToken);
         username = authentication.getName();
-        System.out.println("User "+username+" logged in: "+isLoggedIn);
+        System.out.println("User: "+username+" is logged in: "+isLoggedIn);
     }
 
     public static String getUsername() {

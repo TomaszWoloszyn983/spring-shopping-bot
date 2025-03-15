@@ -35,7 +35,6 @@ public class JWTGenerator {
                 .compact();
     }
 
-
     public String getUsernameFromJWT(String token){
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(Keys.hmacShaKeyFor(getSecretKey()))
@@ -46,18 +45,18 @@ public class JWTGenerator {
     }
 
     public boolean validateToken(String token){
-
         try {
-
-            System.out.println("Validate JWT Token."
-                    +Jwts.parserBuilder()
+            /*
+                I display this token to verify the validity of the token
+                and to highlight the source of any errors.
+            */
+            System.out.println("Validate JWT Token."+
+                    Jwts.parserBuilder()
                     .setSigningKey(Keys.hmacShaKeyFor(getSecretKey()))  // Ensure this is the correct key
                     .build()
                     .parseClaimsJws(token)
-                    .getBody()
+                    .getBody().getSubject() != null
                 );
-
-            return true;
         } catch (ExpiredJwtException e) {
             System.out.println("Token expired: " + e.getMessage());
         } catch (SignatureException e) {
@@ -68,12 +67,10 @@ public class JWTGenerator {
             System.out.println("Token validation failed: " + e.getMessage());
         }
 
-
         try{
             Jwts.parser()
                     .setSigningKey(getSecretKey())
                     .parseClaimsJws(token);
-
             return true;
         }catch(Exception ex){
             throw new AuthenticationCredentialsNotFoundException("JWT was expired or incorrect");

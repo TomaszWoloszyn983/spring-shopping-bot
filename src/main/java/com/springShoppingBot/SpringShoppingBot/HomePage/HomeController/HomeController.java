@@ -22,20 +22,27 @@ public class HomeController {
 
     @GetMapping({"/","/home"})
     public String displayHomePage(Model model){
-        System.out.println("\n\nDisplaying Home Page");
+        System.out.println("\tDisplaying Home Page");
 
-        if (isLoggedIn == null){
-            GlobalController.setIsLoggedIn();
-            this.isLoggedIn = GlobalController.getIsLoggedIn();
-            System.out.println("Checking login status: "+isLoggedIn);
-        } else if (isLoggedIn == false) {
-            model.addAttribute("isLoggedIn", isLoggedIn);
-            System.out.println("\tUser logged-in: "+isLoggedIn);
-        } else{
-            model.addAttribute("isLoggedIn", isLoggedIn);
-            model.addAttribute("username", GlobalController.getUsername());
-            System.out.println("\tUser logged-in: "+isLoggedIn);
-        }
+        GlobalController.updateIsLoggedIn();
+
+        model.addAttribute("isLoggedIn", GlobalController.getIsLoggedIn());
+        model.addAttribute("username", GlobalController.getUsername());
+
+        System.out.println("User logged-in: " + GlobalController.getIsLoggedIn());
+
+//        if (isLoggedIn == null){
+//            GlobalController.setIsLoggedIn();
+//            this.isLoggedIn = GlobalController.getIsLoggedIn();
+//            System.out.println("Checking login status: "+isLoggedIn);
+//        } else if (isLoggedIn == false) {
+//            model.addAttribute("isLoggedIn", isLoggedIn);
+//            System.out.println("User logged-in: "+isLoggedIn);
+//        } else{
+//            model.addAttribute("isLoggedIn", isLoggedIn);
+//            model.addAttribute("username", GlobalController.getUsername());
+//            System.out.println("User logged-in: "+isLoggedIn);
+//        }
 
 
 //        Authentication authentication = SecurityContextHolder
@@ -59,7 +66,7 @@ public class HomeController {
 //        }
 
 
-        model.addAttribute("isLoggedIn", isLoggedIn);
+//        model.addAttribute("isLoggedIn", isLoggedIn);
         return "index.html";
     }
 }

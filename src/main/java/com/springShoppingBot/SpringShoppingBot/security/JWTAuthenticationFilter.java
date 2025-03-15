@@ -29,11 +29,10 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
         String token = getJWTFromRequest(request);
 
-        System.out.println( "Token received and delivered to FilterInternal: "+(token.length()>0));
 
         if(StringUtils.hasText(token) && tokenGenerator.validateToken(token)){
+            System.out.println("Token received and delivered to FilterInternal: "+(token.length()>=64));
             String username = tokenGenerator.getUsernameFromJWT(token);
-            System.out.println("Validating User: "+username);
 
             UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
 
@@ -59,7 +58,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                 }
             }
         }else{
-            System.out.println("Token not found in Cookies");
+            System.out.println("Token NOT found in Cookies!");
         }
         return null;
     }

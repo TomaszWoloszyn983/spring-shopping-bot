@@ -32,8 +32,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         GuestUser user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Username "+username+" not found !!!"));
-        System.out.println("User Detail Service processes user "+user.getUsername()
-                +". Role: "+mapRolesToAuthorities(user.getRoles()));
         return new User(user.getUsername(),
                         user.getPassword(),
                         mapRolesToAuthorities(user.getRoles()

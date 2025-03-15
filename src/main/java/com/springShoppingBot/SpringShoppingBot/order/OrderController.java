@@ -53,22 +53,12 @@ public class OrderController {
     @GetMapping(path="shoppingList")
     public String displayAllProducts(Model model){
 
-        if (isLoggedIn == null){
-            GlobalController.setIsLoggedIn();
-            this.isLoggedIn = GlobalController.getIsLoggedIn();
-            System.out.println("Checking login status: "+isLoggedIn);
-        } else if (isLoggedIn == false) {
-            model.addAttribute("isLoggedIn", isLoggedIn);
-            System.out.println("\tUser logged-in: "+isLoggedIn);
-        } else{
-            model.addAttribute("isLoggedIn", isLoggedIn);
-            model.addAttribute("username", GlobalController.getUsername());
-            System.out.println("\tUser logged-in: "+isLoggedIn);
-        }
+        GlobalController.updateIsLoggedIn();
 
+        model.addAttribute("isLoggedIn", GlobalController.getIsLoggedIn());
+        model.addAttribute("username", GlobalController.getUsername());
         model.addAttribute("products", getAllProducts());
         currentOrder.setListOfProducts(productService.getAllProducts());
-//        currentOrder.displayProducts();
         return "shoppingList.html";
     }
 

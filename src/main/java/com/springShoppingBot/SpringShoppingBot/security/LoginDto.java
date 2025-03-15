@@ -11,6 +11,5 @@ public class LoginDto {
     public LoginDto(String username, String password) {
         this.username = username;
         this.password = password;
-        System.out.println("Login Dto constructor: "+this.username+", pass: "+getPassword());
     }
 }
