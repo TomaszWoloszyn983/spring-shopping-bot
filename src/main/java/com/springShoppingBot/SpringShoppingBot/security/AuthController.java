@@ -5,6 +5,7 @@ import com.springShoppingBot.SpringShoppingBot.guestUser.Role;
 import com.springShoppingBot.SpringShoppingBot.guestUser.RoleRepository;
 import com.springShoppingBot.SpringShoppingBot.guestUser.UserRepository;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,7 @@ public class AuthController {
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
     private JWTGenerator jwtGenerator;
+    String token;
 
     public AuthController(AuthenticationManager authenticationManager,
                           UserRepository userRepository,
@@ -93,7 +95,7 @@ public class AuthController {
                         loginDto.getUsername(),
                         loginDto.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String token = jwtGenerator.generateToken(authentication);
+        token = jwtGenerator.generateToken(authentication);
 
         Cookie jwtCookie = new Cookie("JWT-TOKEN", token);
         jwtCookie.setHttpOnly(true);
@@ -101,17 +103,26 @@ public class AuthController {
         jwtCookie.setPath("/");
         jwtCookie.setMaxAge(24 * 60 * 60); // 1 day expiry
         response.addCookie(jwtCookie);
-
-//        return ResponseEntity.ok(new AuthResponseDTO(token));
+        
         return new RedirectView("/home");
     }
 
     @GetMapping("/logout")
-    public ResponseEntity logout() {
-        // Instruct client to discard the token
-        System.out.println("Logout success.");
-        return ResponseEntity.ok("You have been logged out successfully.");
-//        return new RedirectView("/home");
+    public RedirectView logout(HttpServletRequest request, HttpServletResponse response) {
+        // Clear Security Context
+        SecurityContextHolder.clearContext();
+
+        // Remove JWT token from cookies
+        Cookie jwtCookie = new Cookie("JWT-TOKEN", "");
+        jwtCookie.setHttpOnly(true);
+        jwtCookie.setSecure(true); // Set to false if not using HTTPS in dev
+        jwtCookie.setPath("/");
+        jwtCookie.setMaxAge(0); // Expire immediately
+        response.addCookie(jwtCookie);
+
+        System.out.println("Logout success. User logged out.");
+
+        return new RedirectView("/home");
     }
 
     @GetMapping("/checkLogin")

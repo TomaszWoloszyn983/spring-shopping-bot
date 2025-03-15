@@ -50,7 +50,8 @@ public class JWTGenerator {
                 I display this token to verify the validity of the token
                 and to highlight the source of any errors.
             */
-            System.out.println("Validate JWT Token."+
+            System.out.print("Validate JWT Token. Token is correct:");
+            System.out.println(
                     Jwts.parserBuilder()
                     .setSigningKey(Keys.hmacShaKeyFor(getSecretKey()))  // Ensure this is the correct key
                     .build()
