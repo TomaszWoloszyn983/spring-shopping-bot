@@ -30,7 +30,6 @@ public class AuthController {
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
     private JWTGenerator jwtGenerator;
-    String token;
 
     public AuthController(AuthenticationManager authenticationManager,
                           UserRepository userRepository,
@@ -71,13 +70,10 @@ public class AuthController {
         System.out.println("Creating a new "+roles.getName()+" - "+user.getUsername());
         userRepository.save(user);
 
-//        return new ResponseEntity<>("User registered success!", HttpStatus.OK);
         return ResponseEntity.ok("User registered success!");
     }
 
     /**
-     * $2a$10$Nz3ZlGmswoFmGgy38ujsxODwfOQymDKAhWUTAwu1z3EkALYOCRZue
-     * eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdXBlcnVzZXIiLCJpYXQiOjE3NDExNTcyMTgsImV4cCI6MTc0MTI0MzYxOH0.5ebPwRQ4AT76IV0lPWSTJDLEwYG-feCBFKMz3Wvhw42E75jN_L8lgzvlrtHMNWmxFUwtVyA9wE0Pumz4C1XEfg
      * @param username
      * @param userpassword
      * @param response
@@ -95,7 +91,7 @@ public class AuthController {
                         loginDto.getUsername(),
                         loginDto.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        token = jwtGenerator.generateToken(authentication);
+        String token = jwtGenerator.generateToken(authentication);
 
         Cookie jwtCookie = new Cookie("JWT-TOKEN", token);
         jwtCookie.setHttpOnly(true);
@@ -103,7 +99,7 @@ public class AuthController {
         jwtCookie.setPath("/");
         jwtCookie.setMaxAge(24 * 60 * 60); // 1 day expiry
         response.addCookie(jwtCookie);
-        
+
         return new RedirectView("/home");
     }
 

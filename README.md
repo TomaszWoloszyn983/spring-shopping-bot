@@ -48,7 +48,8 @@ The live version of the application is available at
     <!-- * [Local Deployment](#local-deployment) -->
 <!-- 10. [Agile Development Process](#10-agile-development-process) -->
 <!-- 13. [Newsletter Marketing](#13-newsletter-marketing) -->
-9. [References and Credits](#links-and-references)
+9. [Spring Security](#spring-security)
+10. [References and Credits](#links-and-references)
 
 # Features
 
@@ -252,6 +253,8 @@ The UserOrder table holds the UserId and OrderId to link users with their orders
 
 * **Spring Framework** - A comprehensive Java framework used for building robust, high-performance applications, offering features like dependency injection, security, and support for web applications.
 
+* **Spring Security** - Spring Security is a framework which can be used to secure Spring applications. It focuses on both authentication and authorization. It can be configured and customized to meet own demands. 
+
 * **H2 Database** - A lightweight, in-memory relational database often used in Java applications for development, testing, and rapid prototyping. Used locally for developement.
 
 * **PostgreSQL Database** - A powerful, open-source relational database management system known for its advanced features, data integrity, and extensibility. Used at the Deployment stage, in Heroku.
@@ -312,6 +315,192 @@ Deployment steps are as follows, after account setup:
 Heroku needs two additional files in order to deploy properly.
 <!-- - requirements.txt -->
 - Procfile
+
+ # Spring Security
+
+ Spring Shopping Bot uses Spring Security for user authentication and access control. This section summarizes the security configurations and implementations used in the project.
+
+ ## 1. Spring Security Configuration
+We configured Spring Security to handle authentication and authorization using JWT (JSON Web Token).
+
+### Security Configuration Class
+- Disabled CSRF protection since JWT is used for authentication.
+- Configured CORS settings to allow frontend requests.
+- Defined authentication and authorization rules using HttpSecurity.
+- Enabled authentication for protected routes while allowing public access to login and registration endpoints.
+
+### SecurityConfig.java
+```java
+    @Configuration
+    @EnableWebSecurity
+    @RequiredArgsConstructor
+    public class SecurityConfig {
+
+        private final JwtAuthenticationFilter jwtAuthFilter;
+        private final AuthenticationProvider authenticationProvider;
+
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+            return http
+                    .csrf(AbstractHttpConfigurer::disable)
+                    .cors(Customizer.withDefaults())
+                    .authorizeHttpRequests(auth -> auth
+                            .requestMatchers("/", "/home", "/register", "/login").permitAll()
+                            .anyRequest().authenticated()
+                    )
+                    .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                    .authenticationProvider(authenticationProvider)
+                    .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                    .build();
+        }
+    }
+```
+
+## 2. User Authentication
+
+### Login & Registration
+- Users authenticate using JWT tokens.
+- Credentials are validated against the database.
+- A JWT token is generated and returned upon successful login.
+
+### AuthController.java
+```java
+    @RestController
+    @RequestMapping("/auth")
+    @RequiredArgsConstructor
+    public class AuthController {
+
+        private final AuthenticationService authService;
+
+        @PostMapping("/register")
+        public ResponseEntity<UserResponse> register(@RequestBody RegisterRequest request) {
+            return ResponseEntity.ok(authService.register(request));
+        }
+
+        @PostMapping("/login")
+        public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
+            return ResponseEntity.ok(authService.authenticate(request));
+        }
+    }
+```
+
+## 3. User Session Management
+
+We created a GlobalController to manage user session status globally. This helps track whether a user is logged in and retrieve the current username.
+
+### GlobalController.java
+
+```java
+    @Controller
+    public class GlobalController {
+
+        private static Boolean isLoggedIn = false;
+        private static String username = null;
+
+        public static Boolean getIsLoggedIn() {
+            return isLoggedIn;
+        }
+
+        public static String getUsername() {
+            return username;
+        }
+
+        public static void updateAuthStatus() {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+            isLoggedIn = authentication != null
+                    && authentication.isAuthenticated()
+                    && !(authentication instanceof AnonymousAuthenticationToken);
+
+            username = (isLoggedIn) ? authentication.getName() : null;
+            
+            System.out.println("User: " + username + " is logged in: " + isLoggedIn);
+        }
+    }
+```
+
+- updateAuthStatus() retrieves the authentication status whenever needed.
+- This allows controllers to check if a user is logged in and update the UI accordingly.
+
+## 4. Logout Implementation
+
+We implemented a logout function that:
+
+- Removes the JWT token from cookies.
+- Clears the security context.
+- Updates GlobalController to reflect the logged-out state.
+
+### Updated Logout Function
+```java
+    @RestController
+    public class AuthController {
+
+        @GetMapping("/logout")
+        public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
+            // Clear Security Context
+            SecurityContextHolder.clearContext();
+
+            // Remove JWT token from cookies
+            Cookie jwtCookie = new Cookie("jwt", "");
+            jwtCookie.setHttpOnly(true);
+            jwtCookie.setSecure(true); // Set to false if not using HTTPS in dev
+            jwtCookie.setPath("/");
+            jwtCookie.setMaxAge(0); // Expire immediately
+            response.addCookie(jwtCookie);
+
+            // Update authentication status in GlobalController
+            GlobalController.updateAuthStatus();
+
+            System.out.println("Logout success. User logged out.");
+
+            return ResponseEntity.ok("You have been logged out successfully.");
+        }
+    }
+```
+
+This ensures that the user is completely logged out and cannot access protected routes without logging in again.
+
+## 5. Using Authentication in Controllers
+
+Controllers use GlobalController to check login status and pass authentication data to the views.
+
+### Example in HomeController
+```java
+    @Controller
+    public class HomeController {
+
+        @GetMapping({"/", "/home"})
+        public String displayHomePage(Model model) {
+            System.out.println("Displaying Home Page");
+
+            GlobalController.updateAuthStatus();
+            Boolean isLoggedIn = GlobalController.getIsLoggedIn();
+
+            model.addAttribute("isLoggedIn", isLoggedIn);
+            model.addAttribute("username", isLoggedIn ? GlobalController.getUsername() : null);
+
+            return "home";
+        }
+    }
+```
+This dynamically updates the navigation bar and UI based on login status.
+
+## 6. Frontend Integration
+
+The Navbar in index.html dynamically updates based on the user's login status.
+
+```html
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li th:if="${isLoggedIn}"><a href="/dashboard">Dashboard</a></li>
+            <li th:if="${isLoggedIn}"><a href="/logout">Logout</a></li>
+            <li th:unless="${isLoggedIn}"><a href="/login">Login</a></li>
+        </ul>
+    </nav>
+```
+- If isLoggedIn == true, it shows Dashboard & Logout.
+- If isLoggedIn == false, it shows Login.
 
  # Links and references:
 
