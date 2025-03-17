@@ -30,26 +30,9 @@
                             <!-- Submit login-->
                              <div class="col-12 px-auto">
                                  <button class="btn btn-lg btn-success 
-                                                mx-auto px-auto mt-2" type="submit">
+                                                center mt-2" type="submit">
                                     Login
-                                </button>
-                                <!-- <script>
-                                    fetch("/api/auth/login", {
-                                        method: "POST",
-                                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                                        body: new URLSearchParams({
-                                            username: "username",
-                                            userpassword: "userpassword"
-                                        })
-                                    })
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        console.log("Login page script rowks fine.");
-                                        localStorage.setItem("jwt", data.accessToken); // Store token
-                                        window.location.href = "/userAccountPage"; // Redirect after login
-                                    })
-                                    .catch(error => console.error("Login failed:", error));
-                                </script> -->
+                                </button><!-- Button trigger modal -->
                             </div>
                         </form>
                     </div>
@@ -61,10 +44,38 @@
                     Create one.
                 </p>
             </div>
-
         </div>
     </div>
 
-</body>
+    <!-- Bootstrap Modal for Error -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="errorModalLabel">Login Failed</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Invalid username or password. Please try again.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <script>
+        // Check if the login failed (Spring Security appends `?error=true` to the URL)
+        window.onload = function () {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("error")) {
+                console.log("Login error received!");
+                let errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
+                errorModal.show();
+            }
+        };
+    </script>
+
+</body>
 </html>

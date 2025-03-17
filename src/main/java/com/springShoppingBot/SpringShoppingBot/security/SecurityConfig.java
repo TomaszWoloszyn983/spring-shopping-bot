@@ -34,32 +34,68 @@ public class SecurityConfig {
         this.authEntryPoint = authEntryPoint;
     }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+//
+//        http.csrf(csrf -> csrf.disable())
+//                .exceptionHandling(exceptionHandling ->
+//                        exceptionHandling.authenticationEntryPoint(authEntryPoint) // Handle unauthorized access
+//                )
+//                .sessionManagement(sessionManagement ->
+//                        sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Use stateless sessions
+//                )
+//                .authorizeHttpRequests(auth -> auth
+//                    .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
+//                    .requestMatchers("/api/auth/register").permitAll()
+//                    .requestMatchers("/api/auth/*").permitAll()
+//                    .requestMatchers("/api/auth/checkLogin").permitAll()
+//                    .requestMatchers("/", "/home", "/shoppingList/**", "/product/**", "/register", "/login", "/orderSummary").permitAll()
+////                    .requestMatchers("/userAccountPage").authenticated()
+//                    .requestMatchers("/userAccountPage").hasRole("USER") // Only users with "USER" role can access
+//                    .requestMatchers("/admin/**").hasRole("ADMIN")
+//                    .requestMatchers(HttpMethod.GET).authenticated()
+//                    .anyRequest().permitAll()
+//                ).httpBasic(Customizer.withDefaults());
+//            http.addFilterBefore(jwtAuthenticationFilter(),
+//                    UsernamePasswordAuthenticationFilter.class);
+//        return http.build();
+//    }
 
-        http.csrf(csrf -> csrf.disable())
-                .exceptionHandling(exceptionHandling ->
-                        exceptionHandling.authenticationEntryPoint(authEntryPoint) // Handle unauthorized access
-                )
-                .sessionManagement(sessionManagement ->
-                        sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Use stateless sessions
-                )
-                .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
-                    .requestMatchers("/api/auth/register").permitAll()
-                    .requestMatchers("/api/auth/*").permitAll()
-                    .requestMatchers("/api/auth/checkLogin").permitAll()
-                    .requestMatchers("/", "/home", "/shoppingList/**", "/product/**", "/register", "/login", "/orderSummary").permitAll()
-//                    .requestMatchers("/userAccountPage").authenticated()
-                    .requestMatchers("/userAccountPage").hasRole("USER") // Only users with "USER" role can access
+@Bean
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+    http
+            .csrf(csrf -> csrf.disable()) // Disable CSRF for APIs
+            .sessionManagement(session -> session
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Stateless authentication
+            .exceptionHandling(exception -> exception
+                    .authenticationEntryPoint(authEntryPoint)) // Handle unauthorized access
+            .authorizeHttpRequests(auth -> auth
+                    .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**").permitAll() // Static resources
+                    .requestMatchers("/api/auth/*").permitAll() // Open API endpoints
+                    .requestMatchers("/", "/home", "/shoppingList/**", "/register", "/login", "/orderSummary").permitAll() // Public pages
+                    .requestMatchers("/product/**").authenticated() // Require authentication for these
+                    .requestMatchers("/userAccountPage").hasRole("USER") // Role-based access control
                     .requestMatchers("/admin/**").hasRole("ADMIN")
-                    .requestMatchers(HttpMethod.GET).authenticated()
-                    .anyRequest().permitAll()
-                ).httpBasic(Customizer.withDefaults());
-            http.addFilterBefore(jwtAuthenticationFilter(),
-                    UsernamePasswordAuthenticationFilter.class);
-        return http.build();
-    }
+                    .anyRequest().authenticated()) // Secure all other requests
+            .formLogin(form -> form
+                    .loginPage("/login")
+                    .loginProcessingUrl("/login")
+                    .defaultSuccessUrl("/home", true) // Redirect after successful login
+                    .failureUrl("/login?error=true") // Redirect on login failure
+                    .permitAll())
+            .logout(logout -> logout
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/login?logout=true")
+                    .invalidateHttpSession(true)
+                    .deleteCookies("JSESSIONID")) // Ensure session is fully cleared
+            .httpBasic(Customizer.withDefaults());
+
+    http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+
+    return http.build();
+}
+
 
 
     @Bean

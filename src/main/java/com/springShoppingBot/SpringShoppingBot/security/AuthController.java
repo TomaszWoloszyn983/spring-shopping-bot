@@ -15,6 +15,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -73,6 +74,7 @@ public class AuthController {
         return ResponseEntity.ok("User registered success!");
     }
 
+
     /**
      * @param username
      * @param userpassword
@@ -84,23 +86,29 @@ public class AuthController {
                                 @RequestParam("username") String username,
                                 @RequestParam("userpassword") String userpassword,
                                 HttpServletResponse response){
+        System.out.println("Post method received");
+        try{
 
-        LoginDto loginDto = new LoginDto(username, userpassword);
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginDto.getUsername(),
-                        loginDto.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String token = jwtGenerator.generateToken(authentication);
+            LoginDto loginDto = new LoginDto(username, userpassword);
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            loginDto.getUsername(),
+                            loginDto.getPassword()));
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            String token = jwtGenerator.generateToken(authentication);
 
-        Cookie jwtCookie = new Cookie("JWT-TOKEN", token);
-        jwtCookie.setHttpOnly(true);
-        jwtCookie.setSecure(true); // Set to true if using HTTPS
-        jwtCookie.setPath("/");
-        jwtCookie.setMaxAge(24 * 60 * 60); // 1 day expiry
-        response.addCookie(jwtCookie);
-
-        return new RedirectView("/home");
+            Cookie jwtCookie = new Cookie("JWT-TOKEN", token);
+            jwtCookie.setHttpOnly(true);
+            jwtCookie.setSecure(true); // Set to true if using HTTPS
+            jwtCookie.setPath("/");
+            jwtCookie.setMaxAge(24 * 60 * 60); // 1 day expiry
+            response.addCookie(jwtCookie);
+            System.out.println("Login Success");
+            return new RedirectView("/home");
+        } catch (Exception e) {
+            System.out.println("Login Failure");
+            return new RedirectView("/login?error=true");
+        }
     }
 
     @GetMapping("/logout")
