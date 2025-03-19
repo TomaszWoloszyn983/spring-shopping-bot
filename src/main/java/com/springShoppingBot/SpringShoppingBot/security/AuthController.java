@@ -139,6 +139,12 @@ public class AuthController {
         }
     }
 
+    @GetMapping("/auth-error")
+    public String authenticationError(Model model) {
+        model.addAttribute("errorMessage", "You do not have permission to access this page.");
+        return "error401"; // This refers to error.html
+    }
+
     public boolean isUserLoggedIn() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication != null && authentication.isAuthenticated() && !(authentication instanceof AnonymousAuthenticationToken);

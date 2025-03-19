@@ -57,8 +57,6 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                     return cookie.getValue();
                 }
             }
-        }else{
-            System.out.println("Token NOT found in Cookies!");
         }
         return null;
     }

@@ -19,6 +19,8 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -81,6 +83,7 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
             .formLogin(form -> form
                     .loginPage("/login")
                     .loginProcessingUrl("/login")
+                    .failureHandler(new SimpleUrlAuthenticationFailureHandler("/auth-error"))
                     .defaultSuccessUrl("/home", true) // Redirect after successful login
                     .failureUrl("/login?error=true") // Redirect on login failure
                     .permitAll())
@@ -106,12 +109,16 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-//        return NoOpPasswordEncoder.getInstance(); // Use plain text passwords
         return new BCryptPasswordEncoder();
     }
 
     @Bean
     public JWTAuthenticationFilter jwtAuthenticationFilter(){
         return new JWTAuthenticationFilter();
+    }
+
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
+        return (request, response, accessDeniedException) -> response.sendRedirect("/auth-error");
     }
 }
