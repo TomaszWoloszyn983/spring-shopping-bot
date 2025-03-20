@@ -103,6 +103,7 @@ public class AuthController {
             jwtCookie.setPath("/");
             jwtCookie.setMaxAge(24 * 60 * 60); // 1 day expiry
             response.addCookie(jwtCookie);
+            System.out.println("Authenticated user roles: " + authentication.getAuthorities());
             System.out.println("Login Success");
             return new RedirectView("/home");
         } catch (Exception e) {

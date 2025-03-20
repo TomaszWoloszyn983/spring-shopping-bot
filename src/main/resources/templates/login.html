@@ -67,29 +67,29 @@
     <script>
         // Check if the login failed (Spring Security appends `?error=true` to the URL)
         window.onload = function () {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("error")) {
-        console.log("Login error received!");
-        
-        // Ensure Bootstrap's modal is initialized properly
-        let errorModal = new bootstrap.Modal(document.getElementById("errorModal"), {
-            backdrop: 'static', // Prevent accidental closing by clicking outside
-            keyboard: true      // Allow closing with keyboard (Esc)
-        });
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("error")) {
+                console.log("Login error received!");
+                
+                // Ensure Bootstrap's modal is initialized properly
+                let errorModal = new bootstrap.Modal(document.getElementById("errorModal"), {
+                    backdrop: 'static', // Prevent accidental closing by clicking outside
+                    keyboard: true      // Allow closing with keyboard (Esc)
+                });
 
-        // Show modal
-        errorModal.show();
+                // Show modal
+                errorModal.show();
 
-        // Add event listener to properly hide the modal when the 'Close' button is clicked
-        document.querySelector(".btn-close").addEventListener("click", function () {
-            errorModal.hide();
-        });
+                // Add event listener to properly hide the modal when the 'Close' button is clicked
+                document.querySelector(".btn-close").addEventListener("click", function () {
+                    errorModal.hide();
+                });
 
-        document.querySelector(".btn-secondary").addEventListener("click", function () {
-            errorModal.hide();
-        });
-    }
-};
+                document.querySelector(".btn-secondary").addEventListener("click", function () {
+                    errorModal.hide();
+                });
+            }
+        };
     </script>
 
 </body>

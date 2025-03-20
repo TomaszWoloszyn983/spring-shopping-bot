@@ -77,7 +77,8 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
                     .requestMatchers("/api/auth/*").permitAll() // Open API endpoints
                     .requestMatchers("/", "/home", "/shoppingList/**", "/register", "/login", "/orderSummary").permitAll() // Public pages
                     .requestMatchers("/product/**").authenticated() // Require authentication for these
-                    .requestMatchers("/userAccountPage").hasRole("USER") // Role-based access control
+//                    .requestMatchers("/userAccountPage").hasRole("USER") // Role-based access control
+                    .requestMatchers("/userAccountPage").hasAuthority("ROLE_USER")
                     .requestMatchers("/admin/**").hasRole("ADMIN")
                     .anyRequest().authenticated()) // Secure all other requests
             .formLogin(form -> form

@@ -1,5 +1,8 @@
 package com.springShoppingBot.SpringShoppingBot;
 
+import com.springShoppingBot.SpringShoppingBot.guestUser.GuestUser;
+import com.springShoppingBot.SpringShoppingBot.guestUser.UserRepository;
+import com.springShoppingBot.SpringShoppingBot.security.CustomUserDetailsService;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,7 +32,8 @@ public class GlobalController {
                 && authentication.isAuthenticated()
                 && !(authentication instanceof AnonymousAuthenticationToken);
         username = authentication.getName();
-        System.out.println("User: "+username+" is logged in: "+isLoggedIn);
+        var role = authentication.getDetails();
+        System.out.println("User: "+username+" is logged in: "+isLoggedIn+". Details: "+role);
     }
 
     public static String getUsername() {

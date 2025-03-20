@@ -22,6 +22,6 @@ public class UserController {
     @GetMapping(path = "/userAccountPage")
     public String displayUserPage(){
         System.out.println("Displaying User Page");
-        return "userAccountPage.html";
+        return "userAccountPage";
     }
 }
