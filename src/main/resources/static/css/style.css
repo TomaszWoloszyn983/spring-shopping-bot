@@ -170,6 +170,22 @@ html{
     padding: 0;
   }
 
+  /* User Details Page */
+  .user-detail-title{
+    text-align: left;
+    font-weight: 500;
+    min-width: 50px;
+    padding-top: 15px;
+  }
+  .user-detail-text{
+    width: 250;
+    font-weight: 700;
+    overflow-wrap: break-word;
+    text-align: left;
+    padding-top: 15px;
+  }
+
+
 
 @media screen and (max-width: 576px) {
     #main-header{
