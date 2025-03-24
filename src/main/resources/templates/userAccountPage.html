@@ -28,10 +28,11 @@
                 <div class="row">
                     <div class="col-12">
                         <span class="user-detail-title" th:text="${'Name: '}"></span>
-                        <span class="user-detail-text" th:each="role : ${user.roles}" 
-                            th:text="${#strings.isEmpty(user.name) ? user.username : user.name}+' Role: '+${role.name}">
+                        <span class="user-detail-text" 
+                            th:text="${#strings.isEmpty(user.name) ? user.username : user.name}">
                         </span>
-                        <span class="user-detail-text" th:text="${user.getName()}"></span>
+                        <span class="user-detail-title"   th:text="${'Role: '}"></span>
+                        <span class="user-detail-text" th:each="role : ${user.roles}" th:text="${role.name}"></span>
                     </div>
                     <!-- <div class="col-12" th:each="role : ${user.roles}">
                         <span class="user-detail-text" th:text="${role.name}"></span>
@@ -40,10 +41,10 @@
                         <span class="user-detail-title" th:text="${'Email: '}"></span>
                         <span class="user-detail-text" th:text="${user.getEmail()}"></span>
                     </div>
-                    <div class="col-12">
+                    <!-- <div class="col-12">
                         <span class="user-detail-title" th:text="${'Password: '}"></span>
                         <span class="user-detail-text" th:text="${user.getPassword()}"></span>
-                    </div>
+                    </div> -->
                     <div class="col-12">
                         <span class="user-detail-title" th:text="${'Created at: '}"></span>
                         <span class="user-detail-text" th:text="${user.getCreatedAt()}"></span>
