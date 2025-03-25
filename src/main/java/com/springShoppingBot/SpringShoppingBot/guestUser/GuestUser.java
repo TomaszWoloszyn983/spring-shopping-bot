@@ -40,31 +40,6 @@ public class GuestUser {
                 inverseJoinColumns = @JoinColumn(name = "roleid", referencedColumnName = "id"))
     private List<Role> roles = new ArrayList<>();
 
-    //    public GuestUser(String username, String password, List<Role> roles) {
-//        this.username = username;
-//        this.password = password;
-//        this.roles = roles;
-//    }
-
-//    public GuestUser(){}
-
-//    public GuestUser(String username, String password, List<GrantedAuthority> roles) {
-//        this.username = username;
-//        this.password = password;
-//        this.roles = roles;
-//    }
-
-
-    // Constructor for creating User with essential fields
-//    public GuestUser(String name, String email, String username, String password, List<Role> roles) {
-//        this.name = name;
-//        this.email = email;
-//        this.username = username;
-//        this.password = password;
-//        this.createdAt = LocalDateTime.now();
-//        this.updatedAt = LocalDateTime.now();
-//        this.roles = roles;
-//    }
 
     @PrePersist
     protected void onCreate() {

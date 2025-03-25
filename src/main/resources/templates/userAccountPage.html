@@ -13,17 +13,17 @@
 
     <div class="container my-5 px-0">
         <div class="container row my-2 mx-auto p-2">
+            <!-- Title -->
             <div class="col-6 offset-3 px-auto">
                 <h2 class="page-title" >
                     <span class="navbar-text" th:text="${'Welcome: '+username}"></span>
                 </h2>
                 <div class="container row my-2 mx-auto p-2 mb-3">
                     <div class="col-12 px-auto" >
-                        
-                        
                     </div>
                 </div>
             </div>
+            <!-- User datails section -->
             <div class="col-12 col-md-6">
                 <div class="row">
                     <div class="col-12">
@@ -34,17 +34,10 @@
                         <span class="user-detail-title"   th:text="${'Role: '}"></span>
                         <span class="user-detail-text" th:each="role : ${user.roles}" th:text="${role.name}"></span>
                     </div>
-                    <!-- <div class="col-12" th:each="role : ${user.roles}">
-                        <span class="user-detail-text" th:text="${role.name}"></span>
-                    </div> -->
                     <div class="col-12">
                         <span class="user-detail-title" th:text="${'Email: '}"></span>
                         <span class="user-detail-text" th:text="${user.getEmail()}"></span>
                     </div>
-                    <!-- <div class="col-12">
-                        <span class="user-detail-title" th:text="${'Password: '}"></span>
-                        <span class="user-detail-text" th:text="${user.getPassword()}"></span>
-                    </div> -->
                     <div class="col-12">
                         <span class="user-detail-title" th:text="${'Created at: '}"></span>
                         <span class="user-detail-text" th:text="${user.getCreatedAt()}"></span>
@@ -53,12 +46,9 @@
                         <span class="user-detail-title" th:text="${'Updated at: '}"></span>
                         <span class="user-detail-text" th:text="${user.getUpdatedAt()}"></span>
                     </div>
-
                 </div>
             </div>
-
         </div>
     </div>
-
 </body>
 </html>

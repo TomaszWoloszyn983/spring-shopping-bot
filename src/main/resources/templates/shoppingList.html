@@ -102,17 +102,27 @@
                                         <input type="text" class="form-control" id="userEmail" name="userEmail"
                                                 required>
                                     </div>
-
                                     <button class="btn btn-primary" type="submit">Submit Order</button>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                          Return
                                     </button>
                                 </form>
                             </div>
-                            
                           </div>
                         </div>
                     </div>
+
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            var submitButton = document.querySelector('[data-bs-target="#submitOrderModal"]');
+                            if (submitButton) {
+                                submitButton.addEventListener("click", function() {
+                                    var modal = new bootstrap.Modal(document.getElementById("submitOrderModal"));
+                                    modal.show();
+                                });
+                            }
+                        });
+                    </script>
                 </div>
             </div>
         </div>

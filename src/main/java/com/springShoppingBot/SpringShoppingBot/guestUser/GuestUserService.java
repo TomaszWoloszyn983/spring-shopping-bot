@@ -36,6 +36,13 @@ public class GuestUserService {
                 ));
     }
 
+    public GuestUser findUserByEmail(String email){
+        System.out.println("Finding user email: "+email);
+        return userRepository.findUserByEmail(email)
+                .orElseThrow(() -> new IllegalStateException(
+                        "User email: "+email+" not found in the database."
+                ));
+    }
 
 
 }

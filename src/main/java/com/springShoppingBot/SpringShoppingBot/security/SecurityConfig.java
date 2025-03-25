@@ -75,8 +75,8 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
             .authorizeHttpRequests(auth -> auth
                     .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**").permitAll() // Static resources
                     .requestMatchers("/api/auth/*").permitAll() // Open API endpoints
-                    .requestMatchers("/", "/home", "/shoppingList/**", "/register", "/login", "/orderSummary").permitAll() // Public pages
-                    .requestMatchers("/product/**").authenticated() // Require authentication for these
+                    .requestMatchers("/", "/home", "/shoppingList/**", "/register", "/login", "/orderSummary", "/product/**").permitAll() // Public pages
+                    .requestMatchers("").authenticated() // Require authentication for these
 //                    .requestMatchers("/userAccountPage").hasRole("USER") // Role-based access control
                     .requestMatchers("/userAccountPage").hasAuthority("ROLE_USER")
                     .requestMatchers("/admin/**").hasRole("ADMIN")
