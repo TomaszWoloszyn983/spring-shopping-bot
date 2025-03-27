@@ -1,9 +1,12 @@
 package com.springShoppingBot.SpringShoppingBot.order;
 
+import com.springShoppingBot.SpringShoppingBot.guestUser.GuestUser;
+import com.springShoppingBot.SpringShoppingBot.guestUser.UserRepository;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -18,6 +21,16 @@ public class OrderService {
     private String emailAddress;
     private JavaMailSender mailSender;
     private OrderRepository orderRepository;
+    private UserRepository userRepository;
+
+//    Plan
+    /*
+    * Take the order and assigned it to the logged-in User.
+    *
+    * I have created a table in database that stores relations between
+    * User and Order.
+    * */
+
 
     /**
      * OrderService - version logged-in user.
@@ -29,8 +42,9 @@ public class OrderService {
      * @param orderRepository
      * @param mailSender
      */
-    public OrderService(OrderRepository orderRepository, JavaMailSender mailSender) {
+    public OrderService(OrderRepository orderRepository, UserRepository userRepository, JavaMailSender mailSender) {
         this.orderRepository = orderRepository;
+        this.userRepository = userRepository;
         this.mailSender = mailSender;
     }
 
@@ -46,11 +60,31 @@ public class OrderService {
         this.mailSender = mailSender;
     }
 
+    public OrderService(){}
+
     /*
         Users is giving it's email when he submits the Order
         But in case of logged-in user the email should be taken from the Users database.
         So think it over.
      */
+
+    /**
+     * This function takes the Order received from
+     * the Controller and the User which the Order is assigned to.
+     *
+     * @param order
+     * @param username
+     * @return
+     */
+    public Order createOrder(Order order, String username) {
+        System.out.println("Creating Order for "+username);
+        GuestUser user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        order.setUser(user);
+        return orderRepository.save(order);
+    }
+
 
     public void sendConfirmationEmail(String toEmail, String subject, String body) {
         MimeMessage mimeMessage = mailSender.createMimeMessage();

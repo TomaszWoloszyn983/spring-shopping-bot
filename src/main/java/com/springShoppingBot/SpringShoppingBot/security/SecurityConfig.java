@@ -36,33 +36,6 @@ public class SecurityConfig {
         this.authEntryPoint = authEntryPoint;
     }
 
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-//
-//        http.csrf(csrf -> csrf.disable())
-//                .exceptionHandling(exceptionHandling ->
-//                        exceptionHandling.authenticationEntryPoint(authEntryPoint) // Handle unauthorized access
-//                )
-//                .sessionManagement(sessionManagement ->
-//                        sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Use stateless sessions
-//                )
-//                .authorizeHttpRequests(auth -> auth
-//                    .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
-//                    .requestMatchers("/api/auth/register").permitAll()
-//                    .requestMatchers("/api/auth/*").permitAll()
-//                    .requestMatchers("/api/auth/checkLogin").permitAll()
-//                    .requestMatchers("/", "/home", "/shoppingList/**", "/product/**", "/register", "/login", "/orderSummary").permitAll()
-////                    .requestMatchers("/userAccountPage").authenticated()
-//                    .requestMatchers("/userAccountPage").hasRole("USER") // Only users with "USER" role can access
-//                    .requestMatchers("/admin/**").hasRole("ADMIN")
-//                    .requestMatchers(HttpMethod.GET).authenticated()
-//                    .anyRequest().permitAll()
-//                ).httpBasic(Customizer.withDefaults());
-//            http.addFilterBefore(jwtAuthenticationFilter(),
-//                    UsernamePasswordAuthenticationFilter.class);
-//        return http.build();
-//    }
-
 @Bean
 public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -76,7 +49,7 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
                     .requestMatchers("/css/**", "/js/**", "/images/**", "/webjars/**").permitAll() // Static resources
                     .requestMatchers("/api/auth/*").permitAll() // Open API endpoints
                     .requestMatchers("/", "/home", "/shoppingList/**", "/register", "/login", "/orderSummary", "/product/**").permitAll() // Public pages
-                    .requestMatchers("").authenticated() // Require authentication for these
+                    .requestMatchers("/userAccountPage").authenticated() // Require authentication for these
 //                    .requestMatchers("/userAccountPage").hasRole("USER") // Role-based access control
                     .requestMatchers("/userAccountPage").hasAuthority("ROLE_USER")
                     .requestMatchers("/admin/**").hasRole("ADMIN")

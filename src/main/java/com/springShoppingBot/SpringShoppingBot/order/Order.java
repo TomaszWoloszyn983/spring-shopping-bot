@@ -1,5 +1,6 @@
 package com.springShoppingBot.SpringShoppingBot.order;
 
+import com.springShoppingBot.SpringShoppingBot.guestUser.GuestUser;
 import com.springShoppingBot.SpringShoppingBot.product.Product;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -8,11 +9,6 @@ import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Think if it would be possible to avoid using database for this class.
- * A good solution could be to avoid storing usersEmails.
- */
 
 @Table (name = "dt_order")
 @Entity(name = "Order")
@@ -30,6 +26,10 @@ public class Order {
 //    @ManyToMany
     @Transient
     private List<Product> listOfProducts = new ArrayList<Product>();
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private GuestUser user;
 
     @Column(name = "createdat")
     @DateTimeFormat(pattern = "HH:mm dd-MM-yyyy")
@@ -104,6 +104,14 @@ public class Order {
      */
     public void setOrderDate() {
         this.createdAt = LocalDateTime.now();
+    }
+
+    public GuestUser getUser() {
+        return user;
+    }
+
+    public void setUser(GuestUser user) {
+        this.user = user;
     }
 
     @Override

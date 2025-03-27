@@ -27,22 +27,12 @@ public class OrderController {
         currentOrder = new Order();
         this.productService = productService;
         this.orderService = orderService;
-
-
-
     }
 
     public List<Product> getAllProducts(){
         return productService.getAllProducts();
     }
 
-
-
-//    @RequestMapping(("shoppingList"))
-//    @GetMapping
-//    public String displayShoppingList(){
-//        return "shoppingList.html";
-//    }
 
     /**
      * Passes the list of products to the shoppingList.html template
