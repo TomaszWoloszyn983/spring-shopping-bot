@@ -24,7 +24,7 @@
                 </div>
             </div>
             <!-- User datails section -->
-            <div class="col-12 col-md-6">
+            <div class="col-6 col-md-6">
                 <div class="row">
                     <div class="col-12">
                         <span class="user-detail-title" th:text="${'Name: '}"></span>
@@ -46,6 +46,26 @@
                         <span class="user-detail-title" th:text="${'Updated at: '}"></span>
                         <span class="user-detail-text" th:text="${user.getUpdatedAt()}"></span>
                     </div>
+                </div>
+            </div>
+            <!-- Order Hitory section -->
+            <div class="col-6 col-md-6">
+                <div class="row">
+                    <ul>
+                        <li th:each="order, iterStat : ${ordersHistory}">
+                            <span th:text="${order.getCreatedAt()}"></span>
+                            <span th:text="${order.userEmail}"></span>
+                        </li>
+                    </ul>                    
+                    <tr 
+                        th:each="order, iStat : ${ordersHistory}" 
+                        th:style="${iStat.odd}? 'font-weight: bold;'">
+                        <td th:text="${order.createdAt}" />
+                        <td th:text="${order.userEmail}" />
+                        <td th:text="${order.getCreatedAt()}" />
+                    </tr>
+
+
                 </div>
             </div>
         </div>

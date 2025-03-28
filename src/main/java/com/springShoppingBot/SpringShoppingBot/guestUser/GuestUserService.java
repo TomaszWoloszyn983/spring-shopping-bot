@@ -1,7 +1,11 @@
 package com.springShoppingBot.SpringShoppingBot.guestUser;
 
+import com.springShoppingBot.SpringShoppingBot.GlobalController;
+import com.springShoppingBot.SpringShoppingBot.order.Order;
+import com.springShoppingBot.SpringShoppingBot.order.OrderRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -14,10 +18,12 @@ import java.util.Optional;
 public class GuestUserService {
 
     public final UserRepository userRepository;
+    public final OrderRepository orderRepository;
     private GuestUser user;
 
-    public GuestUserService(UserRepository userRepository) {
+    public GuestUserService(UserRepository userRepository, OrderRepository orderRepository) {
         this.userRepository = userRepository;
+        this.orderRepository = orderRepository;
     }
 
     public GuestUser findUserById(int id){
@@ -42,6 +48,10 @@ public class GuestUserService {
                 .orElseThrow(() -> new IllegalStateException(
                         "User email: "+email+" not found in the database."
                 ));
+    }
+
+    public List<Order> findUsersOrders(String usersEmail){
+        return orderRepository.findOrderByEmail(usersEmail);
     }
 
 

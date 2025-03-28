@@ -1,10 +1,13 @@
 package com.springShoppingBot.SpringShoppingBot.guestUser;
 
 import com.springShoppingBot.SpringShoppingBot.GlobalController;
+import com.springShoppingBot.SpringShoppingBot.order.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -32,13 +35,18 @@ public class UserController {
         System.out.println("Displaying User Page");
 
         GlobalController.updateIsLoggedIn();
-
         GuestUser user = guestUserService.findUserByUsername(GlobalController.getUsername());
-
 
         model.addAttribute("isLoggedIn", GlobalController.getIsLoggedIn());
         model.addAttribute("username", GlobalController.getUsername());
         model.addAttribute("user", user);
+
+        if(GlobalController.getIsLoggedIn()){
+            System.out.println("\t\tUser Logged-in. Email: "+user.getEmail());
+            List<Order> ordersHistory = guestUserService.findUsersOrders(user.getEmail());
+            System.out.println("Order History: "+ordersHistory);
+            model.addAttribute("ordersHistory", ordersHistory);
+        }
 
         return "userAccountPage";
     }

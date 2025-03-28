@@ -23,13 +23,16 @@ public class Order {
     @Email(message = "Please provide a valid email address")
     private String userEmail;
 
+
+
 //    @ManyToMany
     @Transient
     private List<Product> listOfProducts = new ArrayList<Product>();
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private GuestUser user;
+        // I used useremail as the foreign key
+//    @ManyToOne
+//    @JoinColumn(name = "user_id", referencedColumnName = "id")
+//    private GuestUser user;
 
     @Column(name = "createdat")
     @DateTimeFormat(pattern = "HH:mm dd-MM-yyyy")
@@ -106,13 +109,13 @@ public class Order {
         this.createdAt = LocalDateTime.now();
     }
 
-    public GuestUser getUser() {
-        return user;
-    }
-
-    public void setUser(GuestUser user) {
-        this.user = user;
-    }
+//    public GuestUser getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(GuestUser user) {
+//        this.user = user;
+//    }
 
     @Override
     public String toString() {

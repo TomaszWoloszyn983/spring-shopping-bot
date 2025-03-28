@@ -81,7 +81,7 @@ public class OrderService {
         GuestUser user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-        order.setUser(user);
+        order.setUserEmail(user.getEmail());
         return orderRepository.save(order);
     }
 
