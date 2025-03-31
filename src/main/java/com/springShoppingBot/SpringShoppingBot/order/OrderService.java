@@ -2,6 +2,8 @@ package com.springShoppingBot.SpringShoppingBot.order;
 
 import com.springShoppingBot.SpringShoppingBot.guestUser.GuestUser;
 import com.springShoppingBot.SpringShoppingBot.guestUser.UserRepository;
+import com.springShoppingBot.SpringShoppingBot.product.Product;
+import com.springShoppingBot.SpringShoppingBot.product.ProductRepository;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +24,7 @@ public class OrderService {
     private JavaMailSender mailSender;
     private OrderRepository orderRepository;
     private UserRepository userRepository;
+    private ProductRepository productRepository;
 
 //    Plan
     /*
@@ -42,9 +45,11 @@ public class OrderService {
      * @param orderRepository
      * @param mailSender
      */
-    public OrderService(OrderRepository orderRepository, UserRepository userRepository, JavaMailSender mailSender) {
+    public OrderService(OrderRepository orderRepository, UserRepository userRepository,
+                        ProductRepository productRepository, JavaMailSender mailSender) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
+        this.productRepository = productRepository;
         this.mailSender = mailSender;
     }
 
@@ -83,6 +88,14 @@ public class OrderService {
 
         order.setUserEmail(user.getEmail());
         return orderRepository.save(order);
+    }
+
+    public void addProductToOrder(int orderId, int productId) {
+        Order order = orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
+        Product product = productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found"));
+
+        order.addProduct(product);
+        orderRepository.save(order); // Persist the relationship
     }
 
 

@@ -25,19 +25,18 @@ public class Order {
 
 
 
-//    @ManyToMany
-    @Transient
+//    @Transient
+    @ManyToMany
+    @JoinTable(
+            name = "USER_ORDER", // Your existing table
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
     private List<Product> listOfProducts = new ArrayList<Product>();
-
-        // I used useremail as the foreign key
-//    @ManyToOne
-//    @JoinColumn(name = "user_id", referencedColumnName = "id")
-//    private GuestUser user;
 
     @Column(name = "createdat")
     @DateTimeFormat(pattern = "HH:mm dd-MM-yyyy")
     private LocalDateTime createdAt;
-
 
     /**
      * This method isn't in use at the moment
@@ -69,11 +68,6 @@ public class Order {
     public void clearList(){
         this.listOfProducts.clear();
     }
-
-
-//    public int getId() {
-//        return id;
-//    }
 
     public String getUserEmail() {
         return this.userEmail;
@@ -109,14 +103,6 @@ public class Order {
         this.createdAt = LocalDateTime.now();
     }
 
-//    public GuestUser getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(GuestUser user) {
-//        this.user = user;
-//    }
-
     @Override
     public String toString() {
         return "Order{" +
@@ -125,6 +111,15 @@ public class Order {
                 ", listOfProducts=" + listOfProducts.size() +
                 '}';
     }
+
+    public void addProduct(Product product) {
+        this.listOfProducts.add(product);
+    }
+
+    public void removeProduct(Product product) {
+        this.listOfProducts.remove(product);
+    }
+
 
     public void displayProducts() {
         System.out.println("Product in the list:");

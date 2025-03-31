@@ -3,6 +3,7 @@ package com.springShoppingBot.SpringShoppingBot.order;
 import com.springShoppingBot.SpringShoppingBot.GlobalController;
 import com.springShoppingBot.SpringShoppingBot.product.Product;
 import com.springShoppingBot.SpringShoppingBot.product.ProductService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -82,6 +83,12 @@ public class OrderController {
         System.out.println("Deleting item: "+productId);
         productService.deleteProduct(productId);
         return "redirect:/shoppingList";
+    }
+
+    @PostMapping("/{orderId}/addProduct/{productId}")
+    public ResponseEntity<String> addProductToOrder(@PathVariable int orderId, @PathVariable int productId) {
+        orderService.addProductToOrder(orderId, productId);
+        return ResponseEntity.ok("Product added to order successfully!");
     }
 
     @PostMapping(path = "orderSummary")
