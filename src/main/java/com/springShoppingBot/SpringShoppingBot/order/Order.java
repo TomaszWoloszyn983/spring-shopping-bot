@@ -1,5 +1,6 @@
 package com.springShoppingBot.SpringShoppingBot.order;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.springShoppingBot.SpringShoppingBot.guestUser.GuestUser;
 import com.springShoppingBot.SpringShoppingBot.product.Product;
 import jakarta.persistence.*;
@@ -26,12 +27,13 @@ public class Order {
 
 
 //    @Transient
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "USER_ORDER", // Your existing table
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
+            name = "ORDER_PRODUCT", // Your existing table
+            joinColumns = @JoinColumn(name = "ORDERID"),
+            inverseJoinColumns = @JoinColumn(name = "PRODUCTID")
     )
+    @JsonManagedReference
     private List<Product> listOfProducts = new ArrayList<Product>();
 
     @Column(name = "createdat")

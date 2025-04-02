@@ -1,7 +1,11 @@
 package com.springShoppingBot.SpringShoppingBot.product;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.springShoppingBot.SpringShoppingBot.order.Order;
 import jakarta.persistence.*;
 import javax.validation.constraints.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table (name = "dt_products")
@@ -20,6 +24,10 @@ public class Product {
 
     @Column(name = "numofunits")
     private int numOfUnits;
+
+    @ManyToMany(mappedBy = "listOfProducts")
+    @JsonBackReference
+    private List<Order> orders = new ArrayList<>();
 
     public String getName() {
         return name;
