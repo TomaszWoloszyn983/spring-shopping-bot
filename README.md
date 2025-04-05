@@ -35,6 +35,8 @@ The live version of the application is available at
     * [Navigation Bar](#navigation-bar)
     * [Shoping List Page](#shopping-list-page)
     * [Summary Page](#summary-page)
+    * [Navigation Bar](#navigation-bar)
+    * [Checking Login status](#checking-login-status)
 2. [Future Features](#future-features)
 3. [Color Scheme](#-colour-scheme)
 4. [UiPath Automations](#uipath-automations)
@@ -80,6 +82,67 @@ helping users compare offers and make informed purchasing decisions. The report 
 
 The Navigation Bar enables easy access across key pages of the application, including the Home, 
 Shopping List, and Summary pages, and offers a user-friendly, consistent interface.
+
+### Checking Login status
+
+At each start, the application checks whether a user is logged in or not. This allows the application function to be adjusted to the user's status.
+
+Login status checking is included in the GlobalController class. The purpose of this functionality was to make the login status available globally in each class, which is why the isLoggedIn field is marked as static. Additionally, the name of the logged in user is also available globally, so that it can be easily passed to html templates, for example.
+
+```java
+    public class GlobalController {
+
+        private static Boolean isLoggedIn = false;
+        private static String username = "Guest";
+
+        public static Boolean getIsLoggedIn(){
+            return isLoggedIn;
+        }
+
+        public static void setIsLoggedIn(boolean value){
+            isLoggedIn = value;
+        }
+
+        public static void updateIsLoggedIn(){
+            Authentication authentication = SecurityContextHolder
+                    .getContext()
+                    .getAuthentication();
+
+            isLoggedIn = authentication != null
+                    && authentication.isAuthenticated()
+                    && !(authentication instanceof AnonymousAuthenticationToken);
+            username = authentication.getName();
+            var role = authentication.getDetails();
+        }
+
+        public static String getUsername() {
+            return username;
+        }
+
+        public static void setUsername(String username) {
+            GlobalController.username = username;
+        }
+    }
+```
+
+Below is an example of implementing the GlobalController class in the HomeController class. This implementation allows you to pass information about the login status to the Home Page of the client.
+
+```java
+    public class HomeController {
+
+        Boolean isLoggedIn = GlobalController.getIsLoggedIn();
+
+        @GetMapping({"/","/home"})
+        public String displayHomePage(Model model){
+            GlobalController.updateIsLoggedIn();
+
+            model.addAttribute("isLoggedIn", GlobalController.getIsLoggedIn());
+            model.addAttribute("username", GlobalController.getUsername());
+
+            return "index.html";
+        }
+    }
+```
 
 ## UiPath Robot
 
