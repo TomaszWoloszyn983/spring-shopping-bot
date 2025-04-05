@@ -57,17 +57,19 @@ public class JWTGenerator {
     public boolean validateToken(String token){
         try {
             /*
-                I display this token to verify the validity of the token
+                For Debug purposes only.
+
+                Display this token to verify the validity of the token
                 and to highlight the source of any errors.
             */
-            System.out.print("Validate JWT Token. Token is correct:");
-            System.out.println(
-                    Jwts.parserBuilder()
-                    .setSigningKey(Keys.hmacShaKeyFor(getSecretKey()))  // Ensure this is the correct key
-                    .build()
-                    .parseClaimsJws(token)
-                    .getBody().getSubject() != null
-                );
+//            System.out.print("Validate JWT Token. Token is correct:");
+//            System.out.println(
+//                    Jwts.parserBuilder()
+//                    .setSigningKey(Keys.hmacShaKeyFor(getSecretKey()))  // Ensure this is the correct key
+//                    .build()
+//                    .parseClaimsJws(token)
+//                    .getBody().getSubject() != null
+//                );
         } catch (ExpiredJwtException e) {
             System.out.println("Token expired: " + e.getMessage());
         } catch (SignatureException e) {

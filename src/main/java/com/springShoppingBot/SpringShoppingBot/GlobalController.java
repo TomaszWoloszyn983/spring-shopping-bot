@@ -33,7 +33,7 @@ public class GlobalController {
                 && !(authentication instanceof AnonymousAuthenticationToken);
         username = authentication.getName();
         var role = authentication.getDetails();
-        System.out.println("User: "+username+" is logged in: "+isLoggedIn+". Details: "+role);
+//        System.out.println("User: "+username+" is logged in: "+isLoggedIn+". Details: "+role);
     }
 
     public static String getUsername() {

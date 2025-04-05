@@ -49,6 +49,7 @@ public class Order {
      * @param product
      */
     public void addToList(Product product){
+        System.out.println("Add product 1");
         listOfProducts.add(product);
         System.out.println("Product "+product.getName()+" added to Order");
     }
@@ -62,6 +63,7 @@ public class Order {
      * @param id
      */
     public void removeFromList(int id){
+        System.out.println("Del product 1");
         listOfProducts.remove(listOfProducts.stream()
                 .filter(product -> product.getId() == id)
                 .findFirst());
@@ -84,10 +86,6 @@ public class Order {
         return listOfProducts;
     }
 
-    public String listOfProductsToString(){
-
-        return "";
-    }
 
     public void setListOfProducts(List<Product> listOfProducts) {
         this.listOfProducts = listOfProducts;
@@ -115,10 +113,12 @@ public class Order {
     }
 
     public void addProduct(Product product) {
+        System.out.println("Add product 2");
         this.listOfProducts.add(product);
     }
 
     public void removeProduct(Product product) {
+        System.out.println("Del product 2");
         this.listOfProducts.remove(product);
     }
 

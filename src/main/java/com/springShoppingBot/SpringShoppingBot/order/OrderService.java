@@ -6,6 +6,7 @@ import com.springShoppingBot.SpringShoppingBot.product.Product;
 import com.springShoppingBot.SpringShoppingBot.product.ProductRepository;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,6 +22,7 @@ public class OrderService {
     // Inject environment variable using @Value
     @Value("${ADMIN_EMAIL}")
     private String emailAddress;
+    @Autowired
     private JavaMailSender mailSender;
     private OrderRepository orderRepository;
     private UserRepository userRepository;
@@ -68,7 +70,7 @@ public class OrderService {
     public OrderService(){}
 
     /*
-        Users is giving it's email when he submits the Order
+        Users are giving their email when they submit the Order
         But in case of logged-in user the email should be taken from the Users database.
         So think it over.
      */
@@ -100,6 +102,7 @@ public class OrderService {
 
 
     public void sendConfirmationEmail(String toEmail, String subject, String body) {
+        System.out.println("Sending order to: " +  ((mailSender == null) ? "Email has NOT been received !!!" : mailSender));
         MimeMessage mimeMessage = mailSender.createMimeMessage();
 
 //        SimpleMailMessage message = new SimpleMailMessage();

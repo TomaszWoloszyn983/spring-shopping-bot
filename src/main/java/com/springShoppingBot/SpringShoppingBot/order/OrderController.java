@@ -25,6 +25,8 @@ public class OrderController {
 
     public OrderController(ProductService productService,
                            OrderService orderService) {
+//        GlobalController.updateIsLoggedIn();
+        System.out.println("Order Controller checks if User is Logged-in with result: "+GlobalController.getIsLoggedIn());
         currentOrder = new Order();
         this.productService = productService;
         this.orderService = orderService;
@@ -44,7 +46,7 @@ public class OrderController {
     @GetMapping(path="shoppingList")
     public String displayAllProducts(Model model){
 
-        GlobalController.updateIsLoggedIn();
+//        GlobalController.updateIsLoggedIn();
 
         model.addAttribute("isLoggedIn", GlobalController.getIsLoggedIn());
         model.addAttribute("username", GlobalController.getUsername());
@@ -116,6 +118,7 @@ public class OrderController {
                 "<br><br> Thank you and happy shopping.";
 
         // Send email.
+        System.out.println("Sending order to: " +  ((userEmail == null) ? "Email has NOT been received !!!" : userEmail));
         orderService.sendConfirmationEmail(userEmail,
                 "Order Confirmation",
                 messageBody);

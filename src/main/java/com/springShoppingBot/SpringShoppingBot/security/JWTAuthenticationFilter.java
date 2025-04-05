@@ -39,7 +39,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
 
         if(StringUtils.hasText(token) && tokenGenerator.validateToken(token)){
-            System.out.println("Token received and delivered to FilterInternal: "+(token.length()>=64));
+//            System.out.println("Token received and delivered to FilterInternal: "+(token.length()>=64));
             String username = tokenGenerator.getUsernameFromJWT(token);
 
             Claims claims = Jwts.parserBuilder()
@@ -48,7 +48,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                     .parseClaimsJws(token) // Parse the full JWT
                     .getBody();
             String roles = claims.get("roles", String.class);
-            System.out.println("Roles extracted: "+roles);
+//            System.out.println("Roles extracted: "+roles);
 
             Collection<? extends GrantedAuthority> authorities = getAuthoritiesFromRoles(roles);
             UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);

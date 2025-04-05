@@ -22,8 +22,6 @@ public class HomeController {
 
     @GetMapping({"/","/home"})
     public String displayHomePage(Model model){
-        System.out.println("\tDisplaying Home Page");
-
         GlobalController.updateIsLoggedIn();
 
         model.addAttribute("isLoggedIn", GlobalController.getIsLoggedIn());
