@@ -92,17 +92,17 @@ public class OrderService {
     }
 
     public void createOrder(Integer userId, List<Integer> productIds) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+//        User user = userRepository.findById(userId)
+//                .orElseThrow(() -> new RuntimeException("User not found"));
+//
+//        List<Product> products = productRepository.findAllById(productIds);
+//
+//        Order order = new Order();
+//        order.setUser(user);
+//        order.setListOfProducts(products);
+//        order.setOrderDate(LocalDateTime.now());
 
-        List<Product> products = productRepository.findAllById(productIds);
-
-        Order order = new Order();
-        order.setUser(user);
-        order.setListOfProducts(products);
-        order.setOrderDate(LocalDateTime.now());
-
-        orderRepository.save(order);
+//        orderRepository.save(order);
     }
 
     public void addProductToOrder(int orderId, int productId) {
