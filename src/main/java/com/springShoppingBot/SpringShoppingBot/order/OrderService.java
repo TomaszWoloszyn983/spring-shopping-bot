@@ -4,6 +4,7 @@ import com.springShoppingBot.SpringShoppingBot.guestUser.GuestUser;
 import com.springShoppingBot.SpringShoppingBot.guestUser.UserRepository;
 import com.springShoppingBot.SpringShoppingBot.product.Product;
 import com.springShoppingBot.SpringShoppingBot.product.ProductRepository;
+import com.springShoppingBot.SpringShoppingBot.userOrder.UserOrder;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -92,17 +94,17 @@ public class OrderService {
     }
 
     public void createOrder(Integer userId, List<Integer> productIds) {
-        User user = userRepository.findById(userId)
+        GuestUser user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         List<Product> products = productRepository.findAllById(productIds);
 
-        Order order = new Order();
-        order.setUser(user);
-        order.setListOfProducts(products);
-        order.setOrderDate(LocalDateTime.now());
+        UserOrder userOrder = new Order();
+        userOrder.setUserId(user.getId());
+        userOrder.setListOfProducts(products);
+        userOrder.setOrderDate(LocalDateTime.now());
 
-        orderRepository.save(order);
+        orderRepository.save(userOrder);
     }
 
     public void addProductToOrder(int orderId, int productId) {
