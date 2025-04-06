@@ -27,12 +27,4 @@ public class UserOrder {
     public int getOrderId() {
         return orderId;
     }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
-    }
 }
