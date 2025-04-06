@@ -1,6 +1,9 @@
 package com.springShoppingBot.SpringShoppingBot.order;
 
 import com.springShoppingBot.SpringShoppingBot.GlobalController;
+import com.springShoppingBot.SpringShoppingBot.guestUser.GuestUser;
+import com.springShoppingBot.SpringShoppingBot.guestUser.GuestUserService;
+import com.springShoppingBot.SpringShoppingBot.guestUser.UserRepository;
 import com.springShoppingBot.SpringShoppingBot.product.Product;
 import com.springShoppingBot.SpringShoppingBot.product.ProductService;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.List;
 
@@ -20,13 +24,16 @@ public class OrderController {
 
     public final OrderService orderService;
     public final ProductService productService;
+    public final GuestUserService userService;
     public Order currentOrder;
 
     public OrderController(ProductService productService,
+                           GuestUserService userService,
                            OrderService orderService) {
         this.currentOrder = new Order();
         this.productService = productService;
         this.orderService = orderService;
+        this.userService = userService;
     }
 
     public List<Product> getAllProducts(){
@@ -43,7 +50,6 @@ public class OrderController {
     @GetMapping(path="shoppingList")
     public String displayAllProducts(Model model){
 
-        GlobalController.updateIsLoggedIn();
         System.out.println("\nUser logged-in: "+GlobalController.getIsLoggedIn());
 
         model.addAttribute("isLoggedIn", GlobalController.getIsLoggedIn());
@@ -95,9 +101,21 @@ public class OrderController {
     public String submitOrder(
             Model model,
             @RequestParam(required = false) String userEmail
-    ){
+            ){
+
+        GlobalController.updateIsLoggedIn();
         System.out.println("Display summary page.");
-        currentOrder.setUserEmail(userEmail);
+        if(GlobalController.getIsLoggedIn()){
+            GuestUser user = userService.findUserByUsername(GlobalController.getUsername());
+            System.out.println("Logged in user detected. " +
+                    "\nName: "+user.getUsername() +
+                    " Email: "+user.getEmail());
+            currentOrder.setUserEmail(user.getEmail());
+            orderService.saveOrderInUsersHistory(currentOrder);
+        }else{
+            currentOrder.setUserEmail(userEmail);
+        }
+
         currentOrder.setOrderDate();
         System.out.println(currentOrder.toString());
 

@@ -25,9 +25,9 @@ public class OrderService {
     private String emailAddress;
     @Autowired
     private JavaMailSender mailSender;
-    private OrderRepository orderRepository;
-    private UserRepository userRepository;
-    private ProductRepository productRepository;
+    private final OrderRepository orderRepository;
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
 
 //    Plan
     /*
@@ -62,16 +62,18 @@ public class OrderService {
      * This version only sends the Order by email to the user
      * without storing it in the database.
      *
-     * @param mailSender
+//     * @param mailSender
      */
-    public OrderService(JavaMailSender mailSender) {
-        this.mailSender = mailSender;
-    }
+//    public OrderService(JavaMailSender mailSender, OrderRepository orderRepository, UserRepository userRepository, ProductRepository productRepository) {
+//        this.mailSender = mailSender;
+//        this.orderRepository = orderRepository;
+//        this.userRepository = userRepository;
+//        this.productRepository = productRepository;
+//    }
 
-    public OrderService(){}
 
-    public void saveOrderInUsersHistory(){
-
+    public void saveOrderInUsersHistory(Order order){
+        orderRepository.save(order);
     }
 
     /**
