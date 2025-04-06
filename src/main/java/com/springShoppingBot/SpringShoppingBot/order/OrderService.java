@@ -15,6 +15,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 @Service
 public class OrderService {
@@ -69,11 +70,9 @@ public class OrderService {
 
     public OrderService(){}
 
-    /*
-        Users are giving their email when they submit the Order
-        But in case of logged-in user the email should be taken from the Users database.
-        So think it over.
-     */
+    public void saveOrderInUsersHistory(){
+
+    }
 
     /**
      * This function takes the Order received from
@@ -90,6 +89,20 @@ public class OrderService {
 
         order.setUserEmail(user.getEmail());
         return orderRepository.save(order);
+    }
+
+    public void createOrder(Integer userId, List<Integer> productIds) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        List<Product> products = productRepository.findAllById(productIds);
+
+        Order order = new Order();
+        order.setUser(user);
+        order.setListOfProducts(products);
+        order.setOrderDate(LocalDateTime.now());
+
+        orderRepository.save(order);
     }
 
     public void addProductToOrder(int orderId, int productId) {

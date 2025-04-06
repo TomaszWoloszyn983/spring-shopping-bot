@@ -21,13 +21,10 @@ public class OrderController {
     public final OrderService orderService;
     public final ProductService productService;
     public Order currentOrder;
-    Boolean isLoggedIn = GlobalController.getIsLoggedIn();
 
     public OrderController(ProductService productService,
                            OrderService orderService) {
-//        GlobalController.updateIsLoggedIn();
-        System.out.println("Order Controller checks if User is Logged-in with result: "+GlobalController.getIsLoggedIn());
-        currentOrder = new Order();
+        this.currentOrder = new Order();
         this.productService = productService;
         this.orderService = orderService;
     }
@@ -46,7 +43,8 @@ public class OrderController {
     @GetMapping(path="shoppingList")
     public String displayAllProducts(Model model){
 
-//        GlobalController.updateIsLoggedIn();
+        GlobalController.updateIsLoggedIn();
+        System.out.println("\nUser logged-in: "+GlobalController.getIsLoggedIn());
 
         model.addAttribute("isLoggedIn", GlobalController.getIsLoggedIn());
         model.addAttribute("username", GlobalController.getUsername());

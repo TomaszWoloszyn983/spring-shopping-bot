@@ -124,7 +124,7 @@ public class Order {
 
 
     public void displayProducts() {
-        System.out.println("Product in the list:");
+        System.out.println("Products in the list:");
         this.listOfProducts.forEach(product -> System.out.print(product.getName()+" "));
         System.out.println();
     }

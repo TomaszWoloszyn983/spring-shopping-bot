@@ -27,7 +27,6 @@ public class GuestUserService {
     }
 
     public GuestUser findUserById(int id){
-        System.out.println("Finding product: "+id);
         return userRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException(
                         "User with id = "+id+" not found."
@@ -35,7 +34,6 @@ public class GuestUserService {
     }
 
     public GuestUser findUserByUsername(String username){
-        System.out.println("Finding product: "+username);
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalStateException(
                         "User = "+username+" not found."
@@ -43,7 +41,7 @@ public class GuestUserService {
     }
 
     public GuestUser findUserByEmail(String email){
-        System.out.println("Finding user email: "+email);
+//        System.out.println("Finding user email: "+email);
         return userRepository.findUserByEmail(email)
                 .orElseThrow(() -> new IllegalStateException(
                         "User email: "+email+" not found in the database."
