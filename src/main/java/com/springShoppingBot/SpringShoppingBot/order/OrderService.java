@@ -29,15 +29,6 @@ public class OrderService {
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
 
-//    Plan
-    /*
-    * Take the order and assigned it to the logged-in User.
-    *
-    * I have created a table in database that stores relations between
-    * User and Order.
-    * */
-
-
     /**
      * OrderService - version logged-in user.
      *
@@ -55,22 +46,6 @@ public class OrderService {
         this.productRepository = productRepository;
         this.mailSender = mailSender;
     }
-
-    /**
-     * OrderService - version not-logged-in User
-     *
-     * This version only sends the Order by email to the user
-     * without storing it in the database.
-     *
-//     * @param mailSender
-     */
-//    public OrderService(JavaMailSender mailSender, OrderRepository orderRepository, UserRepository userRepository, ProductRepository productRepository) {
-//        this.mailSender = mailSender;
-//        this.orderRepository = orderRepository;
-//        this.userRepository = userRepository;
-//        this.productRepository = productRepository;
-//    }
-
 
     public void saveOrderInUsersHistory(Order order){
         orderRepository.save(order);
@@ -93,20 +68,6 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    public void createOrder(Integer userId, List<Integer> productIds) {
-//        User user = userRepository.findById(userId)
-//                .orElseThrow(() -> new RuntimeException("User not found"));
-//
-//        List<Product> products = productRepository.findAllById(productIds);
-//
-//        Order order = new Order();
-//        order.setUser(user);
-//        order.setListOfProducts(products);
-//        order.setOrderDate(LocalDateTime.now());
-
-//        orderRepository.save(order);
-    }
-
     public void addProductToOrder(int orderId, int productId) {
         Order order = orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
         Product product = productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found"));
@@ -114,7 +75,6 @@ public class OrderService {
         order.addProduct(product);
         orderRepository.save(order); // Persist the relationship
     }
-
 
     public void sendConfirmationEmail(String toEmail, String subject, String body) {
         System.out.println("Sending order to: " +  ((mailSender == null) ? "Email has NOT been received !!!" : mailSender));
@@ -140,6 +100,4 @@ public class OrderService {
             throw new RuntimeException(e);
         }
     }
-
-//    Create fingUserByEmail method in UserService.
 }
