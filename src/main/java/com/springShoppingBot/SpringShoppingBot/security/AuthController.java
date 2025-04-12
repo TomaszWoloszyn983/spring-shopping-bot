@@ -86,7 +86,6 @@ public class AuthController {
                                 @RequestParam("username") String username,
                                 @RequestParam("userpassword") String userpassword,
                                 HttpServletResponse response){
-        System.out.println("Post method received");
         try{
 
             LoginDto loginDto = new LoginDto(username, userpassword);

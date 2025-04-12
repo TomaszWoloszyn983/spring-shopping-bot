@@ -42,7 +42,7 @@ public class UserController {
         model.addAttribute("user", user);
 
         if(GlobalController.getIsLoggedIn()){
-            System.out.println("\t\tUser Logged-in. Email: "+user.getEmail());
+            System.out.println("User Logged-in. Email: "+user.getEmail());
             List<Order> ordersHistory = guestUserService.findUsersOrders(user.getEmail());
             System.out.println("Order History: "+ordersHistory);
             model.addAttribute("ordersHistory", ordersHistory);
