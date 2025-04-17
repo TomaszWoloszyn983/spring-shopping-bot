@@ -15,4 +15,8 @@ public interface OrderRepository  extends JpaRepository<Order, Integer> {
 
     @Query("SELECT o FROM Order o WHERE o.userEmail = ?1")
     List<Order>findOrderByEmail(String email);
+
+//    @Query("INSERT INTO dt_product (name, type, sizeofunit, numofunits)")
+//    List<Product> addProductToOrder(List<Product> products);
+
 }

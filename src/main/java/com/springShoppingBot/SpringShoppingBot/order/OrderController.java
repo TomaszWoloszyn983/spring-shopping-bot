@@ -3,18 +3,15 @@ package com.springShoppingBot.SpringShoppingBot.order;
 import com.springShoppingBot.SpringShoppingBot.GlobalController;
 import com.springShoppingBot.SpringShoppingBot.guestUser.GuestUser;
 import com.springShoppingBot.SpringShoppingBot.guestUser.GuestUserService;
-import com.springShoppingBot.SpringShoppingBot.guestUser.UserRepository;
-import com.springShoppingBot.SpringShoppingBot.product.Product;
-import com.springShoppingBot.SpringShoppingBot.product.ProductService;
+import com.springShoppingBot.SpringShoppingBot.tempProduct.TempProduct;
+import com.springShoppingBot.SpringShoppingBot.tempProduct.TempProductService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.List;
 
@@ -23,21 +20,21 @@ import java.util.List;
 public class OrderController {
 
     public final OrderService orderService;
-    public final ProductService productService;
+    public final TempProductService tempProductService;
     public final GuestUserService userService;
     public Order currentOrder;
 
-    public OrderController(ProductService productService,
+    public OrderController(TempProductService tempProductService,
                            GuestUserService userService,
                            OrderService orderService) {
         this.currentOrder = new Order();
-        this.productService = productService;
+        this.tempProductService = tempProductService;
         this.orderService = orderService;
         this.userService = userService;
     }
 
-    public List<Product> getAllProducts(){
-        return productService.getAllProducts();
+    public List<TempProduct> getAllProducts(){
+        return tempProductService.getAllProducts();
     }
 
 
@@ -55,7 +52,7 @@ public class OrderController {
         model.addAttribute("isLoggedIn", GlobalController.getIsLoggedIn());
         model.addAttribute("username", GlobalController.getUsername());
         model.addAttribute("products", getAllProducts());
-        currentOrder.setListOfProducts(productService.getAllProducts());
+//        currentOrder.setListOfProducts(tempProductService.getAllProducts());
         return "shoppingList.html";
     }
 
@@ -66,12 +63,12 @@ public class OrderController {
      * @return
      */
     @PostMapping(path = "/product/addNewProduct")
-    public String createNewProduct (@Valid Product product, BindingResult result){
+    public String createNewProduct (@Valid TempProduct product, BindingResult result){
 
         if (result.hasErrors()){
             System.out.println("Wrong format.");
         }else{
-            productService.createNewProduct(product);
+            tempProductService.createNewProduct(product);
             System.out.println("New products created: "+product.getName()+" "
                     +product.getType()+" "+product.getNumOfUnits());
         }
@@ -87,13 +84,13 @@ public class OrderController {
     @GetMapping(path = "/product/deleteProduct/{productId}")
     public String deleteProduct(@PathVariable("productId") int productId){
         System.out.println("Deleting item: "+productId);
-        productService.deleteProduct(productId);
+        tempProductService.deleteProduct(productId);
         return "redirect:/shoppingList";
     }
 
     @PostMapping("/{orderId}/addProduct/{productId}")
     public ResponseEntity<String> addProductToOrder(@PathVariable int orderId, @PathVariable int productId) {
-        orderService.addProductToOrder(orderId, productId);
+        orderService.addProductToHistory(orderId, productId);
         return ResponseEntity.ok("Product added to order successfully!");
     }
 
@@ -111,6 +108,7 @@ public class OrderController {
                     "\nName: "+user.getUsername() +
                     " Email: "+user.getEmail());
             currentOrder.setUserEmail(user.getEmail());
+//            currentOrder.setListOfProducts();
             orderService.saveOrderInUsersHistory(currentOrder);
         }else{
             currentOrder.setUserEmail(userEmail);
@@ -140,8 +138,10 @@ public class OrderController {
                 messageBody);
 
         // Clear List of Products
-        productService.clearOrder();
+        tempProductService.clearOrder();
 
+        model.addAttribute("isLoggedIn", GlobalController.getIsLoggedIn());
+        model.addAttribute("username", GlobalController.getUsername());
         model.addAttribute("currentOrder", currentOrder);
         return "summary";
     }

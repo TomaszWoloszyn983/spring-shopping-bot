@@ -1,12 +1,10 @@
 package com.springShoppingBot.SpringShoppingBot.guestUser;
 
-import com.springShoppingBot.SpringShoppingBot.GlobalController;
 import com.springShoppingBot.SpringShoppingBot.order.Order;
 import com.springShoppingBot.SpringShoppingBot.order.OrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * For the moment I only need:

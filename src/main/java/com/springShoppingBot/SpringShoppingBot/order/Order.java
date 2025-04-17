@@ -1,8 +1,8 @@
 package com.springShoppingBot.SpringShoppingBot.order;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.springShoppingBot.SpringShoppingBot.guestUser.GuestUser;
-import com.springShoppingBot.SpringShoppingBot.product.Product;
+import com.springShoppingBot.SpringShoppingBot.productInOrder.ProductInOrder;
+//import com.springShoppingBot.SpringShoppingBot.tempProduct.TempProduct;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -34,7 +34,10 @@ public class Order {
             inverseJoinColumns = @JoinColumn(name = "PRODUCTID")
     )
     @JsonManagedReference
-    private List<Product> listOfProducts = new ArrayList<Product>();
+    private List<ProductInOrder> listOfProducts = new ArrayList<ProductInOrder>();
+
+//    @JsonManagedReference
+//    private List<TempProduct> listOfTempProducts = new ArrayList<TempProduct>();
 
     @Column(name = "createdat")
     @DateTimeFormat(pattern = "HH:mm dd-MM-yyyy")
@@ -46,12 +49,12 @@ public class Order {
      * taken from the database every time
      * the shopping list page is displayed/refreshed.
      *
-     * @param product
+     * @param tempProduct
      */
-    public void addToList(Product product){
+    public void addToList(ProductInOrder tempProduct){
         System.out.println("Add product 1");
-        listOfProducts.add(product);
-        System.out.println("Product "+product.getName()+" added to Order");
+        listOfProducts.add(tempProduct);
+        System.out.println("Product "+tempProduct.getName()+" added to Order");
     }
 
     /**
@@ -81,15 +84,19 @@ public class Order {
         this.userEmail = userEmail;
     }
 
-    public List<Product> getListOfProducts() {
+    public List<ProductInOrder> getListOfProducts() {
         System.out.println("The list contains "+listOfProducts.size()+" products");
         return listOfProducts;
     }
 
-
-    public void setListOfProducts(List<Product> listOfProducts) {
-        this.listOfProducts = listOfProducts;
-    }
+//    public List<TempProduct> getListOfTempProducts() {
+//        return listOfTempProducts;
+//    }
+//
+//
+//    public void setListOfProducts(List<TempProduct> listOfTempProducts) {
+//        this.listOfTempProducts = listOfTempProducts;
+//    }
 
     public LocalDateTime getCreatedAt() {
         return this.createdAt;
@@ -112,12 +119,12 @@ public class Order {
                 '}';
     }
 
-    public void addProduct(Product product) {
+    public void addProduct(ProductInOrder product) {
         System.out.println("Add product 2");
         this.listOfProducts.add(product);
     }
 
-    public void removeProduct(Product product) {
+    public void removeProduct(ProductInOrder product) {
         System.out.println("Del product 2");
         this.listOfProducts.remove(product);
     }

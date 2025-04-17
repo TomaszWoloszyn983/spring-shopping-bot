@@ -1,15 +1,17 @@
-package com.springShoppingBot.SpringShoppingBot.product;
+package com.springShoppingBot.SpringShoppingBot.productInOrder;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.springShoppingBot.SpringShoppingBot.order.Order;
 import jakarta.persistence.*;
-import javax.validation.constraints.*;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table (name = "dt_products")
-public class Product {
+public class ProductInOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")

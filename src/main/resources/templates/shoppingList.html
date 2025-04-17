@@ -40,13 +40,13 @@
         <!-- Login Form -->
         <div class="container row my-2 mx-auto p-2 mb-3">
             <div class="col-6 offset-3 px-auto" >
-                <!--/*@thymesVar id="product" type="com.springShoppingBot.SpringShoppingBot.product.Product"*/-->
+                <!--/*@thymesVar id="product" type="com.springShoppingBot.SpringShoppingBot.tempProduct.Product"*/-->
                 <form th:action="@{/product/addNewProduct}" th:object="${product}" th:method="post"
                     class="row">
                     <legend class="col-12 text-center">Add product to list</legend>
                     <fieldset class="col-12 px-0 form-group" required>
                         <label class="form-label" for="name">Name *</label>
-                        <input class="form-field" id="name" type="text" name="name">
+                        <input class="form-field" id="name" type="text" name="name" required>
                     </fieldset>
                     <fieldset class="col-12 px-0 form-group">
                         <label class="form-label" for="type">Type</label>
@@ -58,7 +58,7 @@
                     </fieldset>
                     <fieldset class="col-12 px-0 form-group" required>
                         <label class="form-label" for="numOfUnits">Quantity *</label>
-                        <input class="form-field" id="numOfUnits" type="number" min="1" name="numOfUnits">
+                        <input class="form-field" id="numOfUnits" type="number" value="1" min="1" name="numOfUnits" required>
                         <div class="invalid-feedback">
                             Please enter a valid quantity greater than 0.
                         </div>

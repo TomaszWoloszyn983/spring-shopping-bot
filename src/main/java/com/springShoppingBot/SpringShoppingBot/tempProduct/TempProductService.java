@@ -1,32 +1,35 @@
-package com.springShoppingBot.SpringShoppingBot.product;
+package com.springShoppingBot.SpringShoppingBot.tempProduct;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 
 @Service
-public class ProductService {
+public class TempProductService {
 
-    public final ProductRepository productRepository;
+    public final TempProductRepository tempProductRepository;
 
-    public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public TempProductService(TempProductRepository tempProductRepository) {
+        this.tempProductRepository = tempProductRepository;
     }
 
-    public List<Product> getAllProducts(){
-        return productRepository.findAll();
+    public List<TempProduct> getAllProducts(){
+        return tempProductRepository.findAll();
     }
+
+//    public List<TempProduct> getAllTempProducts(){
+//        return tempProductRepository.findAll();
+//    }
 
     public void deleteProductById(int id){
-        productRepository.deleteById(id);
+        tempProductRepository.deleteById(id);
         System.out.println("Product by id "+id+" deleted from database.");
     }
 
-    public Product findProductById(int id){
+    public TempProduct findProductById(int id){
         System.out.println("Finding product: "+id);
-        return productRepository.findById(id)
+        return tempProductRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException(
                         "Product with id = "+id+" not found."
                 ));
@@ -37,8 +40,8 @@ public class ProductService {
      *
      * @param product
      */
-    public void createNewProduct(Product product) {
-        productRepository.save(product);
+    public void createNewProduct(TempProduct product) {
+        tempProductRepository.save(product);
     }
 
     /**
@@ -49,16 +52,16 @@ public class ProductService {
      * @param productId
      */
     public void deleteProduct(int productId){
-        boolean productsExists = productRepository.existsById(productId);
+        boolean productsExists = tempProductRepository.existsById(productId);
         if(!productsExists){
             throw new IllegalStateException(
                     "Product does not exist in data table!"
             );
         }
-        productRepository.deleteById(productId);
+        tempProductRepository.deleteById(productId);
     }
 
     public void clearOrder(){
-        productRepository.deleteAll();
+        tempProductRepository.deleteAll();
     }
 }

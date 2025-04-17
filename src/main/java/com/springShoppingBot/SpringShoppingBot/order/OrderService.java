@@ -2,8 +2,10 @@ package com.springShoppingBot.SpringShoppingBot.order;
 
 import com.springShoppingBot.SpringShoppingBot.guestUser.GuestUser;
 import com.springShoppingBot.SpringShoppingBot.guestUser.UserRepository;
-import com.springShoppingBot.SpringShoppingBot.product.Product;
-import com.springShoppingBot.SpringShoppingBot.product.ProductRepository;
+import com.springShoppingBot.SpringShoppingBot.productInOrder.ProductInOrder;
+import com.springShoppingBot.SpringShoppingBot.productInOrder.ProductInOrderRepository;
+import com.springShoppingBot.SpringShoppingBot.tempProduct.TempProduct;
+import com.springShoppingBot.SpringShoppingBot.tempProduct.TempProductRepository;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +13,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 import java.io.UnsupportedEncodingException;
-import java.util.List;
 
 @Service
 public class OrderService {
@@ -27,7 +27,7 @@ public class OrderService {
     private JavaMailSender mailSender;
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
-    private final ProductRepository productRepository;
+    private final TempProductRepository tempProductRepository;
 
     /**
      * OrderService - version logged-in user.
@@ -40,10 +40,10 @@ public class OrderService {
      * @param mailSender
      */
     public OrderService(OrderRepository orderRepository, UserRepository userRepository,
-                        ProductRepository productRepository, JavaMailSender mailSender) {
+                        TempProductRepository tempProductRepository, JavaMailSender mailSender) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
-        this.productRepository = productRepository;
+        this.tempProductRepository = tempProductRepository;
         this.mailSender = mailSender;
     }
 
@@ -65,14 +65,25 @@ public class OrderService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         order.setUserEmail(user.getEmail());
+//        order.setListOfProducts();
         return orderRepository.save(order);
     }
 
-    public void addProductToOrder(int orderId, int productId) {
-        Order order = orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
-        Product product = productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found"));
+//    public void addProductToOrder(int orderId, int productId) {
+//        Order order = orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
+//        ProductInOrder product = productInOrderRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found"));
+//
+//        order.addProduct(product);
+//        orderRepository.save(order); // Persist the relationship
+//    }
 
-        order.addProduct(product);
+    public void addProductToHistory(int orderId, int productId){
+        Order order = orderRepository.findOrderById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
+        TempProduct tempProduct = tempProductRepository.findProductById(productId).orElseThrow(() -> new RuntimeException("Product not found"));
+
+        ProductInOrder productInOrder = new ProductInOrder();
+
+        order.addProduct(productInOrder);
         orderRepository.save(order); // Persist the relationship
     }
 
