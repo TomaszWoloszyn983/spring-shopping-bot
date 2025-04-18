@@ -19,7 +19,7 @@
                     <h3 class="header mx-auto px-auto">Summary</h3>
                     <p>
                         <h4>List of products to process:</h4>
-                        <div th:each="product : ${currentOrder.getListOfProducts}">
+                        <div th:each="product : ${products}">
                             <div class="mx-3"
                                 th:text="${product.getName} + ' ' + ${product.getType} 
                                        + ', size -  ' + ${product.getSizeOfUnit} 

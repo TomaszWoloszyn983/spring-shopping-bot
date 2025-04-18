@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class OrderController {
     public final TempProductService tempProductService;
     public final GuestUserService userService;
     public Order currentOrder;
+    public List<TempProduct> tempProductsList = new ArrayList<TempProduct>();
 
     public OrderController(TempProductService tempProductService,
                            GuestUserService userService,
@@ -71,6 +73,7 @@ public class OrderController {
             tempProductService.createNewProduct(product);
             System.out.println("New products created: "+product.getName()+" "
                     +product.getType()+" "+product.getNumOfUnits());
+            tempProductsList.add(product);
         }
         return "redirect:/shoppingList";
     }
@@ -100,6 +103,7 @@ public class OrderController {
             @RequestParam(required = false) String userEmail
             ){
 
+        List<TempProduct> products = new ArrayList<>(tempProductsList);
         GlobalController.updateIsLoggedIn();
         System.out.println("Display summary page.");
         if(GlobalController.getIsLoggedIn()){
@@ -108,7 +112,6 @@ public class OrderController {
                     "\nName: "+user.getUsername() +
                     " Email: "+user.getEmail());
             currentOrder.setUserEmail(user.getEmail());
-//            currentOrder.setListOfProducts();
             orderService.saveOrderInUsersHistory(currentOrder);
         }else{
             currentOrder.setUserEmail(userEmail);
@@ -137,12 +140,19 @@ public class OrderController {
                 "Order Confirmation",
                 messageBody);
 
-        // Clear List of Products
-        tempProductService.clearOrder();
+        System.out.println("Temp list contains: "+products.size()+" products.");
 
         model.addAttribute("isLoggedIn", GlobalController.getIsLoggedIn());
         model.addAttribute("username", GlobalController.getUsername());
         model.addAttribute("currentOrder", currentOrder);
+        model.addAttribute("products", products);
+
+        // Clear List of Products
+        tempProductService.clearOrder();
+        tempProductsList.clear();
+
+        System.out.println("Temp list contains: "+tempProductsList.size()+" products.");
+
         return "summary";
     }
 
