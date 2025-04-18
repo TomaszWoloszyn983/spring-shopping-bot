@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.mail.javamail.JavaMailSender;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 @Service
 public class OrderService {
@@ -65,17 +66,8 @@ public class OrderService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         order.setUserEmail(user.getEmail());
-//        order.setListOfProducts();
         return orderRepository.save(order);
     }
-
-//    public void addProductToOrder(int orderId, int productId) {
-//        Order order = orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
-//        ProductInOrder product = productInOrderRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found"));
-//
-//        order.addProduct(product);
-//        orderRepository.save(order); // Persist the relationship
-//    }
 
     public void addProductToHistory(int orderId, int productId){
         Order order = orderRepository.findOrderById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
@@ -85,6 +77,13 @@ public class OrderService {
 
         order.addProduct(productInOrder);
         orderRepository.save(order); // Persist the relationship
+    }
+
+    public List<ProductInOrder> getProductsForOrder(int orderId) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+        System.out.println("Order Service: "+order.getListOfProducts().size()+" products found");
+        return order.getListOfProducts();
     }
 
     public void sendConfirmationEmail(String toEmail, String subject, String body) {
