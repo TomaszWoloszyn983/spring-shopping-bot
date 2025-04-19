@@ -1,10 +1,12 @@
 package com.springShoppingBot.SpringShoppingBot.order;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.springShoppingBot.SpringShoppingBot.guestUser.GuestUser;
 import com.springShoppingBot.SpringShoppingBot.productInOrder.ProductInOrder;
 //import com.springShoppingBot.SpringShoppingBot.tempProduct.TempProduct;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.userdetails.User;
 
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
@@ -34,10 +36,14 @@ public class Order {
             inverseJoinColumns = @JoinColumn(name = "PRODUCTID")
     )
     @JsonManagedReference
-    private List<ProductInOrder> listOfProducts = new ArrayList<ProductInOrder>();
+    private List<ProductInOrder> listOfProducts;
 
 //    @JsonManagedReference
 //    private List<TempProduct> listOfTempProducts = new ArrayList<TempProduct>();
+
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private GuestUser user;
 
     @Column(name = "createdat")
     @DateTimeFormat(pattern = "HH:mm dd-MM-yyyy")

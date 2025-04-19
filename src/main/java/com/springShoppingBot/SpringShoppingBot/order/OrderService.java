@@ -110,4 +110,8 @@ public class OrderService {
             throw new RuntimeException(e);
         }
     }
+
+    public List<Order> getOrdersWithProductsForUser(String email) {
+        return orderRepository.findAllByUserEmailWithProducts(email);
+    }
 }

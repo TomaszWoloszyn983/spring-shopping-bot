@@ -1,5 +1,6 @@
 package com.springShoppingBot.SpringShoppingBot.guestUser;
 
+import com.springShoppingBot.SpringShoppingBot.order.Order;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -46,6 +47,9 @@ public class GuestUser {
         createdAt = LocalDateTime.now();
         updatedAt = LocalDateTime.now();
     }
+
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//    private List<Order> orders;
 
     @PreUpdate
     protected void onUpdate() {

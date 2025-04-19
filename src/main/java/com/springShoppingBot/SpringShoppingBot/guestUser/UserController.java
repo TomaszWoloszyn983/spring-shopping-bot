@@ -39,6 +39,8 @@ public class UserController {
 
         GlobalController.updateIsLoggedIn();
         GuestUser user = guestUserService.findUserByUsername(GlobalController.getUsername());
+        List<Order> userOrders = orderService.getOrdersWithProductsForUser(user.getEmail());
+
 
 
         model.addAttribute("isLoggedIn", GlobalController.getIsLoggedIn());
@@ -51,7 +53,11 @@ public class UserController {
             System.out.println("Order History: "+ordersHistory);
             System.out.println("User Controller / list of products:");
             for(Order order : ordersHistory){
-                System.out.println("/t"+order.getListOfProducts());
+                System.out.println("\t"+order.getListOfProducts());
+            }
+            System.out.println("Users Orders list length: "+userOrders.size());
+            for (Order order : userOrders){
+                System.out.println("Test userOrders: "+order.getListOfProducts());
             }
             model.addAttribute("ordersHistory", ordersHistory);
         }

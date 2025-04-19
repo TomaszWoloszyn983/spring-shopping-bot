@@ -29,7 +29,7 @@ public class ProductInOrder {
 
     @ManyToMany(mappedBy = "listOfProducts")
     @JsonBackReference
-    private List<Order> orders = new ArrayList<>();
+    private List<Order> orders;
 
     public String getName() {
         return name;
