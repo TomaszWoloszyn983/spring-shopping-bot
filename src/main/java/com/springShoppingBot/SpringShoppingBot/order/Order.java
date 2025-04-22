@@ -1,12 +1,9 @@
 package com.springShoppingBot.SpringShoppingBot.order;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.springShoppingBot.SpringShoppingBot.guestUser.GuestUser;
 import com.springShoppingBot.SpringShoppingBot.productInOrder.ProductInOrder;
-//import com.springShoppingBot.SpringShoppingBot.tempProduct.TempProduct;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.core.userdetails.User;
 
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
@@ -17,16 +14,14 @@ import java.util.List;
 @Entity(name = "Order")
 public class Order {
 
-    @Id
+    @EmbeddedId
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "useremail")
     @NotBlank(message = "Email is required")
     @Email(message = "Please provide a valid email address")
     private String userEmail;
-
-
 
 //    @Transient
     @ManyToMany(fetch = FetchType.EAGER)
