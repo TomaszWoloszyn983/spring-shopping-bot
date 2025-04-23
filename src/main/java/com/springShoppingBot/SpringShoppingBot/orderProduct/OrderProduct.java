@@ -1,11 +1,14 @@
-package com.springShoppingBot.SpringShoppingBot.OrderProduct;
+package com.springShoppingBot.SpringShoppingBot.orderProduct;
 
+import com.springShoppingBot.SpringShoppingBot.order.Order;
+import com.springShoppingBot.SpringShoppingBot.productInOrder.ProductInOrder;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 
 @Table(name="order_product")
 @Embeddable
+@Entity
 public class OrderProduct implements Serializable {
 
 //    @Id
@@ -21,12 +24,23 @@ public class OrderProduct implements Serializable {
     @Column(name = "PRODUCTID")
     private Integer productId;
 
+    @ManyToOne
+    @MapsId("orderId") // Maps to the orderId field in ProductOrderId
+    @JoinColumn(name = "ORDERID")
+    private Order order;
+
+    @ManyToOne
+    @MapsId("productId") // Maps to the productId field in ProductOrderId
+    @JoinColumn(name = "PRODUCTID")
+    private ProductInOrder product;
+
 
     public OrderProduct() {}
 
-    public OrderProduct(Integer orderId, Integer productId) {
-        this.orderId = orderId;
-        this.productId = productId;
+    public OrderProduct(Order order, ProductInOrder product) {
+        this.order = order;
+        this.product = product;
+        this.id = new ProductOrderId(order.getId(), product.getId());
     }
 
     public ProductOrderId getId() {

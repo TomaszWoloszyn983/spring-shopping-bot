@@ -1,4 +1,4 @@
-package com.springShoppingBot.SpringShoppingBot.OrderProduct;
+package com.springShoppingBot.SpringShoppingBot.orderProduct;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

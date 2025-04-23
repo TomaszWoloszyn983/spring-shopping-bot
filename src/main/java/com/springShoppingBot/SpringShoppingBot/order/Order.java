@@ -7,14 +7,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Table (name = "dt_order")
 @Entity(name = "Order")
 public class Order {
 
-    @EmbeddedId
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -75,6 +74,10 @@ public class Order {
 
     public void clearList(){
         this.listOfProducts.clear();
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getUserEmail() {
