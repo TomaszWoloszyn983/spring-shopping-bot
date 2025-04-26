@@ -2,11 +2,13 @@ package com.springShoppingBot.SpringShoppingBot.order;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.springShoppingBot.SpringShoppingBot.productInOrder.ProductInOrder;
+import com.springShoppingBot.SpringShoppingBot.tempProduct.TempProduct;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Table (name = "dt_order")
@@ -98,9 +100,18 @@ public class Order {
 //    }
 //
 //
-//    public void setListOfProducts(List<TempProduct> listOfTempProducts) {
-//        this.listOfTempProducts = listOfTempProducts;
+//    public void setListOfProducts(List<ProductInOrder> listOfProducts) {
+//        this.listOfProducts = listOfProducts;
 //    }
+
+    public void setListOfProducts(List<TempProduct> listOfProducts) {
+        List<ProductInOrder> productsToOrder = new ArrayList<>();
+        for (TempProduct product : listOfProducts){
+            productsToOrder.add(new ProductInOrder(product.getId(), product.getName(),
+                    product.getType(), product.getType(), product.getNumOfUnits()));
+        }
+        this.listOfProducts = productsToOrder;
+    }
 
     public LocalDateTime getCreatedAt() {
         return this.createdAt;

@@ -2,8 +2,9 @@ package com.springShoppingBot.SpringShoppingBot.order;
 
 import com.springShoppingBot.SpringShoppingBot.guestUser.GuestUser;
 import com.springShoppingBot.SpringShoppingBot.guestUser.UserRepository;
+import com.springShoppingBot.SpringShoppingBot.orderProduct.OrderProduct;
+import com.springShoppingBot.SpringShoppingBot.orderProduct.OrderProductRepository;
 import com.springShoppingBot.SpringShoppingBot.productInOrder.ProductInOrder;
-import com.springShoppingBot.SpringShoppingBot.productInOrder.ProductInOrderRepository;
 import com.springShoppingBot.SpringShoppingBot.tempProduct.TempProduct;
 import com.springShoppingBot.SpringShoppingBot.tempProduct.TempProductRepository;
 import jakarta.mail.MessagingException;
@@ -28,6 +29,7 @@ public class OrderService {
     private JavaMailSender mailSender;
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
+    private final OrderProductRepository orderProductRepository;
     private final TempProductRepository tempProductRepository;
 
     /**
@@ -41,10 +43,12 @@ public class OrderService {
      * @param mailSender
      */
     public OrderService(OrderRepository orderRepository, UserRepository userRepository,
-                        TempProductRepository tempProductRepository, JavaMailSender mailSender) {
+                        TempProductRepository tempProductRepository, OrderProductRepository orderProductRepository,
+                        JavaMailSender mailSender) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
         this.tempProductRepository = tempProductRepository;
+        this.orderProductRepository = orderProductRepository;
         this.mailSender = mailSender;
     }
 
@@ -84,6 +88,22 @@ public class OrderService {
                 .orElseThrow(() -> new RuntimeException("Order not found"));
         System.out.println("Order Service: "+order.getListOfProducts().size()+" products found");
         return order.getListOfProducts();
+    }
+
+    public List<OrderProduct> getProductsByOrderId(int orderId) {
+        List<OrderProduct> products = orderProductRepository.findProductIdsByOrderId(orderId);
+        for(OrderProduct product : products){
+            System.out.println(product);
+        }
+        return products;
+    }
+
+    public List<ProductInOrder> getProductsIds(int orderId) {
+        List<ProductInOrder> products = orderProductRepository.findByOrderId(orderId);
+        for(ProductInOrder product : products){
+            System.out.println(product);
+        }
+        return products;
     }
 
     public void sendConfirmationEmail(String toEmail, String subject, String body) {

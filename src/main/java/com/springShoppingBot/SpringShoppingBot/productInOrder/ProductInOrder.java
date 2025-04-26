@@ -2,6 +2,7 @@ package com.springShoppingBot.SpringShoppingBot.productInOrder;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.springShoppingBot.SpringShoppingBot.order.Order;
+import com.springShoppingBot.SpringShoppingBot.tempProduct.TempProduct;
 import jakarta.persistence.*;
 
 import javax.validation.constraints.Min;
@@ -13,9 +14,9 @@ import java.util.List;
 @Table (name = "dt_products")
 public class ProductInOrder {
 
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")
+//    @SequenceGenerator(name = "product_sequence", sequenceName = "product_sequence", allocationSize = 1)
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")
-    @SequenceGenerator(name = "product_sequence", sequenceName = "product_sequence", allocationSize = 1)
     private int id;
 
     private String name;
@@ -30,6 +31,16 @@ public class ProductInOrder {
     @ManyToMany(mappedBy = "listOfProducts")
     @JsonBackReference
     private List<Order> orders;
+
+    public ProductInOrder(){}
+
+    public ProductInOrder(int id, String name, String type, String sizeOfUnit, int numOfUnits) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.sizeOfUnit = sizeOfUnit;
+        this.numOfUnits = numOfUnits;
+    }
 
     public String getName() {
         return name;

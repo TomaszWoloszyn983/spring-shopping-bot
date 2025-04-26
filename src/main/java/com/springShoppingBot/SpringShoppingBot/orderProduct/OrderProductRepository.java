@@ -14,7 +14,7 @@ public interface OrderProductRepository extends JpaRepository<OrderProduct, Inte
     @Query("SELECT p FROM OrderProduct p WHERE p.orderId = ?1")
     List<ProductInOrder> findByOrderId(Integer orderId);
 
-    @Query("SELECT po.product.id FROM OrderProduct po WHERE po.order.id = :orderId")
-    List<OrderProduct> findProductIdsByOrderId(@Param("orderId") int orderId);
+    @Query("SELECT po.order.id FROM OrderProduct po WHERE po.order.id = :orderId")
+    List<OrderProduct> findProductIdsByOrderId(int orderId);
 
 }

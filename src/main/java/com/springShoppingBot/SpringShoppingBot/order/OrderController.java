@@ -104,6 +104,7 @@ public class OrderController {
             ){
 
         List<TempProduct> products = new ArrayList<>(tempProductsList);
+        currentOrder.setListOfProducts(products);
         GlobalController.updateIsLoggedIn();
         System.out.println("Display summary page.");
         if(GlobalController.getIsLoggedIn()){
@@ -118,7 +119,7 @@ public class OrderController {
         }
 
         currentOrder.setOrderDate();
-        System.out.println(currentOrder.toString());
+//        System.out.println(currentOrder.toString());
 
         // Message body
         String listOfProducts = currentOrder.getListOfProducts().stream()
