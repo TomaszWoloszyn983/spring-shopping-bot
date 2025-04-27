@@ -14,5 +14,15 @@ public class ProductInOrderService {
         this.productInOrderRepository = productInOrderRepository;
     }
 
+    public void saveProductInDatabase(ProductInOrder product){
+        productInOrderRepository.save(product);
+    }
+
+    public void saveListOfProducts(List<ProductInOrder> products){
+        System.out.println("Saving "+products.size()+" products in database.");
+        for(ProductInOrder product : products)
+            saveProductInDatabase(product);
+    }
+
 
 }

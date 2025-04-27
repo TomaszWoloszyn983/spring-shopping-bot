@@ -3,6 +3,7 @@ package com.springShoppingBot.SpringShoppingBot.order;
 import com.springShoppingBot.SpringShoppingBot.GlobalController;
 import com.springShoppingBot.SpringShoppingBot.guestUser.GuestUser;
 import com.springShoppingBot.SpringShoppingBot.guestUser.GuestUserService;
+import com.springShoppingBot.SpringShoppingBot.productInOrder.ProductInOrderService;
 import com.springShoppingBot.SpringShoppingBot.tempProduct.TempProduct;
 import com.springShoppingBot.SpringShoppingBot.tempProduct.TempProductService;
 import org.springframework.http.ResponseEntity;
@@ -23,14 +24,16 @@ public class OrderController {
     public final OrderService orderService;
     public final TempProductService tempProductService;
     public final GuestUserService userService;
+    public final ProductInOrderService productInOrderService;
     public Order currentOrder;
     public List<TempProduct> tempProductsList = new ArrayList<TempProduct>();
 
     public OrderController(TempProductService tempProductService,
-                           GuestUserService userService,
+                           GuestUserService userService, ProductInOrderService productInOrderService,
                            OrderService orderService) {
         this.currentOrder = new Order();
         this.tempProductService = tempProductService;
+        this.productInOrderService = productInOrderService;
         this.orderService = orderService;
         this.userService = userService;
     }
@@ -149,6 +152,7 @@ public class OrderController {
         model.addAttribute("products", products);
 
         // Clear List of Products
+        productInOrderService.saveListOfProducts(currentOrder.getListOfProducts());
         tempProductService.clearOrder();
         tempProductsList.clear();
 

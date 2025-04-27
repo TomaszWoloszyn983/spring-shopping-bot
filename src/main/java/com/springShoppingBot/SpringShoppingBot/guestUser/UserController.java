@@ -42,8 +42,8 @@ public class UserController {
         List<Order> userOrders = orderService.getOrdersWithProductsForUser(user.getEmail());
 
 
-//        orderService.getProductsByOrderId(4);
-        orderService.getProductsIds(5);
+        orderService.getProductsByOrderId(18);
+//        orderService.getProductsIds(18);
 
         model.addAttribute("isLoggedIn", GlobalController.getIsLoggedIn());
         model.addAttribute("username", GlobalController.getUsername());

@@ -90,9 +90,9 @@ public class OrderService {
         return order.getListOfProducts();
     }
 
-    public List<OrderProduct> getProductsByOrderId(int orderId) {
-        List<OrderProduct> products = orderProductRepository.findProductIdsByOrderId(orderId);
-        for(OrderProduct product : products){
+    public List<Integer> getProductsByOrderId(int orderId) {
+        List<Integer> products = orderProductRepository.findProductIdsByOrderId(orderId);
+        for(Integer product : products){
             System.out.println(product);
         }
         return products;
