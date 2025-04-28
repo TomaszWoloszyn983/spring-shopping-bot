@@ -144,8 +144,6 @@ public class OrderController {
                 "Order Confirmation",
                 messageBody);
 
-        System.out.println("Temp list contains: "+products.size()+" products.");
-
         model.addAttribute("isLoggedIn", GlobalController.getIsLoggedIn());
         model.addAttribute("username", GlobalController.getUsername());
         model.addAttribute("currentOrder", currentOrder);
@@ -156,7 +154,7 @@ public class OrderController {
         tempProductService.clearOrder();
         tempProductsList.clear();
 
-        System.out.println("Temp list contains: "+tempProductsList.size()+" products.");
+        System.out.println("Temp list cleared: "+(tempProductsList.size() == 0));
 
         return "summary";
     }

@@ -91,18 +91,8 @@ public class Order {
     }
 
     public List<ProductInOrder> getListOfProducts() {
-        System.out.println("The list contains "+listOfProducts.size()+" products");
         return listOfProducts;
     }
-
-//    public List<TempProduct> getListOfTempProducts() {
-//        return listOfTempProducts;
-//    }
-//
-//
-//    public void setListOfProducts(List<ProductInOrder> listOfProducts) {
-//        this.listOfProducts = listOfProducts;
-//    }
 
     public void setListOfProducts(List<TempProduct> listOfProducts) {
         List<ProductInOrder> productsToOrder = new ArrayList<>();

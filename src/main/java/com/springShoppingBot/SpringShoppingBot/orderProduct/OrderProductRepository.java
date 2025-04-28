@@ -3,7 +3,6 @@ package com.springShoppingBot.SpringShoppingBot.orderProduct;
 import com.springShoppingBot.SpringShoppingBot.productInOrder.ProductInOrder;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,7 +13,13 @@ public interface OrderProductRepository extends JpaRepository<OrderProduct, Inte
     @Query("SELECT p FROM OrderProduct p WHERE p.orderId = ?1")
     List<ProductInOrder> findByOrderId(Integer orderId);
 
-    @Query("SELECT po.order.id FROM OrderProduct po WHERE po.order.id = :orderId")
+    /**
+     * Returns Id's of Products assigned to the Order with given OrderId
+     *
+     * @param orderId
+     * @return
+     */
+    @Query("SELECT po.product.id FROM OrderProduct po WHERE po.order.id = :orderId")
     List<Integer> findProductIdsByOrderId(int orderId);
 
 }

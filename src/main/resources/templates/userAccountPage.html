@@ -57,18 +57,13 @@
                             <span th:text="${order.getCreatedAt()}"></span>
                             <span th:text="${order.userEmail}"></span>
                             <!-- List of products in the Order -->
-                            <!-- <li th:each="product, iterStat : ${order.getListOfProducts}">
-                                <span th:text="${product.getName}+' '+${product.getType}"></span>
-                            </li> -->
+                            <ul>
+                                <li th:each="product, iterStat2 : ${order.listOfProducts}">
+                                    <span th:text="${product.name} + ' ' + ${product.type}"></span>
+                                </li>
+                            </ul>
                         </li>
                     </ul>                    
-                    <!-- <tr 
-                        th:each="order, iStat : ${ordersHistory}" 
-                        th:style="${iStat.odd}? 'font-weight: bold;'">
-                        <td th:text="${order.createdAt}" />
-                        <td th:text="${order.userEmail}" />
-                        <td th:text="${order.getCreatedAt()}" />
-                    </tr> -->
                 </div>
             </div>
         </div>

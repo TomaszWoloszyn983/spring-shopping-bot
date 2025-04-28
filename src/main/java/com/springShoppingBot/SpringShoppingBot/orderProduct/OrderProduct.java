@@ -11,10 +11,6 @@ import java.io.Serializable;
 @Entity
 public class OrderProduct implements Serializable {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private int id;
-
     @EmbeddedId
     public ProductOrderId id;
 

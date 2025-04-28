@@ -2,7 +2,6 @@ package com.springShoppingBot.SpringShoppingBot.order;
 
 import com.springShoppingBot.SpringShoppingBot.guestUser.GuestUser;
 import com.springShoppingBot.SpringShoppingBot.guestUser.UserRepository;
-import com.springShoppingBot.SpringShoppingBot.orderProduct.OrderProduct;
 import com.springShoppingBot.SpringShoppingBot.orderProduct.OrderProductRepository;
 import com.springShoppingBot.SpringShoppingBot.productInOrder.ProductInOrder;
 import com.springShoppingBot.SpringShoppingBot.tempProduct.TempProduct;
@@ -93,7 +92,7 @@ public class OrderService {
     public List<Integer> getProductsByOrderId(int orderId) {
         List<Integer> products = orderProductRepository.findProductIdsByOrderId(orderId);
         for(Integer product : products){
-            System.out.println(product);
+            System.out.print(product+" ");
         }
         return products;
     }
