@@ -4,69 +4,72 @@
 <div th:insert="~{index.html :: head}"></div>
 
 <body>
-    
-    <!--  Header  -->
+
+    <!-- Header -->
     <div th:insert="~{index.html :: header}"></div>
 
-    <!--  Navbar  -->
+    <!-- Navbar -->
     <div th:insert="~{index.html :: navbar}"></div>
 
-    <div class="container my-5 px-0">
-        <div class="container row my-2 mx-auto p-2">
-            <!-- Title -->
-            <div class="col-6 offset-3 px-auto">
-                <h2 class="page-title" >
-                    <span class="navbar-text" th:text="${'Welcome: '+username}"></span>
-                </h2>
-                <div class="container row my-2 mx-auto p-2 mb-3">
-                    <div class="col-12 px-auto" >
+    <div class="container my-5">
+        <!-- Welcome message -->
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Welcome, <span th:text="${username}"></span>!</h2>
+        </div>
+
+        <div class="row g-4">
+            <!-- User Details Card -->
+            <div class="col-md-6">
+                <div class="card shadow-sm rounded-4 p-3">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">User Details</h5>
+                        <p><strong>Name:</strong> <span th:text="${#strings.isEmpty(user.name) ? user.username : user.name}"></span></p>
+                        <p><strong>Role:</strong>
+                            <span th:each="role : ${user.roles}" th:text="${role.name}" class="me-2 badge bg-primary"></span>
+                        </p>
+                        <p><strong>Email:</strong> <span th:text="${user.email}"></span></p>
+                        <p>
+                            <strong>Created At:</strong> 
+                            <span th:text="${#temporals.format(user.createdAt, 'dd MMM yyyy, HH:mm')}"></span>
+                        </p>
+                        <p>
+                            <strong>Updated At:</strong> 
+                            <span th:text="${#temporals.format(user.updatedAt, 'dd MMM yyyy, HH:mm')}"></span>
+                        </p>
                     </div>
                 </div>
             </div>
-            <!-- User datails section -->
-            <div class="col-6 col-md-6">
-                <div class="row">
-                    <div class="col-12">
-                        <span class="user-detail-title" th:text="${'Name: '}"></span>
-                        <span class="user-detail-text" 
-                            th:text="${#strings.isEmpty(user.name) ? user.username : user.name}">
-                        </span>
-                        <span class="user-detail-title"   th:text="${'Role: '}"></span>
-                        <span class="user-detail-text" th:each="role : ${user.roles}" th:text="${role.name}"></span>
+
+            <!-- Orders History Card -->
+            <div class="col-md-6">
+                <div class="card shadow-sm rounded-4 p-3">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Order History</h5>
+
+                        <div th:if="${#lists.isEmpty(ordersHistory)}">
+                            <p class="text-muted">No orders found.</p>
+                        </div>
+
+                        <div th:each="order : ${ordersHistory}" class="mb-4 border-bottom pb-3">
+                            <p><strong>Order Date:</strong> <span th:text="${#temporals.format(order.createdAt, 'dd MMM yyyy, HH:mm')}"></span></p>
+                            <p><strong>Email:</strong> <span th:text="${order.userEmail}"></span></p>
+
+                            <!-- Products in Order -->
+                            <div class="ms-3">
+                                <h6 class="fw-bold">Products:</h6>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item" th:each="product : ${order.listOfProducts}">
+                                        <span th:text="${product.name + (#strings.isEmpty(product.type) ? '' : ' - ' + product.type)}"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="col-12">
-                        <span class="user-detail-title" th:text="${'Email: '}"></span>
-                        <span class="user-detail-text" th:text="${user.getEmail()}"></span>
-                    </div>
-                    <div class="col-12">
-                        <span class="user-detail-title" th:text="${'Created at: '}"></span>
-                        <span class="user-detail-text" th:text="${user.getCreatedAt()}"></span>
-                    </div>
-                    <div class="col-12">
-                        <span class="user-detail-title" th:text="${'Updated at: '}"></span>
-                        <span class="user-detail-text" th:text="${user.getUpdatedAt()}"></span>
-                    </div>
-                </div>
-            </div>
-            <!-- Order Hitory section -->
-            <div class="col-6 col-md-6">
-                <div class="row">
-                    <h3>Orders History</h3>
-                    <ul>
-                        <li th:each="order, iterStat : ${ordersHistory}">
-                            <span th:text="${order.getCreatedAt()}"></span>
-                            <span th:text="${order.userEmail}"></span>
-                            <!-- List of products in the Order -->
-                            <ul>
-                                <li th:each="product, iterStat2 : ${order.listOfProducts}">
-                                    <span th:text="${product.name} + ' ' + ${product.type}"></span>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>                    
                 </div>
             </div>
         </div>
     </div>
+
 </body>
 </html>

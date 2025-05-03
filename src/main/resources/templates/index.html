@@ -31,137 +31,87 @@
 
     <title>Spring Shopping Bot</title>
 </head>
+
 <body id="background-image">
 
-    <header class="row container mx-auto" th:fragment="header">
-        <div class="col-md-12 text-md-center">
-            <span id="main-header-container" class="px-auto">
-                Spring Shopping Bot
-            </span>
+    <!-- Header -->
+    <header class="container my-4" th:fragment="header">
+        <div class="text-center">
+            <h1 class="display-5 fw-bold text-primary">Spring Shopping Bot</h1>
         </div>
     </header>
 
-
-    <div class="container mx-auto px-auto" >
-
-    <!--  Navbar  -->
-    <div class="row container mx-auto"
-            id="nav-container" th:fragment="navbar">
-        <a class="col-sm-12 col-md-2 navbar-tiles nav-link"
-            href="home.html" th:href="@{/home}">
-            <span class="navbar-text">Home</span>
-            
-            <!-- <div class="nav-separator"></div> -->
-        </a>
-        <a class="col-sm-12 col-md-2 navbar-tiles nav-link"
-                href="shoppingList.html" th:href="@{/shoppingList}">
-            <span class="navbar-text">Shopping List</span>
-        </a>
-        <!-- <div class="nav-separator "></div> -->
-        <div class="col-sm-12 col-md-2 nav-link
-                    --bs-primary-bg-light">
-            <!-- <div class="nav-separator"></div> -->
-        </div>
-        <div class="col-sm-12 col-md-2 nav-link
-        --bs-primary-bg-light">
-        <!-- <div class="nav-separator"></div> -->
-        </div>
-        <!-- Logged-in User -->
-        <div th:unless="${isLoggedIn}" class="col-md-4 mx-0 px-0">
-            <div class="row mx-0 px-0">
-                <a class="col-sm-12 col-md-6 navbar-tiles nav-link mx-0 px-0"
-                    th:href="@{/register}">
-                    <span class="navbar-text">Register</span>
-                </a>
-                <a th:unless="${isLoggedIn}" class="col-sm-12 col-md-6 navbar-tiles nav-link mx-0 px-0"
-                    th:href="@{/login}">
-                    <span class="navbar-text">Login</span>
-                </a>
-            </div>
-        </div>
-        <!-- Visible only to logged-in users -->
-        <div th:if="${isLoggedIn}" class="col-md-4 mx-0 px-0">
-            <div class="row mx-0 px-0">
-                <a class="col-sm-12 col-md-6 navbar-tiles nav-link mx-0 px-0"
-                    th:href="@{/userAccountPage}">
-                    <span class="navbar-text" th:text="${'Welcome: '+username}"></span>
-                </a>
-                <a class="col-sm-12 col-md-6 navbar-tiles nav-link mx-0 px-0"
-                    th:href="@{/api/auth/logout}" th:if="${isLoggedIn}">
-                    <span class="navbar-text">Logout</span>
-                </a>
-            </div>
-        </div>
-
-    </div>
-
-
-    <!--  Main Content  -->
-    <div class="row container px-0 mx-0 mx-md-auto">
-
-        <!-- Left panel -->
-        <div class="col-md-2 mx-0 main-panels">
-            <!-- Left panel placeholder-->
-        </div>
-
-        <!-- Central Panel -->
-        <div class="col-md-8 mx-0 mt-3 px-0">
-            <div class="row">
-                <div class="mx-0 horizontal-pars">
-                    <h2 class="page-title">
-                        Welcome to the <br> Spring Shopping Bot 
-                    </h2>
-                    <h5 class="text-center mx-auto mb-5 mt-4 px-auto">Your Smart Shopping Assistant</h5>
-                    <p class="col home-page-paragraphs my-4">
-                        Spring Shopping Bot makes grocery shopping easy! It automatically 
-                        compares prices across top Irish supermarkets, so you always get the 
-                        best deals—without the hassle of manual searching.
-                    </p>
-                    
-                    <h5 class="home-page-headers mt-3">How It Works</h5>
-
-                    <p class="col home-page-paragraphs">
-                        <ul>
-                            <li>
-                                Create Your List – Add items to your shopping list in just a few clicks.
-                            </li>
-                            <li>
-                                Automatic Price Check – Our bot scans supermarket websites for the latest prices.
-                            </li>
-                            <li>
-                                Get the Best Deals – View a report with the cheapest options and shop smarter!
-                            </li>
-                        </ul>
-                    </p>
-
-                    <h5 class="home-page-headers">Why Choose Spring Shopping Bot?</h5>
-                    <p class="col home-page-paragraphs">
-                        The app not only saves you time by eliminating manual 
-                        searches but also ensures you get the best deals available, 
-                        optimizing your shopping routine. Whether you're looking 
-                        for everyday groceries or special items, Spring Shopping Bot 
-                        is your go-to tool for hassle-free and cost-effective 
-                        shopping.
-
-                        Try Spring Shopping Bot today and experience smarter shopping, 
-                        powered by automation!
-                    </p>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light mb-4" th:fragment="navbar">
+        <div class="container">
+            <a class="navbar-brand fw-bold" th:href="@{/home}">Home</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/shoppingList}">Shopping List</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <div th:unless="${isLoggedIn}">
+                        <a class="btn btn-outline-primary me-2" th:href="@{/register}">Register</a>
+                        <a class="btn btn-primary" th:href="@{/login}">Login</a>
+                    </div>
+                    <div th:if="${isLoggedIn}">
+                        <a class="btn btn-outline-success me-2" th:href="@{/userAccountPage}">
+                            Welcome: <span th:text="${username}"></span>
+                        </a>
+                        <a class="btn btn-danger" th:href="@{/api/auth/logout}">Logout</a>
+                    </div>
                 </div>
             </div>
-            <!-- Button -->    
-            <div class="row mx-auto px-auto mb-5 horizontal-pars">
-                <a type="button" class="btn btn-primary mx-auto"
-                    href="shoppingList.html" th:href="@{/shoppingList}">
-                    Go to the shopping list
-                </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10">
+                <div class="card shadow-sm p-4 rounded-4">
+                    <div class="card-body">
+                        <h2 class="text-center mb-3">Welcome to the <br><span class="text-primary">Spring Shopping Bot</span></h2>
+                        <h5 class="text-center mb-4">Your Smart Shopping Assistant</h5>
+                        
+                        <p class="lead text-center">
+                            Spring Shopping Bot makes grocery shopping easy! Automatically compare prices across top Irish supermarkets and get the best deals — no manual searching needed!
+                        </p>
+
+                        <hr class="my-4">
+
+                        <h5 class="fw-bold">How It Works</h5>
+                        <ul class="list-unstyled ps-3">
+                            <li class="mb-2">
+                                <i class="bi bi-cart4 me-2"></i>
+                                <strong>Create Your List</strong> – Add items to your shopping list with just a few clicks.
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-search me-2"></i>
+                                <strong>Automatic Price Check</strong> – We scan supermarket sites for the best prices.
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-cash-coin me-2"></i>
+                                <strong>Get the Best Deals</strong> – View a detailed report and shop smarter!
+                            </li>
+                        </ul>
+
+                        <h5 class="fw-bold mt-4">Why Choose Spring Shopping Bot?</h5>
+                        <p>
+                            Save time and money by automating your grocery price checks. Whether you're shopping for daily essentials or specialty items, Spring Shopping Bot ensures you always get the best value — fast, easy, and smart.
+                        </p>
+
+                        <div class="text-center mt-4">
+                            <a class="btn btn-lg btn-primary" th:href="@{/shoppingList}">Go to the Shopping List</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <!-- Right panel -->
-        <div class="col-md-2">
-            <!-- Right panel placeholder-->
-        </div>
     </div>
-</div>
+
 </body>
+
 </html>
