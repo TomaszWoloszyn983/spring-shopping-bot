@@ -24,7 +24,6 @@ public class Order {
     @Email(message = "Please provide a valid email address")
     private String userEmail;
 
-//    @Transient
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "ORDER_PRODUCT", // Your existing table
@@ -34,49 +33,9 @@ public class Order {
     @JsonManagedReference
     private List<ProductInOrder> listOfProducts;
 
-//    @JsonManagedReference
-//    private List<TempProduct> listOfTempProducts = new ArrayList<TempProduct>();
-
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private GuestUser user;
-
     @Column(name = "createdat")
     @DateTimeFormat(pattern = "HH:mm dd-MM-yyyy")
     private LocalDateTime createdAt;
-
-    /**
-     * This method isn't in use at the moment
-     * The listOfProducts is assigned with values
-     * taken from the database every time
-     * the shopping list page is displayed/refreshed.
-     *
-     * @param tempProduct
-     */
-    public void addToList(ProductInOrder tempProduct){
-        System.out.println("Add product 1");
-        listOfProducts.add(tempProduct);
-        System.out.println("Product "+tempProduct.getName()+" added to Order");
-    }
-
-    /**
-     * This method isn't in use at the moment
-     * The listOfProducts is assigned with values
-     * taken from the database every time
-     * the shopping list page is displayed/refreshed.
-     *
-     * @param id
-     */
-    public void removeFromList(int id){
-        System.out.println("Del product 1");
-        listOfProducts.remove(listOfProducts.stream()
-                .filter(product -> product.getId() == id)
-                .findFirst());
-    }
-
-    public void clearList(){
-        this.listOfProducts.clear();
-    }
 
     public Integer getId() {
         return id;
@@ -94,6 +53,16 @@ public class Order {
         return listOfProducts;
     }
 
+    /**
+     * Converts a list of TempProducts into a list of ProductsInOrder
+     *
+     * ... by
+     * taking a list of Temporary Products.
+     * Iterating the list of products, and creating a new ProductInOrder
+     * for each of the TempProducts.
+     *
+     * @param listOfProducts - list of TempProducts
+     */
     public void setListOfProducts(List<TempProduct> listOfProducts) {
         List<ProductInOrder> productsToOrder = new ArrayList<>();
         for (TempProduct product : listOfProducts){
@@ -133,7 +102,6 @@ public class Order {
         System.out.println("Del product 2");
         this.listOfProducts.remove(product);
     }
-
 
     public void displayProducts() {
         System.out.println("Products in the list:");

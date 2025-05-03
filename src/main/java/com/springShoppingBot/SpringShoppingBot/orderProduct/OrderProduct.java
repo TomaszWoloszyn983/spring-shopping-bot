@@ -30,7 +30,7 @@ public class OrderProduct implements Serializable {
     @JoinColumn(name = "PRODUCTID")
     private ProductInOrder product;
 
-
+//    Constructors
     public OrderProduct() {}
 
     public OrderProduct(Order order, ProductInOrder product) {
@@ -39,6 +39,7 @@ public class OrderProduct implements Serializable {
         this.id = new ProductOrderId(order.getId(), product.getId());
     }
 
+//    Setters and Getters
     public ProductOrderId getId() {
         return id;
     }

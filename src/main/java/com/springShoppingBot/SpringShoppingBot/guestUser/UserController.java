@@ -36,38 +36,22 @@ public class UserController {
 
     @GetMapping(path = "/userAccountPage")
     public String displayUserPage(Model model){
-        System.out.println("Displaying User Page");
 
         GlobalController.updateIsLoggedIn();
         GuestUser user = guestUserService.findUserByUsername(GlobalController.getUsername());
-        List<Order> userOrders = orderService.getOrdersWithProductsForUser(user.getEmail());
-
-//      Not in use
-        orderService.getProductsByOrderId(18);
-//        orderService.getProductsIds(18);
-
 
         if(GlobalController.getIsLoggedIn()){
             System.out.println("User Logged-in. Email: "+user.getEmail());
 
             //      Retrieve the list of Products assigned to Order
             List<Order> ordersHistory = guestUserService.findUsersOrders(user.getEmail());
-            System.out.println("Order History: "+ordersHistory);
-            System.out.println("User Controller / list of products:");
+            System.out.println(ordersHistory.size()+" orders found in the users history");
 
-//            Can be deleted. Display Users Orders and Orders Products
-            for(Order order : ordersHistory){
-                System.out.println("Date: "+order.getCreatedAt());
-                for (ProductInOrder product : order.getListOfProducts())
-                    System.out.println("\t\t"+product.getName());
+            model.addAttribute("isLoggedIn", GlobalController.getIsLoggedIn());
+            model.addAttribute("username", GlobalController.getUsername());
+            model.addAttribute("user", user);
+            model.addAttribute("ordersHistory", ordersHistory);
         }
-
-        model.addAttribute("isLoggedIn", GlobalController.getIsLoggedIn());
-        model.addAttribute("username", GlobalController.getUsername());
-        model.addAttribute("user", user);
-        model.addAttribute("ordersHistory", ordersHistory);
-        }
-
         return "userAccountPage";
     }
 }

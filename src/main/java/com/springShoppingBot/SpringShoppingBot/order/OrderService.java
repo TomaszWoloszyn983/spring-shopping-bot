@@ -97,14 +97,6 @@ public class OrderService {
         return products;
     }
 
-    public List<ProductInOrder> getProductsIds(int orderId) {
-        List<ProductInOrder> products = orderProductRepository.findByOrderId(orderId);
-        for(ProductInOrder product : products){
-            System.out.println(product);
-        }
-        return products;
-    }
-
     public void sendConfirmationEmail(String toEmail, String subject, String body) {
         System.out.println("Sending order to: " +  ((mailSender == null) ? "Email has NOT been received !!!" : mailSender));
         MimeMessage mimeMessage = mailSender.createMimeMessage();
