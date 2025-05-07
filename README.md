@@ -358,6 +358,58 @@ This modular approach ensures clear separation of concerns, improves maintainabi
 ## UserOrder Table: 
 The UserOrder table holds the UserId and OrderId to link users with their orders. Each entry represents an order placed by a user.
 
+### Associating Users with Orders
+
+The association between User and Order is managed through a Many-to-Many relationship, implemented using an intermediate table called UserOrder.
+
+1. Relationship Overview
+
+Entities Involved: User, Order
+
+Join Table: UserOrder (containing user_id, order_id)
+
+This structure allows a user to place multiple orders, and—if ever required—an order to potentially be associated with multiple users.
+
+
+2. No Direct Repository
+
+Unlike the ProductOrder relationship, a dedicated repository for UserOrder is not created.
+
+Instead, data retrieval is handled using existing repositories (GuestUserRepository, OrderRepository) and service methods that utilize custom queries or mapped relationships.
+
+
+3. Service Layer Logic
+
+The GuestUserService includes methods such as findUsersOrders(String userEmail).
+
+These methods retrieve orders associated with a user by querying the OrderRepository using the user’s email or other identifying fields, assuming the Order entity holds a reference to the user (e.g., through an email field or mapped @ManyToOne relationship).
+
+
+4. Efficiency and Simplicity
+
+By leveraging entity relationships and custom queries, the UserOrder join is abstracted away from the developer.
+
+This reduces boilerplate code and simplifies data access, especially in use cases where the join table doesn’t require direct interaction (e.g., storing extra fields).
+
+
+5. Front-End Integration
+
+The list of a user’s orders is retrieved in the controller and passed to the view.
+
+The UI renders these orders, optionally enriched with product data, on pages like the user account or order history view.
+
+
+This approach keeps the design simple and effective for typical use cases where the intermediate join does not require additional metadata or logic.
+
+
+---
+
+Would you like to include any code snippets (like the findUsersOrders() method) in the documentation for clarity?
+
+
+
+
+
 # Technologies Used
 
 
