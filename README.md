@@ -306,6 +306,55 @@ Defines user roles such as ADMIN and USER with fields Id and Name, supporting ro
 ## OrderProduct Table: 
 The OrderProduct table holds the OrderId and ProductId to establish the many-to-many relationship between orders and products. Each entry represents a product associated with an order.
 
+
+### Retrieving Products for a Specific Order
+
+The association between Order and Product entities is established through a Many-to-Many relationship, implemented via a junction table named ProductOrder. To efficiently retrieve the products assigned to a specific order, a dedicated data access and service layer is introduced.
+
+####	1. Relationship Overview
+
+Entities Involved: Order, Product
+
+Join Table: ProductOrder (with fields like order_id, product_id)
+
+This setup allows each order to contain multiple products, and each product to belong to multiple orders.
+
+
+#### 2. Repository Layer
+
+A ProductOrderRepository interface is created, extending JpaRepository.
+
+It provides custom query methods (e.g., findByOrderId(int orderId)) to retrieve all ProductOrder records related to a given order.
+
+
+#### 3. Service Layer
+
+The ProductOrderService contains business logic for interacting with the repository.
+
+It provides a method like getProductsByOrderId(int orderId) which:
+
+Calls the repository to fetch all ProductOrder entries linked to the given order.
+
+Extracts and returns the list of associated Product entities.
+
+
+
+#### 4. Controller Integration
+
+The service method is used within the controller (e.g., UserController) to populate the Order objects with their corresponding list of products.
+
+This enriched order data is passed to the view layer for rendering in the UI.
+
+
+#### 5. UI Display
+
+The Thymeleaf template iterates over each order and its associated products, displaying order details and product names/types dynamically.
+
+
+This modular approach ensures clear separation of concerns, improves maintainability, and allows for efficient retrieval and display of product data associated with orders.
+
+
+
 ## UserOrder Table: 
 The UserOrder table holds the UserId and OrderId to link users with their orders. Each entry represents an order placed by a user.
 
